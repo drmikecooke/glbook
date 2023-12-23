@@ -421,23 +421,20 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="meissner-effect-in-one-dimension">
 <h1>Meissner effect in one dimension<a class="headerlink" href="#meissner-effect-in-one-dimension" title="Permalink to this heading">#</a></h1>
 <p>Programs to solve the GL BVP with an applied field H at x=0 of half infinite superconductor in region x&gt;0.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install scipy
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_bvp</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">html.entities</span> <span class="kn">import</span> <span class="n">html5</span>
 
-<span class="n">kappa</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">L</span><span class="o">=</span><span class="mi">10</span>
-<span class="n">b0</span><span class="o">=</span><span class="mf">0.5</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># London boundary conditions: b=da=b0,f=0 at x=0; b=da=0,f=1  at x=L, </span>
+<span class="c1"># London boundary conditions: b=da=b0,f=0 at x=0; b=da=0,f=1  at x=L, </span>
 <span class="k">def</span> <span class="nf">gl</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">b0</span><span class="p">):</span>
   <span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -459,6 +456,28 @@ document.write(`
   <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># b=da</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">)</span>
   <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
+Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages (1.11.4)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&lt;1.28.0,&gt;=1.21.6 in /home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages (from scipy) (1.26.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kappa</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">b0</span><span class="o">=</span><span class="mf">0.5</span>
 
 <span class="n">gl</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">b0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
