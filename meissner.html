@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'meissner';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -402,7 +404,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="meissner-effect-in-one-dimension">
 <h1>Meissner effect in one dimension<a class="headerlink" href="#meissner-effect-in-one-dimension" title="Permalink to this heading">#</a></h1>
-<p>Programs to solve the GL BVP with an applied field H at x=0 of half infinite superconductor in region x&gt;0.</p>
+<p>Programs to solve the GL BVP with an applied field <span class="math notranslate nohighlight">\(b_0\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span> of half infinite superconductor in region x&gt;0.</p>
+<p>I hope the plots below demonstrate the sort of range of behaviors. You can play with them if you click on the rocket icon at the top and select “Live code”. You need to wait for the gray box above to report that the kernel is ready. The hidden code below with some initialization should automatically execute, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell source”</p>
+<p>The gl function plots a solution of the boundary value problem where <span class="math notranslate nohighlight">\(f\)</span> goes to 1, and <span class="math notranslate nohighlight">\(b\)</span> to zero at L, which is a proxy for infinity. A number of calls to gl adds extra <span class="math notranslate nohighlight">\(f,b\)</span> plots. The remaining boundary conditions are the applied field, <span class="math notranslate nohighlight">\(b_0\)</span>, and <span class="math notranslate nohighlight">\(f=0\)</span> (non-superconducting surface), at <span class="math notranslate nohighlight">\(x=0\)</span>.</p>
 <div class="cell tag_thebe-init tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -417,7 +421,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">html.entities</span> <span class="kn">import</span> <span class="n">html5</span>
 
 <span class="c1"># London boundary conditions: b=da=b0,f=0 at x=0; b=da=0,f=1  at x=L, </span>
-<span class="k">def</span> <span class="nf">gl</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">b0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">gl</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">b0</span><span class="p">,</span><span class="n">tex</span><span class="p">):</span>
   <span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -427,16 +431,16 @@ document.write(`
   <span class="k">def</span> <span class="nf">bc</span><span class="p">(</span><span class="n">ya</span><span class="p">,</span> <span class="n">yb</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ya</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">yb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ya</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">b0</span><span class="p">,</span><span class="n">yb</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">yb</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
   <span class="n">rng</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">]</span>
-  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">rng</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">rng</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
   <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
   <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span> <span class="c1"># initialize f to 1</span>
     <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
   <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
   <span class="n">x_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">rng</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
   <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># f</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;f: </span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
   <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># b=da</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;b: </span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
   <span class="k">return</span> <span class="mi">0</span>
 </pre></div>
 </div>
@@ -457,19 +461,43 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kappa</span><span class="o">=</span><span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kappa</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
 <span class="n">L</span><span class="o">=</span><span class="mi">10</span>
-<span class="n">b0</span><span class="o">=</span><span class="mf">0.5</span>
 
-<span class="n">gl</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">b0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">b0</span><span class="o">=</span><span class="n">b</span><span class="o">/</span><span class="mi">5</span>
+    <span class="n">gl</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">b0</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;$b_0=</span><span class="si">{</span><span class="n">b0</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/05fbef7401c791f406a30048a7096075fed83db1de909761b8486c9521316476.png" src="_images/05fbef7401c791f406a30048a7096075fed83db1de909761b8486c9521316476.png" />
+<img alt="_images/94e956f88c2ad2918c8cdaeef13e5354d8de6ed7dc022fe0a20fbba7cf3e061f.png" src="_images/94e956f88c2ad2918c8cdaeef13e5354d8de6ed7dc022fe0a20fbba7cf3e061f.png" />
+</div>
+</div>
+<p>We note that with <span class="math notranslate nohighlight">\(b_0\)</span> fields of 0.8 and above show a reluctance for <span class="math notranslate nohighlight">\(b\)</span> to go to zero, because in “reality” it doesn’t, at least in the GL framework. The critical field is in fact <span class="math notranslate nohighlight">\(1/\sqrt2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">20</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+    <span class="n">gl</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">b0</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$b_0=</span><span class="si">{</span><span class="n">b0</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a96a0ff7a17df6b977aa5377c138bcc48cdf8731f038989d408ceba08663f119.png" src="_images/a96a0ff7a17df6b977aa5377c138bcc48cdf8731f038989d408ceba08663f119.png" />
 </div>
 </div>
 </section>
