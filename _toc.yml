@@ -5,5 +5,6 @@ format: jb-book
 root: intro
 chapters:
 - file: scaling
+- file: glcode
 - file: meissner
-- file: markdown-notebooks
+- file: domain
