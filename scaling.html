@@ -374,6 +374,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-order-parameter-psi">Constant order parameter <span class="math notranslate nohighlight">\(\Psi\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-applied-magnetic-field">Critical applied magnetic field</a></li>
 </ul>
             </nav>
         </div>
@@ -411,12 +412,31 @@ document.write(`
 <p>In the London theory we have:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf j_s=-\frac c{4\pi \lambda_L^2}\mathbf A\]</div>
-<p>which with the Ampère-Maxwell law, and the vector calculus identity, <span class="math notranslate nohighlight">\(\mathbf\nabla\times\mathbf\nabla\times\mathbf B=-\nabla^2\mathbf B\)</span>, gives <span class="math notranslate nohighlight">\(\nabla^2\mathbf B=\mathbf B/\lambda_L^2\)</span>. In one dimension, this entails exponential damping of the magnetic field, <span class="math notranslate nohighlight">\(\mathbf B\)</span>, over the distance scale of the London penetration depth <span class="math notranslate nohighlight">\(\lambda_L\)</span>, the Meissner effect.</p>
+<p>which with the Ampère-Maxwell law, and the vector calculus identity, <span class="math notranslate nohighlight">\(\mathbf\nabla\times\mathbf\nabla\times\mathbf B=-\nabla^2\mathbf B\)</span>, gives <span class="math notranslate nohighlight">\(\nabla^2\mathbf B=\mathbf B/\lambda_L^2\)</span>. In one dimension, this entails exponential damping to zero, the Meissner effect, of the magnetic field, <span class="math notranslate nohighlight">\(\mathbf B\)</span>, over the distance scale of the London penetration depth <span class="math notranslate nohighlight">\(\lambda_L\)</span>.</p>
 <p>Comparing the London and the Ginzburg-Landau theories:</p>
 <div class="math notranslate nohighlight">
 \[\frac1{\lambda_L^2}=8\pi K|\Psi|^2\left(\frac{e^*}{\hbar c}\right)^2\]</div>
-<p>Since we are considering a steady state, current conservation is <span class="math notranslate nohighlight">\(\mathbf \nabla\cdot\mathbf j=0\)</span>, and we have also <span class="math notranslate nohighlight">\(\mathbf \nabla\cdot\mathbf A=0\)</span>.</p>
-<p>This reduces the first G-L equation to <span class="math notranslate nohighlight">\(a\Psi+b|\Psi|^2\Psi=0\)</span>. The parameter <span class="math notranslate nohighlight">\(b\)</span> is positive, but  if superconductivity is a possibility, <span class="math notranslate nohighlight">\(a\)</span> must be negative, otherwise <span class="math notranslate nohighlight">\(\Psi=0\)</span> is the only solution. With superconductivity <span class="math notranslate nohighlight">\(|\Psi|^2=-a/b\)</span>.</p>
+<p>Since we are considering a steady state, current conservation is <span class="math notranslate nohighlight">\(\mathbf \nabla\cdot\mathbf j=0\)</span>, and we have also <span class="math notranslate nohighlight">\(\mathbf \nabla\cdot\mathbf A=0\)</span>. This reduces the first G-L equation to <span class="math notranslate nohighlight">\(a\Psi+b|\Psi|^2\Psi=0\)</span>. The parameter <span class="math notranslate nohighlight">\(b\)</span> is positive, but  if superconductivity is a possibility, <span class="math notranslate nohighlight">\(a\)</span> must be negative, otherwise <span class="math notranslate nohighlight">\(\Psi=0\)</span> is the only solution. With superconductivity <span class="math notranslate nohighlight">\(|\Psi|^2=-a/b\)</span> is the state contributing the lowest free energy density, <span class="math notranslate nohighlight">\(-a^2/2b\)</span>. The <span class="math notranslate nohighlight">\(\Psi=0\)</span> state, of course, has zero free energy.</p>
+<p>By considering a constant order parameter, one is choosing a gauge. A gauge tranformation would create an equivalent solution where the order parameter was constant in amplitude, but not phase. Also, the divergence of <span class="math notranslate nohighlight">\(\mathbf A\)</span> would not be zero.</p>
+</section>
+<section id="critical-applied-magnetic-field">
+<h2>Critical applied magnetic field<a class="headerlink" href="#critical-applied-magnetic-field" title="Permalink to this heading">#</a></h2>
+<p>There is no possibility of coexistence of a magnetic field with a constant non-zero order parameter — the two fields have to interact and come to a non-constant compromise over a distance of order <span class="math notranslate nohighlight">\(\lambda_L\)</span>. The (free) energy density of a constant magnetic field is <span class="math notranslate nohighlight">\(\mathbf B^2/8\pi\)</span>.</p>
+<p>Maxwell’s equations in matter are traditionally posed in terms of applied fields <span class="math notranslate nohighlight">\(\mathbf{H,D}\)</span>, and local fields, <span class="math notranslate nohighlight">\(\mathbf{B,E}\)</span>, that are the response to the applied fields. Concentrating on the magnetic behaviour, the differential of the free energy density <span class="math notranslate nohighlight">\(f\)</span> is composed as:</p>
+<div class="math notranslate nohighlight">
+\[df=-sdT+\frac1{4\pi}\mathbf H\cdot d\mathbf B\]</div>
+<p>We note this is posed in terms of differentials of a relatively easy factor to control and change (temperature, <span class="math notranslate nohighlight">\(T\)</span>) and one we can’t (local magnetic field, <span class="math notranslate nohighlight">\(\mathbf B\)</span>).</p>
+<p>To make life easier, we Legendre transform to the Gibbs free energy density: <span class="math notranslate nohighlight">\(g=f-\mathbf H\cdot \mathbf B/4\pi\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[dg=-sdT-\frac1{4\pi}\mathbf B\cdot d\mathbf H\]</div>
+<p>The relation between <span class="math notranslate nohighlight">\(\mathbf B\)</span> and <span class="math notranslate nohighlight">\(\mathbf H\)</span> is <span class="math notranslate nohighlight">\(\mathbf B=\mathbf H+4\pi\mathbf M\)</span>, where <span class="math notranslate nohighlight">\(\mathbf M\)</span> is the magnetisation density. In a superconductor, the Meissner effect gives <span class="math notranslate nohighlight">\(\mathbf B=0\)</span>, and <span class="math notranslate nohighlight">\(\mathbf H=-4\pi\mathbf M\)</span>, perfect diamagnetism. In the normal metal state without anti-/ferro-magnetism (<span class="math notranslate nohighlight">\(\mathbf M\approx0\)</span>), <span class="math notranslate nohighlight">\(\mathbf B\approx\mathbf H\)</span>.</p>
+<p>The Gibbs free energy density for the superconducting state is <span class="math notranslate nohighlight">\(g_s=-a^2/2b\)</span>, since integrating <span class="math notranslate nohighlight">\(-\mathbf B\cdot d\mathbf H/4\pi\)</span>  up to <span class="math notranslate nohighlight">\(\mathbf H\)</span> with <span class="math notranslate nohighlight">\(\mathbf B=0\)</span> gives zero.</p>
+<p>The normal metal Gibbs density has zero contribution from the <span class="math notranslate nohighlight">\(\Psi\)</span> order parameter, but integrating <span class="math notranslate nohighlight">\(-\mathbf B\cdot d\mathbf H/4\pi\)</span> with <span class="math notranslate nohighlight">\(\mathbf B=\mathbf H\)</span> gives <span class="math notranslate nohighlight">\(g_n=-\mathbf H^2/8\pi\)</span>.</p>
+<p>Magnetic materials favour states with the lowest Gibbs energy density. The critical field is <span class="math notranslate nohighlight">\(H_c=4\pi a^2/2b\)</span>, where <span class="math notranslate nohighlight">\(g_n=g_s\)</span>. Below this field the superconducting state is favoured, above it the normal state.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I note some confusion in myself about these canonical calculations: while the applied field magnitude <span class="math notranslate nohighlight">\(H\)</span> is below <span class="math notranslate nohighlight">\(H_c\)</span>, the <span class="math notranslate nohighlight">\(dH\)</span> integration has <span class="math notranslate nohighlight">\(B=0\)</span>, since the material is in the superconducting state. But this is not taken account of in the “normal” calculation. Is it because these are only notional calculations? Will studying the G-L system help overcome this confusion? Is there some sort of hysteresis. Is there a transition region?</p>
+</div>
 </section>
 </section>
 
@@ -484,6 +504,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-order-parameter-psi">Constant order parameter <span class="math notranslate nohighlight">\(\Psi\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-applied-magnetic-field">Critical applied magnetic field</a></li>
 </ul>
   </nav></div>
 
