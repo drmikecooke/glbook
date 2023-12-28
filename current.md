@@ -1,0 +1,57 @@
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.16.0
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
+
+# Current
+
++++
+
+The critical current section of {cite}`arovas` has some problems for me. Arovas seems to continue with the constant $\Psi_0$ assumption, but includes a (constant?) gauge potential $\mathbf A$ to give a free energy density:
+
+$$f=a|\Psi_0|^2+\frac12 b|\Psi_0|^4+K\left(\frac{e^*}{\hbar c}\right)^2\mathbf A^2|\Psi_0|^2$$
+
++++
+
+Minimizing with respect to $|\Psi_0|$ gives:
+
+$$|\Psi_0|^2=-\frac{a+K\left(\frac{e^*}{\hbar c}\right)^2\mathbf A^2}{b}$$
+
++++
+
+We are assuming that the material is superconducting, so $a<0$.
+
++++
+
+What I don't understand at this point is that Arovas puts this into the current formula to get:
+
+$$\mathbf j=\left(\frac{2Ke^{*2}}{\hbar^2c }\right)\frac{a+K\left(\frac{e^*}{\hbar c}\right)^2\mathbf A^2}{b}\mathbf A$$
+
++++
+
+But isn&rsquo;t this current zero because the magnetic field is zero and hence $\mathbf j=c\mathbf\nabla\times\mathbf B/4\pi=0$? Hence the only consistent value for $\mathbf A$ in this gauge is zero? The same result comes from minimizing $f$ with respect to $\mathbf A$, does it not?
+
++++
+
+Instead Arovas &ldquo;extremizes&rdquo; the current with respect to the magnitude $A$. This occurs when:
+```{math}
+:label: A2
+A^2=-\frac a{3K\left(\frac{e^*}{\hbar c}\right)^2}
+```
+
++++
+
+Arovas&rsquo; &ldquo;critical current&rdquo; is:
+
+$$j_c=\frac{4}{3\sqrt3}\frac{e^{*}}{\hbar}\frac{K^{1/2}(-a)^{3/2}}b$$
+
+I disagree also with Arovas&rsquo; factor, which I think derives from an incorrect substitution of the final $A$ which is a square-root, but cancelling the squared term in equation {eq}`A2` as if it is not to be square-rooted. Some dimensional analysis would sort this out, but I am not sure it is worth the effort!

@@ -4,6 +4,9 @@
 format: jb-book
 root: intro
 chapters:
+- file: free
+- file: gibbs
+- file: current
 - file: scaling
 - file: glcode
 - file: meissner
