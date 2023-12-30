@@ -7,9 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Ginzburg-Landau boundary value problems using scipy on the web &#8212; Ginzburg-Landau boundary value problems</title>
+    <title>Ginzburg-Landau and scipy &#8212; Ginzburg-Landau boundary value problems</title>
   
   
   
@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Scaling the Ginzburg-Landau equations" href="scaling.html" />
+    <link rel="next" title="Ginzburg-Landau free energy" href="free.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -164,17 +164,22 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Ginzburg-Landau boundary value problems using scipy on the web
+                    Ginzburg-Landau and scipy
                 </a>
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the Ginzburg-Landau equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic python code for 1D Ginzburg-Landau problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in one dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic code for 1D problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in 1D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bib.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -358,7 +363,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Ginzburg-Landau boundary value problems using scipy on the web</h1>
+    <h1>Ginzburg-Landau and scipy</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -372,25 +377,23 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="ginzburg-landau-boundary-value-problems-using-scipy-on-the-web">
-<h1>Ginzburg-Landau boundary value problems using scipy on the web<a class="headerlink" href="#ginzburg-landau-boundary-value-problems-using-scipy-on-the-web" title="Permalink to this heading">#</a></h1>
-<p>The plan here is to see how to put stuff on my website that enables python calculations in as simple a way as possible. I make heavy use of <span id="id1">[<a class="reference internal" href="#id3" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="ginzburg-landau-and-scipy">
+<h1>Ginzburg-Landau and scipy<a class="headerlink" href="#ginzburg-landau-and-scipy" title="Permalink to this heading">#</a></h1>
+<p>The plan here is to see how to put stuff on my website that enables python calculations in as simple a way as possible. I make heavy use of <span id="id1">[<a class="reference internal" href="bib.html#id2" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span>.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the Ginzburg-Landau equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic python code for 1D Ginzburg-Landau problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in one dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic code for 1D problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in 1D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bib.html">Bibliography</a></li>
 </ul>
-</div>
-<div class="docutils container" id="id2">
-<div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">ArovasWu19</a><span class="fn-bracket">]</span></span>
-<p>Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: <a class="reference external" href="https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf">https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf</a>.</p>
-</div>
-</div>
 </div>
 </section>
 
@@ -425,11 +428,11 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="scaling.html"
+       href="free.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Scaling the Ginzburg-Landau equations</p>
+        <p class="prev-next-title">Ginzburg-Landau free energy</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -7,9 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Basic python code for 1D Ginzburg-Landau problems &#8212; Ginzburg-Landau boundary value problems</title>
+    <title>Basic code for 1D problems &#8212; Ginzburg-Landau boundary value problems</title>
   
   
   
@@ -165,17 +165,22 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Ginzburg-Landau boundary value problems using scipy on the web
+                    Ginzburg-Landau and scipy
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the Ginzburg-Landau equations</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic python code for 1D Ginzburg-Landau problems</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic code for 1D problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in one dimension</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bib.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -392,7 +397,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Basic python code for 1D Ginzburg-Landau problems</h1>
+    <h1>Basic code for 1D problems</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -414,8 +419,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="basic-python-code-for-1d-ginzburg-landau-problems">
-<h1>Basic python code for 1D Ginzburg-Landau problems<a class="headerlink" href="#basic-python-code-for-1d-ginzburg-landau-problems" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-code-for-1d-problems">
+<h1>Basic code for 1D problems<a class="headerlink" href="#basic-code-for-1d-problems" title="Permalink to this heading">#</a></h1>
 <div class="cell tag_thebe-init tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -516,7 +521,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
        success: True
         status: 0
              x: [ 0.000e+00  2.500e-01 ...  6.000e+00  8.000e+00]
-           sol: &lt;scipy.interpolate._interpolate.PPoly object at 0x7fa2a834a0&gt;
+           sol: &lt;scipy.interpolate._interpolate.PPoly object at 0x7f776a04f0&gt;
              p: None
              y: [[ 3.436e-21  1.251e-01 ...  9.991e-01  1.000e+00]
                  [ 5.000e-01  5.011e-01 ...  1.237e-03  2.037e-04]

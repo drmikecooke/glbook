@@ -7,9 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Meissner effect in one dimension &#8212; Ginzburg-Landau boundary value problems</title>
+    <title>Meissner effect in 1D &#8212; Ginzburg-Landau boundary value problems</title>
   
   
   
@@ -69,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Thin films" href="film.html" />
-    <link rel="prev" title="Basic python code for 1D Ginzburg-Landau problems" href="glcode.html" />
+    <link rel="prev" title="Basic code for 1D problems" href="glcode.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,17 +167,22 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Ginzburg-Landau boundary value problems using scipy on the web
+                    Ginzburg-Landau and scipy
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the Ginzburg-Landau equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic python code for 1D Ginzburg-Landau problems</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Meissner effect in one dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic code for 1D problems</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Meissner effect in 1D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bib.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -394,7 +399,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Meissner effect in one dimension</h1>
+    <h1>Meissner effect in 1D</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -417,8 +422,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="meissner-effect-in-one-dimension">
-<h1>Meissner effect in one dimension<a class="headerlink" href="#meissner-effect-in-one-dimension" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="meissner-effect-in-1d">
+<h1>Meissner effect in 1D<a class="headerlink" href="#meissner-effect-in-1d" title="Permalink to this heading">#</a></h1>
 <p>Programs to solve the GL BVP with an applied field <span class="math notranslate nohighlight">\(b_0\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span> of half infinite superconductor in region x&gt;0.</p>
 <p>I hope the plots below demonstrate the sort of range of behaviors. You can play with them if you click on the rocket icon at the top and select “Live code”. You need to wait for the gray box above to report that the kernel is ready. The hidden code below with some initialization should automatically execute, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell source”.</p>
 <p>The gl function plots a solution of the boundary value problem where <span class="math notranslate nohighlight">\(f\)</span> goes to 1, and <span class="math notranslate nohighlight">\(b\)</span> to zero at L, which is a proxy for infinity. A number of calls to gl adds extra <span class="math notranslate nohighlight">\(f,b\)</span> plots. The remaining boundary conditions are the applied field, <span class="math notranslate nohighlight">\(b_0\)</span>, and <span class="math notranslate nohighlight">\(f=0\)</span> (non-superconducting surface), at <span class="math notranslate nohighlight">\(x=0\)</span>.</p>
@@ -580,7 +585,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Basic python code for 1D Ginzburg-Landau problems</p>
+        <p class="prev-next-title">Basic code for 1D problems</p>
       </div>
     </a>
     <a class="right-next"
