@@ -1,5 +1,18 @@
-# Gibbs free energy
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.16.0
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
 
+# Gibbs free energy
 
 ## Critical applied magnetic field
 
@@ -22,7 +35,7 @@ The Gibbs free energy density for the superconducting state is $g_s=-a^2/2b$, si
 The normal metal Gibbs density has zero contribution from the $\Psi$ order parameter, but integrating $-\mathbf B\cdot d\mathbf H/4\pi$ with $\mathbf B=\mathbf H$ gives $g_n=-\mathbf H^2/8\pi$.
 
 ```{note}
-Isn&rsquo;t another way to get this, assuming $\Psi=0$: the G-L free energy $f_n=\mathbf B^2/8\pi=\mathbf H^2/8\pi$ so $g_n=f-\mathbf H\cdot\mathbf B/4\pi=-\mathbf H^2/8\pi$?
+Isn&rsquo;t another way to get this, assuming $\Psi=0$: the G-L free energy $f_n=\mathbf B^2/8\pi=\mathbf H^2/8\pi$ so $g_n=f_n-\mathbf H\cdot\mathbf B/4\pi=-\mathbf H^2/8\pi$?
 ```
 
 Magnetic materials favour states with the lowest Gibbs energy density. The critical field is $H_c=\sqrt{8\pi a^2/2b}$, where $g_n=g_s$. Below this field the superconducting state is favoured, above it the normal state.
@@ -36,7 +49,9 @@ Since it is commonly referred to in Arovas (in various forms) we have:
 
 $$g_s-g_n=-a^2/b+\mathbf H^2/8\pi$$
 
-```python
+Once the diffence becomes positive, the phase chooses the normal metal state as having lower Gibbs free energy.
+
+```{code-cell} ipython3
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -59,6 +74,6 @@ plt.ylabel("$g_s-g_n$")
 plt.show()
 ```
 
-```python
+```{code-cell} ipython3
 
 ```

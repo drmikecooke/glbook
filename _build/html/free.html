@@ -7,9 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Ginzburg-Landau free energies &#8212; Ginzburg-Landau boundary value problems</title>
+    <title>Ginzburg-Landau free energy &#8212; Ginzburg-Landau boundary value problems</title>
   
   
   
@@ -172,15 +172,17 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ginzburg-Landau free energies</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ginzburg-Landau free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the Ginzburg-Landau equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic python code for 1D Ginzburg-Landau problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in one dimension</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bib.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -366,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Ginzburg-Landau free energies</h1>
+    <h1>Ginzburg-Landau free energy</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -388,12 +390,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="ginzburg-landau-free-energies">
-<h1>Ginzburg-Landau free energies<a class="headerlink" href="#ginzburg-landau-free-energies" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="ginzburg-landau-free-energy">
+<h1>Ginzburg-Landau free energy<a class="headerlink" href="#ginzburg-landau-free-energy" title="Permalink to this heading">#</a></h1>
 <p>A gauge-invariant free energy with order parameter <span class="math notranslate nohighlight">\(\Psi\propto \left&lt;\psi_\downarrow(\mathbf x)\psi_\uparrow(\mathbf x)\right&gt;\)</span> has the form:</p>
 <div class="math notranslate nohighlight">
 \[F[\Psi,\Psi^*]=\int d^d\mathbf x \left[a|\Psi|^2+\frac 12b|\Psi|^4+K\left|\left(\mathbf\nabla+\frac{ie^*}{\hbar c}\mathbf A\right)\Psi\right|^2+\frac 1{8\pi}(\mathbf\nabla\times\mathbf A)^2\right]\]</div>
-<p>The <em>charge</em> of the pairs in the condensate is <span class="math notranslate nohighlight">\(q=-e^*=-2e\)</span>. All of the parts are assumed to be time independent, so <span class="math notranslate nohighlight">\(\mathbf E=0\)</span> — no electric field.</p>
+<p>Comparing the dimensions of the first and third terms, we can construct a length scale <span class="math notranslate nohighlight">\(\xi=\sqrt{K/a}\)</span>, the <em>coherence length</em>. The <em>charge</em> of the pairs in the condensate is <span class="math notranslate nohighlight">\(q=-e^*=-2e\)</span>. All of the parts are assumed to be time independent, so <span class="math notranslate nohighlight">\(\mathbf E=0\)</span> — no electric field.</p>
 <p>Gauge invariance is invariance under:</p>
 <div class="math notranslate nohighlight">
 \[\Psi\rightarrow\Psi e^{i\alpha(\mathbf x)},\mathbf A\rightarrow\mathbf A-\frac{\hbar c}{e^*}\nabla \alpha\]</div>
@@ -414,15 +416,12 @@ document.write(`
 <p>In the London theory we have:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf j_s=-\frac c{4\pi \lambda_L^2}\mathbf A\]</div>
-<p>which with the Ampère-Maxwell law, and the vector calculus identity, <span class="math notranslate nohighlight">\(\mathbf\nabla\times\mathbf\nabla\times\mathbf B=-\nabla^2\mathbf B\)</span>, gives <span class="math notranslate nohighlight">\(\nabla^2\mathbf B=\mathbf B/\lambda_L^2\)</span>. In one dimension, this entails exponential damping to zero, the Meissner effect, of the magnetic field, <span class="math notranslate nohighlight">\(\mathbf B\)</span>, over the distance scale of the London penetration depth <span class="math notranslate nohighlight">\(\lambda_L\)</span>.</p>
+<p>which with the Ampère-Maxwell law, and the vector calculus identity, <span class="math notranslate nohighlight">\(\mathbf\nabla\times\mathbf\nabla\times\mathbf B=-\nabla^2\mathbf B\)</span> [since <span class="math notranslate nohighlight">\(\nabla\cdot\mathbf B=0\)</span>], gives <span class="math notranslate nohighlight">\(\nabla^2\mathbf B=\mathbf B/\lambda_L^2\)</span>. In one dimension, this entails exponential damping to zero, the Meissner effect, of the magnetic field, <span class="math notranslate nohighlight">\(\mathbf B\)</span>, over the distance scale of the London penetration depth <span class="math notranslate nohighlight">\(\lambda_L\)</span>.</p>
 <p>Comparing the London and the Ginzburg-Landau theories:</p>
 <div class="math notranslate nohighlight">
 \[\frac1{\lambda_L^2}=8\pi K|\Psi|^2\left(\frac{e^*}{\hbar c}\right)^2\]</div>
 <p>Since we are considering a steady state, current conservation is <span class="math notranslate nohighlight">\(\mathbf \nabla\cdot\mathbf j=0\)</span>, and we have also <span class="math notranslate nohighlight">\(\mathbf \nabla\cdot\mathbf A=0\)</span>. This reduces the first G-L equation to <span class="math notranslate nohighlight">\(a\Psi+b|\Psi|^2\Psi=0\)</span>. The parameter <span class="math notranslate nohighlight">\(b\)</span> is positive, but  if superconductivity is a possibility, <span class="math notranslate nohighlight">\(a\)</span> must be negative, otherwise <span class="math notranslate nohighlight">\(\Psi=0\)</span> is the only solution. With superconductivity <span class="math notranslate nohighlight">\(|\Psi|^2=-a/b\)</span> is the state contributing the lowest free energy density, <span class="math notranslate nohighlight">\(-a^2/2b\)</span>. The <span class="math notranslate nohighlight">\(\Psi=0\)</span> state, of course, has zero free energy.</p>
 <p>By considering a constant order parameter, one is choosing a gauge. A gauge tranformation would create an equivalent solution where the order parameter was constant in amplitude, but not phase. Also, the divergence of <span class="math notranslate nohighlight">\(\mathbf A\)</span> would not be zero.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </section>
 </section>
 

@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Current &#8212; Ginzburg-Landau boundary value problems</title>
   
@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'current';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Scaling the Ginzburg-Landau equations" href="scaling.html" />
+    <link rel="next" title="Flux" href="flux.html" />
     <link rel="prev" title="Gibbs free energy" href="gibbs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -172,15 +172,17 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Current</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the Ginzburg-Landau equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic python code for 1D Ginzburg-Landau problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in one dimension</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bib.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -222,37 +224,6 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
-
-
-
-
-
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li>
-<button onclick="initThebeSBT()"
-  class="btn btn-sm btn-launch-thebe dropdown-item"
-  title="Launch Thebe"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="btn__text-container">Live Code</span>
-</button>
-</li>
-      
-  </ul>
-</div>
-
 
 
 
@@ -310,23 +281,6 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="_sources/current.ipynb" target="_blank"
-   class="btn btn-sm btn-download-notebook-button dropdown-item"
-   title="Download notebook file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
       
       
       
@@ -428,7 +382,19 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="current">
 <h1>Current<a class="headerlink" href="#current" title="Permalink to this heading">#</a></h1>
-<p>The critical current section of <span id="id1">[<a class="reference internal" href="intro.html#id3" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span> has some problems for me. Arovas seems to continue with the constant <span class="math notranslate nohighlight">\(\Psi_0\)</span> assumption, but includes a (constant?) gauge potential <span class="math notranslate nohighlight">\(\mathbf A\)</span> to give a free energy density:</p>
+<p>We remember that:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf j=-\frac{2Ke^*}{\hbar }\left[\frac1{2i}(\Psi^*\mathbf\nabla\Psi-\Psi\mathbf\nabla\Psi^*)+\frac{e^*}{\hbar c}|\Psi|^2\mathbf A\right]\]</div>
+<p>This can be rewritten:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf j=-\frac{2Ke^*}{\hbar }\text {Re}\left[\Psi^*\left(\frac1i\mathbf\nabla\Psi+\frac{e^*}{\hbar c}\mathbf A\Psi\right)\right]\]</div>
+<p>This leads to the suggestion of a condition:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf n\cdot\left(\frac{\hbar}i\nabla+\frac{e^*}c\mathbf A\right)\Psi=ir\Psi\]</div>
+<p>as useful for a boundary where one would like <span class="math notranslate nohighlight">\(\mathbf n\cdot\mathbf j=0\)</span>. The value <span class="math notranslate nohighlight">\(r=0\)</span> would be appropriate for a superconductor boundary condition with a vacuum. Non-zero values could be relevant for boundaries with normal metals.</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Some disagreements with <span id="id1">[<a class="reference internal" href="bib.html#id2" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span>!</p>
+<p>The critical current section of <span id="id2">[<a class="reference internal" href="bib.html#id2" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span> has some problems for me. Arovas seems to continue with the constant <span class="math notranslate nohighlight">\(\Psi_0\)</span> assumption, but includes a (constant?) gauge potential <span class="math notranslate nohighlight">\(\mathbf A\)</span> to give a free energy density:</p>
 <div class="math notranslate nohighlight">
 \[f=a|\Psi_0|^2+\frac12 b|\Psi_0|^4+K\left(\frac{e^*}{\hbar c}\right)^2\mathbf A^2|\Psi_0|^2\]</div>
 <p>Minimizing with respect to <span class="math notranslate nohighlight">\(|\Psi_0|\)</span> gives:</p>
@@ -442,10 +408,12 @@ document.write(`
 <p>Instead Arovas “extremizes” the current with respect to the magnitude <span class="math notranslate nohighlight">\(A\)</span>. This occurs when:</p>
 <div class="math notranslate nohighlight" id="equation-a2">
 <span class="eqno">(1)<a class="headerlink" href="#equation-a2" title="Permalink to this equation">#</a></span>\[A^2=-\frac a{3K\left(\frac{e^*}{\hbar c}\right)^2}\]</div>
-<p>Arovas’ “critical current” is:</p>
+<p>:class:dropdown
+Arovas’ “critical current” is:</p>
 <div class="math notranslate nohighlight">
 \[j_c=\frac{4}{3\sqrt3}\frac{e^{*}}{\hbar}\frac{K^{1/2}(-a)^{3/2}}b\]</div>
-<p>I disagree also with Arovas’ factor, which I think derives from an incorrect substitution of the final <span class="math notranslate nohighlight">\(A\)</span> which is a square-root, but cancelling the squared term in equation <a class="reference internal" href="#equation-a2">(1)</a> as if it is not to be square-rooted. Some dimensional analysis would sort this out, but I am not sure it is worth the effort!</p>
+<p>I disagree also with <span id="id3">[<a class="reference internal" href="bib.html#id2" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span>’s factor, which I think derives from an incorrect substitution of the final <span class="math notranslate nohighlight">\(A\)</span> which is a square-root, but cancelling the squared term in equation <a class="reference internal" href="#equation-a2">(1)</a> as if it is not to be square-rooted. Some dimensional analysis would sort this out, but I am not sure it is worth the effort!</p>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -488,11 +456,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="scaling.html"
+       href="flux.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Scaling the Ginzburg-Landau equations</p>
+        <p class="prev-next-title">Flux</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

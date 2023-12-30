@@ -7,9 +7,11 @@ chapters:
 - file: free
 - file: gibbs
 - file: current
+- file: flux
 - file: scaling
 - file: glcode
 - file: meissner
 - file: film
 - file: domain
 - file: vortex
+- file: bib

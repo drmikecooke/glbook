@@ -1,10 +1,10 @@
-# Ginzburg-Landau free energies
+# Ginzburg-Landau free energy
 
 A gauge-invariant free energy with order parameter $\Psi\propto \left<\psi_\downarrow(\mathbf x)\psi_\uparrow(\mathbf x)\right>$ has the form:
 
 $$F[\Psi,\Psi^*]=\int d^d\mathbf x \left[a|\Psi|^2+\frac 12b|\Psi|^4+K\left|\left(\mathbf\nabla+\frac{ie^*}{\hbar c}\mathbf A\right)\Psi\right|^2+\frac 1{8\pi}(\mathbf\nabla\times\mathbf A)^2\right]$$
 
-The _charge_ of the pairs in the condensate is $q=-e^*=-2e$. All of the parts are assumed to be time independent, so $\mathbf E=0$ &mdash; no electric field.
+Comparing the dimensions of the first and third terms, we can construct a length scale $\xi=\sqrt{K/a}$, the _coherence length_. The _charge_ of the pairs in the condensate is $q=-e^*=-2e$. All of the parts are assumed to be time independent, so $\mathbf E=0$ &mdash; no electric field.
 
 Gauge invariance is invariance under:
 
@@ -32,7 +32,7 @@ In the London theory we have:
 
 $$\mathbf j_s=-\frac c{4\pi \lambda_L^2}\mathbf A$$
 
-which with the Amp&egrave;re-Maxwell law, and the vector calculus identity, $\mathbf\nabla\times\mathbf\nabla\times\mathbf B=-\nabla^2\mathbf B$, gives $\nabla^2\mathbf B=\mathbf B/\lambda_L^2$. In one dimension, this entails exponential damping to zero, the Meissner effect, of the magnetic field, $\mathbf B$, over the distance scale of the London penetration depth $\lambda_L$.
+which with the Amp&egrave;re-Maxwell law, and the vector calculus identity, $\mathbf\nabla\times\mathbf\nabla\times\mathbf B=-\nabla^2\mathbf B$ [since $\nabla\cdot\mathbf B=0$], gives $\nabla^2\mathbf B=\mathbf B/\lambda_L^2$. In one dimension, this entails exponential damping to zero, the Meissner effect, of the magnetic field, $\mathbf B$, over the distance scale of the London penetration depth $\lambda_L$.
 
 Comparing the London and the Ginzburg-Landau theories:
 
@@ -41,7 +41,3 @@ $$\frac1{\lambda_L^2}=8\pi K|\Psi|^2\left(\frac{e^*}{\hbar c}\right)^2$$
 Since we are considering a steady state, current conservation is $\mathbf \nabla\cdot\mathbf j=0$, and we have also $\mathbf \nabla\cdot\mathbf A=0$. This reduces the first G-L equation to $a\Psi+b|\Psi|^2\Psi=0$. The parameter $b$ is positive, but  if superconductivity is a possibility, $a$ must be negative, otherwise $\Psi=0$ is the only solution. With superconductivity $|\Psi|^2=-a/b$ is the state contributing the lowest free energy density, $-a^2/2b$. The $\Psi=0$ state, of course, has zero free energy.
 
 By considering a constant order parameter, one is choosing a gauge. A gauge tranformation would create an equivalent solution where the order parameter was constant in amplitude, but not phase. Also, the divergence of $\mathbf A$ would not be zero.
-
-```python
-
-```

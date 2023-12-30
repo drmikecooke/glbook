@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Gibbs free energy &#8212; Ginzburg-Landau boundary value problems</title>
   
@@ -69,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Current" href="current.html" />
-    <link rel="prev" title="Ginzburg-Landau free energies" href="free.html" />
+    <link rel="prev" title="Ginzburg-Landau free energy" href="free.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -172,15 +172,17 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Gibbs free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the Ginzburg-Landau equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic python code for 1D Ginzburg-Landau problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in one dimension</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bib.html">Bibliography</a></li>
 </ul>
 
     </div>
@@ -222,6 +224,37 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
 
 
 
@@ -279,6 +312,23 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/gibbs.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
       
       
       
@@ -405,7 +455,7 @@ document.write(`
 <p>The normal metal Gibbs density has zero contribution from the <span class="math notranslate nohighlight">\(\Psi\)</span> order parameter, but integrating <span class="math notranslate nohighlight">\(-\mathbf B\cdot d\mathbf H/4\pi\)</span> with <span class="math notranslate nohighlight">\(\mathbf B=\mathbf H\)</span> gives <span class="math notranslate nohighlight">\(g_n=-\mathbf H^2/8\pi\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Isn’t another way to get this, assuming <span class="math notranslate nohighlight">\(\Psi=0\)</span>: the G-L free energy <span class="math notranslate nohighlight">\(f_n=\mathbf B^2/8\pi=\mathbf H^2/8\pi\)</span> so <span class="math notranslate nohighlight">\(g_n=f-\mathbf H\cdot\mathbf B/4\pi=-\mathbf H^2/8\pi\)</span>?</p>
+<p>Isn’t another way to get this, assuming <span class="math notranslate nohighlight">\(\Psi=0\)</span>: the G-L free energy <span class="math notranslate nohighlight">\(f_n=\mathbf B^2/8\pi=\mathbf H^2/8\pi\)</span> so <span class="math notranslate nohighlight">\(g_n=f_n-\mathbf H\cdot\mathbf B/4\pi=-\mathbf H^2/8\pi\)</span>?</p>
 </div>
 <p>Magnetic materials favour states with the lowest Gibbs energy density. The critical field is <span class="math notranslate nohighlight">\(H_c=\sqrt{8\pi a^2/2b}\)</span>, where <span class="math notranslate nohighlight">\(g_n=g_s\)</span>. Below this field the superconducting state is favoured, above it the normal state.</p>
 <div class="admonition note">
@@ -415,7 +465,10 @@ document.write(`
 <p>Since it is commonly referred to in Arovas (in various forms) we have:</p>
 <div class="math notranslate nohighlight">
 \[g_s-g_n=-a^2/b+\mathbf H^2/8\pi\]</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<p>Once the diffence becomes positive, the phase chooses the normal metal state as having lower Gibbs free energy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">a2_b</span><span class="o">=</span><span class="mi">2</span>
@@ -437,8 +490,10 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2326bfaa9aac2fc0fbd6dd667b073bf11d8fb2e6c3a146ad7d520fe096005e71.png" src="_images/2326bfaa9aac2fc0fbd6dd667b073bf11d8fb2e6c3a146ad7d520fe096005e71.png" />
+</div>
 </div>
 </section>
 </section>
@@ -479,7 +534,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ginzburg-Landau free energies</p>
+        <p class="prev-next-title">Ginzburg-Landau free energy</p>
       </div>
     </a>
     <a class="right-next"
