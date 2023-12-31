@@ -20,4 +20,51 @@ This gives:
 
 $$H_c=\frac{\phi_L}{\sqrt8\pi\xi\lambda_L}$$
 
-The flux is the magnetic field over an area.
+The flux is the magnetic field integrated over an area, so the dimensions match.
+
+{cite:p}`arovas` gives the following scaled quantities, which should ease numerical analysis:
+
+$$\Psi=\sqrt{\frac{-a}b}\psi$$
+
+$$\mathbf x=\lambda_L \mathbf r$$
+
+$$\mathbf A=\sqrt2\lambda_LH_c\mathbf a$$
+
+We also define $\kappa=\lambda_L/\xi$.
+
+Now to rescale the basic free energy:
+
+$$F[\Psi,\Psi^*,\mathbf A]=\int d^d\mathbf x \left[a|\Psi|^2+\frac 12b|\Psi|^4+K\left|\left(\mathbf\nabla+\frac{ie^*}{\hbar c}\mathbf A\right)\Psi\right|^2+\frac 1{8\pi}(\mathbf\nabla\times\mathbf A)^2\right]$$
+
+in these terms:
+
+$$F[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac1{\kappa}\mathbf\nabla+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2\right]$$
+
+:::{admonition} Note on appropriate dimensions
+:class: tip, dropdown
+Since we have used vector calculus equations, and will continue thus, we probably don&rsquo;t have the freedom to move from $d=3$ without recasting geometrically using differential forms and Hodge duals etc.
+:::
+To get the Gibbs energy we subtract the density $\mathbf B\cdot\mathbf H/4\pi$ from the free energy:
+
+$$G[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2-2\mathbf h\cdot\mathbf\nabla\times\mathbf a\right]$$
+
+where $\mathbf H=\sqrt2H_c\mathbf h$. Hence the scaled critical field is $h_c=1/\sqrt2$.
+
+The {ref}`abbr:G-L` equations on minimizing $G$ with respect to $\psi,\mathbf a$ become:
+
+$$\left(\frac{\nabla}{\kappa}+i\mathbf a\right)^2\psi+\psi-|\psi|^2\psi=0$$
+
+$$\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0$$
+
+:::{admonition} Useful vector calculus
+:class: tip, dropdown
+Some identities to recast the differential operators through the divergence theorem away from the minimizing variations:
+
+$$\mathbf\nabla\cdot (\mathbf A\times\mathbf B)=\mathbf\nabla\times\mathbf A\cdot\mathbf B-\mathbf\nabla\times\mathbf B\cdot\mathbf B$$
+
+$$\mathbf\nabla\cdot(\psi\mathbf A)=\psi\mathbf\nabla\cdot\mathbf A+(\mathbf\nabla\psi)\cdot\mathbf A$$
+:::
+
+The $\partial\Omega$ boundary condition becomes:
+
+$$\mathbf n\cdot(\mathbf\nabla+i\kappa\mathbf a)\psi|_{\partial\Omega}=0$$

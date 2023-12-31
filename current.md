@@ -44,6 +44,6 @@ Arovas&rsquo; &ldquo;critical current&rdquo; is:
 
 $$j_c=\frac{4}{3\sqrt3}\frac{e^{*}}{\hbar}\frac{K^{1/2}(-a)^{3/2}}b$$
 
-I disagree also with {cite:p}`arovas`&rsquo;s factor, which I think derives from an incorrect substitution of the final $A$ which is a square-root, but cancelling the squared term in equation {eq}`A2` as if it is not to be square-rooted. Some dimensional analysis would sort this out, but I am not sure it is worth the effort!
+I disagree also with {cite:p}`arovas`&rsquo;s factor, which I think derives from an incorrect substitution of the final $A$ which is a square-root, but cancelling the squared term in equation {eq}`A2` as if it is not to be square-rooted. Some dimensional analysis would sort this aspect out, but I am not sure it is worth the effort!
 
 :::

@@ -5,7 +5,7 @@ format: jb-book
 root: intro
 chapters:
 - file: free
-- file: gibbs
+- file: gibbs.md
 - file: current
 - file: flux
 - file: scaling
@@ -15,3 +15,4 @@ chapters:
 - file: domain
 - file: vortex
 - file: bib
+- file: abbreviations
