@@ -178,11 +178,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Scaling the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic code for 1D problems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in one dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in 1D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bib.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abbreviations.html">Abbreviations</a></li>
 </ul>
 
     </div>
@@ -394,7 +395,45 @@ document.write(`
 <p>This gives:</p>
 <div class="math notranslate nohighlight">
 \[H_c=\frac{\phi_L}{\sqrt8\pi\xi\lambda_L}\]</div>
-<p>The flux is the magnetic field over an area.</p>
+<p>The flux is the magnetic field integrated over an area, so the dimensions match.</p>
+<p><span id="id1">[<a class="reference internal" href="bib.html#id2" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span> gives the following scaled quantities, which should ease numerical analysis:</p>
+<div class="math notranslate nohighlight">
+\[\Psi=\sqrt{\frac{-a}b}\psi\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbf x=\lambda_L \mathbf r\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbf A=\sqrt2\lambda_LH_c\mathbf a\]</div>
+<p>We also define <span class="math notranslate nohighlight">\(\kappa=\lambda_L/\xi\)</span>.</p>
+<p>Now to rescale the basic free energy:</p>
+<div class="math notranslate nohighlight">
+\[F[\Psi,\Psi^*,\mathbf A]=\int d^d\mathbf x \left[a|\Psi|^2+\frac 12b|\Psi|^4+K\left|\left(\mathbf\nabla+\frac{ie^*}{\hbar c}\mathbf A\right)\Psi\right|^2+\frac 1{8\pi}(\mathbf\nabla\times\mathbf A)^2\right]\]</div>
+<p>in these terms:</p>
+<div class="math notranslate nohighlight">
+\[F[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac1{\kappa}\mathbf\nabla+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2\right]\]</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Note on appropriate dimensions</p>
+<p>Since we have used vector calculus equations, and will continue thus, we probably don’t have the freedom to move from <span class="math notranslate nohighlight">\(d=3\)</span> without recasting geometrically using differential forms and Hodge duals etc.</p>
+</div>
+<p>To get the Gibbs energy we subtract the density <span class="math notranslate nohighlight">\(\mathbf B\cdot\mathbf H/4\pi\)</span> from the free energy:</p>
+<div class="math notranslate nohighlight">
+\[G[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2-2\mathbf h\cdot\mathbf\nabla\times\mathbf a\right]\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf H=\sqrt2H_c\mathbf h\)</span>. Hence the scaled critical field is <span class="math notranslate nohighlight">\(h_c=1/\sqrt2\)</span>.</p>
+<p>The <a class="reference internal" href="abbreviations.html#abbr-g-l"><span class="std std-ref">G-L</span></a> equations on minimizing <span class="math notranslate nohighlight">\(G\)</span> with respect to <span class="math notranslate nohighlight">\(\psi,\mathbf a\)</span> become:</p>
+<div class="math notranslate nohighlight">
+\[\left(\frac{\nabla}{\kappa}+i\mathbf a\right)^2\psi+\psi-|\psi|^2\psi=0\]</div>
+<div class="math notranslate nohighlight">
+\[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0\]</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Useful vector calculus</p>
+<p>Some identities to recast the differential operators through the divergence theorem away from the minimizing variations:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf\nabla\cdot (\mathbf A\times\mathbf B)=\mathbf\nabla\times\mathbf A\cdot\mathbf B-\mathbf\nabla\times\mathbf B\cdot\mathbf B\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbf\nabla\cdot(\psi\mathbf A)=\psi\mathbf\nabla\cdot\mathbf A+(\mathbf\nabla\psi)\cdot\mathbf A\]</div>
+</div>
+<p>The <span class="math notranslate nohighlight">\(\partial\Omega\)</span> boundary condition becomes:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf n\cdot(\mathbf\nabla+i\kappa\mathbf a)\psi|_{\partial\Omega}=0\]</div>
 </section>
 
     <script type="text/x-thebe-config">

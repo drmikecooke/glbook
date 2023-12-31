@@ -1,6 +1,6 @@
 ---
 jupytext:
-  formats: md:myst
+  formats: md:myst,ipynb
   text_representation:
     extension: .md
     format_name: myst
@@ -47,7 +47,7 @@ I note some confusion in myself about these canonical calculations: while the ap
 
 Since it is commonly referred to in Arovas (in various forms) we have:
 
-$$g_s-g_n=-a^2/b+\mathbf H^2/8\pi$$
+$$g_s-g_n=-a^2/2b+\mathbf H^2/8\pi$$
 
 Once the diffence becomes positive, the phase chooses the normal metal state as having lower Gibbs free energy.
 
