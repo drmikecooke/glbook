@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Scaling the equations &#8212; Ginzburg-Landau boundary value problems</title>
+    <title>One dimensional problems &#8212; Ginzburg-Landau boundary value problems</title>
   
   
   
@@ -65,11 +65,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'scaling';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'oned';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="One dimensional problems" href="oned.html" />
-    <link rel="prev" title="Flux" href="flux.html" />
+    <link rel="next" title="Basic code for 1D problems" href="glcode.html" />
+    <link rel="prev" title="Scaling the equations" href="scaling.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,8 +176,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Scaling the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oned.html">One dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the equations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">One dimensional problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic code for 1D problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in 1D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
@@ -256,7 +256,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fscaling.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Foned.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -286,7 +286,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/scaling.md" target="_blank"
+      <li><a href="_sources/oned.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Scaling the equations</h1>
+    <h1>One dimensional problems</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,59 +382,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="scaling-the-equations">
-<h1>Scaling the equations<a class="headerlink" href="#scaling-the-equations" title="Permalink to this heading">#</a></h1>
-<p>We have two length scales:</p>
-<div class="math notranslate nohighlight" id="equation-lambda2">
-<span class="eqno">(2)<a class="headerlink" href="#equation-lambda2" title="Permalink to this equation">#</a></span>\[\frac1{\lambda_L^2}=8\pi K|\Psi|^2\left(\frac{e^*}{\hbar c}\right)^2\]</div>
-<p>and <span class="math notranslate nohighlight">\(\xi=\sqrt{K/-a}\)</span>.</p>
-<p>The magnetic field has associated the flux quantum <span class="math notranslate nohighlight">\(\phi_L=hc/e^*\)</span> (determined almost by universal constants modulo the Cooper pairing theory) and the critical field <span class="math notranslate nohighlight">\(H_c=\sqrt{8\pi a^2/2b}\)</span>.</p>
-<p>The four quantities <span class="math notranslate nohighlight">\(\lambda_L,\xi,\phi_L,H_c\)</span> are likely objects that are easier to determine in experiment. The G-L free energy only contains three parameters, so one hopes the theoretical parameters can be associated with experiment. We also have <span class="math notranslate nohighlight">\(|\Psi|^2=-a/b\)</span> in the uniformly superconducting state.</p>
-<p>We can start by writing equation <a class="reference internal" href="#equation-lambda2">(2)</a> as:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="one-dimensional-problems">
+<h1>One dimensional problems<a class="headerlink" href="#one-dimensional-problems" title="Permalink to this heading">#</a></h1>
+<p>We assume the dimension is Cartesian, <span class="math notranslate nohighlight">\(x\)</span> say; also, that the order parameter, <span class="math notranslate nohighlight">\(\psi\)</span>, can be chosen real by a gauge transformation. Since the gauge potential, <span class="math notranslate nohighlight">\(\mathbf a\)</span>, only varies with <span class="math notranslate nohighlight">\(x\)</span>, the curl, <span class="math notranslate nohighlight">\(\mathbf\nabla\times\mathbf a=\mathbf b\)</span>, must be perpendicular to <span class="math notranslate nohighlight">\(\hat{\mathbf x}\)</span>.</p>
+<p>The second scaled G-L equation <a class="reference internal" href="scaling.html#equation-scaling-gl2">(4)</a>:</p>
 <div class="math notranslate nohighlight">
-\[\frac1{\lambda_L^2}=2 \xi^2H_c^2\left(\frac{2\pi}{\phi_L}\right)^2\]</div>
-<p>This gives:</p>
+\[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0\]</div>
+<p>with real <span class="math notranslate nohighlight">\(\psi\)</span> reduces to:</p>
 <div class="math notranslate nohighlight">
-\[H_c=\frac{\phi_L}{\sqrt8\pi\xi\lambda_L}\]</div>
-<p>The flux is the magnetic field integrated over an area, so the dimensions match.</p>
-<p><span id="id1">[<a class="reference internal" href="bib.html#id2" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span> gives the following scaled quantities, which should ease numerical analysis:</p>
-<div class="math notranslate nohighlight">
-\[\Psi=\sqrt{\frac{-a}b}\psi\]</div>
-<div class="math notranslate nohighlight">
-\[\mathbf x=\lambda_L \mathbf r\]</div>
-<div class="math notranslate nohighlight">
-\[\mathbf A=\sqrt2\lambda_LH_c\mathbf a\]</div>
-<p>We also define <span class="math notranslate nohighlight">\(\kappa=\lambda_L/\xi\)</span>.</p>
-<p>Now to rescale the basic free energy:</p>
-<div class="math notranslate nohighlight">
-\[F[\Psi,\Psi^*,\mathbf A]=\int d^d\mathbf x \left[a|\Psi|^2+\frac 12b|\Psi|^4+K\left|\left(\mathbf\nabla+\frac{ie^*}{\hbar c}\mathbf A\right)\Psi\right|^2+\frac 1{8\pi}(\mathbf\nabla\times\mathbf A)^2\right]\]</div>
-<p>in these terms:</p>
-<div class="math notranslate nohighlight">
-\[F[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac1{\kappa}\mathbf\nabla+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2\right]\]</div>
-<div class="tip dropdown admonition">
-<p class="admonition-title">Note on appropriate dimensions</p>
-<p>Since we have used vector calculus equations, and will continue thus, we probably don’t have the freedom to move from <span class="math notranslate nohighlight">\(d=3\)</span> without recasting geometrically using differential forms and Hodge duals etc.</p>
-</div>
-<p>To get the Gibbs energy we subtract the density <span class="math notranslate nohighlight">\(\mathbf B\cdot\mathbf H/4\pi\)</span> from the free energy:</p>
-<div class="math notranslate nohighlight">
-\[G[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2-2\mathbf h\cdot\mathbf\nabla\times\mathbf a\right]\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf H=\sqrt2H_c\mathbf h\)</span>. Hence the scaled critical field is <span class="math notranslate nohighlight">\(h_c=1/\sqrt2\)</span>.</p>
-<p>The <a class="reference internal" href="abbreviations.html#abbr-g-l"><span class="std std-ref">G-L</span></a> equations on minimizing <span class="math notranslate nohighlight">\(G\)</span> with respect to <span class="math notranslate nohighlight">\(\psi,\mathbf a\)</span> become:</p>
-<div class="math notranslate nohighlight" id="equation-scaling-gl1">
-<span class="eqno">(3)<a class="headerlink" href="#equation-scaling-gl1" title="Permalink to this equation">#</a></span>\[\left(\frac{\nabla}{\kappa}+i\mathbf a\right)^2\psi+\psi-|\psi|^2\psi=0\]</div>
-<div class="math notranslate nohighlight" id="equation-scaling-gl2">
-<span class="eqno">(4)<a class="headerlink" href="#equation-scaling-gl2" title="Permalink to this equation">#</a></span>\[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0\]</div>
-<div class="tip dropdown admonition">
-<p class="admonition-title">Useful vector calculus</p>
-<p>Some identities to recast the differential operators through the divergence theorem away from the minimizing variations:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf\nabla\cdot (\mathbf A\times\mathbf B)=\mathbf\nabla\times\mathbf A\cdot\mathbf B-\mathbf\nabla\times\mathbf B\cdot\mathbf B\]</div>
-<div class="math notranslate nohighlight">
-\[\mathbf\nabla\cdot(\psi\mathbf A)=\psi\mathbf\nabla\cdot\mathbf A+(\mathbf\nabla\psi)\cdot\mathbf A\]</div>
-</div>
-<p>The <span class="math notranslate nohighlight">\(\partial\Omega\)</span> boundary condition becomes:</p>
-<div class="math notranslate nohighlight" id="equation-scaling-bc">
-<span class="eqno">(5)<a class="headerlink" href="#equation-scaling-bc" title="Permalink to this equation">#</a></span>\[\mathbf n\cdot(\mathbf\nabla+i\kappa\mathbf a)\psi|_{\partial\Omega}=0\]</div>
+\[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a=0\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\psi\)</span> is non-zero, and <span class="math notranslate nohighlight">\(\mathbf a,\mathbf h\)</span> varying only in the <span class="math notranslate nohighlight">\(\hat{\mathbf x}\)</span> direction, we find that <span class="math notranslate nohighlight">\(\mathbf a\)</span> is also perpendicular to <span class="math notranslate nohighlight">\(\hat{\mathbf x}\)</span>.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -468,20 +425,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="flux.html"
+       href="scaling.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Flux</p>
+        <p class="prev-next-title">Scaling the equations</p>
       </div>
     </a>
     <a class="right-next"
-       href="oned.html"
+       href="glcode.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">One dimensional problems</p>
+        <p class="prev-next-title">Basic code for 1D problems</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
