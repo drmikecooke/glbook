@@ -52,9 +52,9 @@ where $\mathbf H=\sqrt2H_c\mathbf h$. Hence the scaled critical field is $h_c=1/
 
 The {ref}`abbr:G-L` equations on minimizing $G$ with respect to $\psi,\mathbf a$ become:
 
-$$\left(\frac{\nabla}{\kappa}+i\mathbf a\right)^2\psi+\psi-|\psi|^2\psi=0$$
+$$\left(\frac{\nabla}{\kappa}+i\mathbf a\right)^2\psi+\psi-|\psi|^2\psi=0$$(scaling:GL1)
 
-$$\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0$$
+$$\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0$$(scaling:GL2)
 
 :::{admonition} Useful vector calculus
 :class: tip, dropdown
@@ -67,4 +67,4 @@ $$\mathbf\nabla\cdot(\psi\mathbf A)=\psi\mathbf\nabla\cdot\mathbf A+(\mathbf\nab
 
 The $\partial\Omega$ boundary condition becomes:
 
-$$\mathbf n\cdot(\mathbf\nabla+i\kappa\mathbf a)\psi|_{\partial\Omega}=0$$
+$$\mathbf n\cdot(\mathbf\nabla+i\kappa\mathbf a)\psi|_{\partial\Omega}=0$$(scaling:BC)
