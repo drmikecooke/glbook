@@ -171,18 +171,25 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Scaling the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oned.html">One dimensional problems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic code for 1D problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in 1D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="bib.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="abbreviations.html">Abbreviations</a></li>
 </ul>
@@ -409,21 +416,21 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[F[\Psi,\Psi^*,\mathbf A]=\int d^d\mathbf x \left[a|\Psi|^2+\frac 12b|\Psi|^4+K\left|\left(\mathbf\nabla+\frac{ie^*}{\hbar c}\mathbf A\right)\Psi\right|^2+\frac 1{8\pi}(\mathbf\nabla\times\mathbf A)^2\right]\]</div>
 <p>in these terms:</p>
-<div class="math notranslate nohighlight">
-\[F[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac1{\kappa}\mathbf\nabla+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2\right]\]</div>
+<div class="math notranslate nohighlight" id="equation-scaling-free">
+<span class="eqno">(3)<a class="headerlink" href="#equation-scaling-free" title="Permalink to this equation">#</a></span>\[F[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac1{\kappa}\mathbf\nabla+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2\right]\]</div>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Note on appropriate dimensions</p>
 <p>Since we have used vector calculus equations, and will continue thus, we probably don’t have the freedom to move from <span class="math notranslate nohighlight">\(d=3\)</span> without recasting geometrically using differential forms and Hodge duals etc.</p>
 </div>
 <p>To get the Gibbs energy we subtract the density <span class="math notranslate nohighlight">\(\mathbf B\cdot\mathbf H/4\pi\)</span> from the free energy:</p>
-<div class="math notranslate nohighlight">
-\[G[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2-2\mathbf h\cdot\mathbf\nabla\times\mathbf a\right]\]</div>
+<div class="math notranslate nohighlight" id="equation-scaling-gibbs">
+<span class="eqno">(4)<a class="headerlink" href="#equation-scaling-gibbs" title="Permalink to this equation">#</a></span>\[G[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2-2\mathbf h\cdot\mathbf\nabla\times\mathbf a\right]\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf H=\sqrt2H_c\mathbf h\)</span>. Hence the scaled critical field is <span class="math notranslate nohighlight">\(h_c=1/\sqrt2\)</span>.</p>
 <p>The <a class="reference internal" href="abbreviations.html#abbr-g-l"><span class="std std-ref">G-L</span></a> equations on minimizing <span class="math notranslate nohighlight">\(G\)</span> with respect to <span class="math notranslate nohighlight">\(\psi,\mathbf a\)</span> become:</p>
 <div class="math notranslate nohighlight" id="equation-scaling-gl1">
-<span class="eqno">(3)<a class="headerlink" href="#equation-scaling-gl1" title="Permalink to this equation">#</a></span>\[\left(\frac{\nabla}{\kappa}+i\mathbf a\right)^2\psi+\psi-|\psi|^2\psi=0\]</div>
+<span class="eqno">(5)<a class="headerlink" href="#equation-scaling-gl1" title="Permalink to this equation">#</a></span>\[\left(\frac{\nabla}{\kappa}+i\mathbf a\right)^2\psi+\psi-|\psi|^2\psi=0\]</div>
 <div class="math notranslate nohighlight" id="equation-scaling-gl2">
-<span class="eqno">(4)<a class="headerlink" href="#equation-scaling-gl2" title="Permalink to this equation">#</a></span>\[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0\]</div>
+<span class="eqno">(6)<a class="headerlink" href="#equation-scaling-gl2" title="Permalink to this equation">#</a></span>\[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0\]</div>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Useful vector calculus</p>
 <p>Some identities to recast the differential operators through the divergence theorem away from the minimizing variations:</p>
@@ -434,7 +441,7 @@ document.write(`
 </div>
 <p>The <span class="math notranslate nohighlight">\(\partial\Omega\)</span> boundary condition becomes:</p>
 <div class="math notranslate nohighlight" id="equation-scaling-bc">
-<span class="eqno">(5)<a class="headerlink" href="#equation-scaling-bc" title="Permalink to this equation">#</a></span>\[\mathbf n\cdot(\mathbf\nabla+i\kappa\mathbf a)\psi|_{\partial\Omega}=0\]</div>
+<span class="eqno">(7)<a class="headerlink" href="#equation-scaling-bc" title="Permalink to this equation">#</a></span>\[\mathbf n\cdot(\mathbf\nabla+i\kappa\mathbf a)\psi|_{\partial\Omega}=0\]</div>
 </section>
 
     <script type="text/x-thebe-config">

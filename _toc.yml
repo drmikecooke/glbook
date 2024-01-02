@@ -3,17 +3,23 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: free
-- file: gibbs.md
-- file: current
-- file: flux
-- file: scaling
-- file: oned
-- file: glcode
-- file: meissner
-- file: film
-- file: domain
-- file: vortex
-- file: bib
-- file: abbreviations
+parts:
+  - caption: Theory
+    chapters:
+    - file: free
+    - file: gibbs.md
+    - file: current
+    - file: flux
+    - file: scaling
+    - file: oned
+  - caption: Practice
+    chapters:
+    - file: glcode
+    - file: meissner
+    - file: film
+    - file: domain
+    - file: vortex
+  - caption: End matter
+    chapters:
+    - file: bib
+    - file: abbreviations
