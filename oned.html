@@ -171,18 +171,25 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the equations</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">One dimensional problems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic code for 1D problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in 1D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="bib.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="abbreviations.html">Abbreviations</a></li>
 </ul>
@@ -357,7 +364,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -373,6 +382,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-considerations">Energy considerations</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -385,13 +402,38 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="one-dimensional-problems">
 <h1>One dimensional problems<a class="headerlink" href="#one-dimensional-problems" title="Permalink to this heading">#</a></h1>
 <p>We assume the dimension is Cartesian, <span class="math notranslate nohighlight">\(x\)</span> say; also, that the order parameter, <span class="math notranslate nohighlight">\(\psi\)</span>, can be chosen real by a gauge transformation. Since the gauge potential, <span class="math notranslate nohighlight">\(\mathbf a\)</span>, only varies with <span class="math notranslate nohighlight">\(x\)</span>, the curl, <span class="math notranslate nohighlight">\(\mathbf\nabla\times\mathbf a=\mathbf b\)</span>, must be perpendicular to <span class="math notranslate nohighlight">\(\hat{\mathbf x}\)</span>.</p>
-<p>The second scaled G-L equation <a class="reference internal" href="scaling.html#equation-scaling-gl2">(4)</a>:</p>
+<p>The second scaled G-L equation <a class="reference internal" href="scaling.html#equation-scaling-gl2">(6)</a>:</p>
 <div class="math notranslate nohighlight">
 \[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0\]</div>
 <p>with real <span class="math notranslate nohighlight">\(\psi\)</span> reduces to:</p>
-<div class="math notranslate nohighlight">
-\[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a=0\]</div>
+<div class="math notranslate nohighlight" id="equation-gl2">
+<span class="eqno">(8)<a class="headerlink" href="#equation-gl2" title="Permalink to this equation">#</a></span>\[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a=0\]</div>
 <p>Where <span class="math notranslate nohighlight">\(\psi\)</span> is non-zero, and <span class="math notranslate nohighlight">\(\mathbf a,\mathbf h\)</span> varying only in the <span class="math notranslate nohighlight">\(\hat{\mathbf x}\)</span> direction, we find that <span class="math notranslate nohighlight">\(\mathbf a\)</span> is also perpendicular to <span class="math notranslate nohighlight">\(\hat{\mathbf x}\)</span>.</p>
+<p>We could try maintaining a two-dimensional gauge potential (would this be consistent?), but for now we will assume that <span class="math notranslate nohighlight">\(\mathbf a=a\hat{\mathbf y}\)</span>, and that <span class="math notranslate nohighlight">\(\mathbf h=h\hat{\mathbf z}\)</span>. Using <span class="math notranslate nohighlight">\('\)</span> to represent <span class="math notranslate nohighlight">\(d/dx\)</span>, equation <a class="reference internal" href="#equation-gl2">(8)</a> becomes:</p>
+<div class="math notranslate nohighlight">
+\[-a''+h'+\psi^2a=0\]</div>
+<p>We note that:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf b=b\hat{\mathbf z}=a'\hat{\mathbf z}=\mathbf\nabla\times\mathbf a\implies b=a'\]</div>
+<p>With these assumptions, <a class="reference internal" href="scaling.html#equation-scaling-gl1">(5)</a> becomes:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\psi''}{\kappa^2}-(a^2+\psi^2-1)\psi=0\]</div>
+<p>Boundaries are such that <span class="math notranslate nohighlight">\(\mathbf n=\pm\hat{\mathbf x}\)</span>. The vacuum boundary condition <a class="reference internal" href="scaling.html#equation-scaling-bc">(7)</a> is just a differential condition:</p>
+<div class="math notranslate nohighlight">
+\[\psi'=0\]</div>
+<p>For a boundary with a normal metal, one might consider:</p>
+<div class="math notranslate nohighlight">
+\[\psi'=r\psi\]</div>
+<section id="energy-considerations">
+<h2>Energy considerations<a class="headerlink" href="#energy-considerations" title="Permalink to this heading">#</a></h2>
+<p>The free energy per unit area from <a class="reference internal" href="scaling.html#equation-scaling-free">(3)</a>:</p>
+<div class="math notranslate nohighlight">
+\[F_1[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-\psi^2+\frac 12\psi^4+\left(\frac{\psi'}{\kappa}\right)^2+(a\psi)^2+(a')^2\right]\]</div>
+<p>and the Gibbs version from <a class="reference internal" href="scaling.html#equation-scaling-gibbs">(4)</a>:</p>
+<div class="math notranslate nohighlight">
+\[G_1[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-\psi^2+\frac 12\psi^4+\left(\frac{\psi'}{\kappa}\right)^2+(a\psi)^2+(a')^2-2ha'\right]\]</div>
+<p>A ‘natural’ boundary condition is <span class="math notranslate nohighlight">\(\psi'=0\)</span>, arising from the partial integration of the <span class="math notranslate nohighlight">\(\psi\)</span> variation of the <span class="math notranslate nohighlight">\(\psi'\)</span> term. The natural boundary condition for the <span class="math notranslate nohighlight">\(a\)</span> variation is <span class="math notranslate nohighlight">\(a'=h\)</span>.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -448,6 +490,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-considerations">Energy considerations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
