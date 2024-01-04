@@ -16,6 +16,8 @@ We could try maintaining a two-dimensional gauge potential (would this be consis
 
 $$-a''+h'+\psi^2a=0$$
 
+The $h'$ term is the 1D form of $\mathbf\nabla\times\mathbf H=4\pi \mathbf j_f/c$, where $\mathbf j_f$ is the &lsquo;free&rsquo;/applied current, up to scale factors.
+
 We note that:
 
 $$\mathbf b=b\hat{\mathbf z}=a'\hat{\mathbf z}=\mathbf\nabla\times\mathbf a\implies b=a'$$

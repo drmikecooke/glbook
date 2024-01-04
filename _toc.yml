@@ -7,7 +7,7 @@ parts:
   - caption: Theory
     chapters:
     - file: free
-    - file: gibbs.md
+    - file: gibbs
     - file: current
     - file: flux
     - file: scaling
@@ -15,6 +15,8 @@ parts:
   - caption: Practice
     chapters:
     - file: glcode
+    - file: boundary
+    - file: practice/energy
     - file: meissner
     - file: film
     - file: domain
