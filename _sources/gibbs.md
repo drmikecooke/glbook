@@ -12,13 +12,15 @@ kernelspec:
   name: python3
 ---
 
++++ {"editable": true, "slideshow": {"slide_type": ""}}
+
 # Gibbs free energy
 
 ## Critical applied magnetic field
 
 There is no possibility of coexistence of a magnetic field with a constant non-zero order parameter &mdash; the two fields have to interact and come to a non-constant compromise over a distance of order $\lambda_L$. The (free) energy density of a constant magnetic field is $\mathbf B^2/8\pi$.
 
-Maxwell&rsquo;s equations in matter are traditionally posed in terms of applied fields $\mathbf{H,D}$, and local fields, $\mathbf{B,E}$, that are the response to the applied fields. Concentrating on the magnetic behaviour, the differential of the free energy density $f$ is composed as:
+Maxwell&rsquo;s equations in matter are traditionally posed in terms of applied fields $\mathbf{H,D}$ (magnetizing, displacement), and local/vacuum magnetic and  electric fields, $\mathbf{B,E}$, that are the response to the applied fields. Concentrating on the magnetic behaviour, the differential of the free energy density $f$ is composed as:
 
 $$df=-sdT+\frac1{4\pi}\mathbf H\cdot d\mathbf B$$
 
@@ -52,6 +54,12 @@ $$g_s-g_n=-a^2/2b+\mathbf H^2/8\pi$$
 Once the diffence becomes positive, the phase chooses the normal metal state as having lower Gibbs free energy.
 
 ```{code-cell} ipython3
+---
+editable: true
+slideshow:
+  slide_type: ''
+---
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -75,5 +83,10 @@ plt.show()
 ```
 
 ```{code-cell} ipython3
+---
+editable: true
+slideshow:
+  slide_type: ''
+---
 
 ```

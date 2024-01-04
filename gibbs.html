@@ -171,17 +171,27 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Gibbs free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic code for 1D problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oned.html">One dimensional problems</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glcode.html">Boundary conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boundary.html">Boundary conditions for 1D problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="practice/energy.html">Energy calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="meissner.html">Meissner effect in 1D</a></li>
 <li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="bib.html">Bibliography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="abbreviations.html">Abbreviations</a></li>
 </ul>
@@ -444,7 +454,7 @@ document.write(`
 <section id="critical-applied-magnetic-field">
 <h2>Critical applied magnetic field<a class="headerlink" href="#critical-applied-magnetic-field" title="Permalink to this heading">#</a></h2>
 <p>There is no possibility of coexistence of a magnetic field with a constant non-zero order parameter — the two fields have to interact and come to a non-constant compromise over a distance of order <span class="math notranslate nohighlight">\(\lambda_L\)</span>. The (free) energy density of a constant magnetic field is <span class="math notranslate nohighlight">\(\mathbf B^2/8\pi\)</span>.</p>
-<p>Maxwell’s equations in matter are traditionally posed in terms of applied fields <span class="math notranslate nohighlight">\(\mathbf{H,D}\)</span>, and local fields, <span class="math notranslate nohighlight">\(\mathbf{B,E}\)</span>, that are the response to the applied fields. Concentrating on the magnetic behaviour, the differential of the free energy density <span class="math notranslate nohighlight">\(f\)</span> is composed as:</p>
+<p>Maxwell’s equations in matter are traditionally posed in terms of applied fields <span class="math notranslate nohighlight">\(\mathbf{H,D}\)</span> (magnetizing, displacement), and local/vacuum magnetic and  electric fields, <span class="math notranslate nohighlight">\(\mathbf{B,E}\)</span>, that are the response to the applied fields. Concentrating on the magnetic behaviour, the differential of the free energy density <span class="math notranslate nohighlight">\(f\)</span> is composed as:</p>
 <div class="math notranslate nohighlight">
 \[df=-sdT+\frac1{4\pi}\mathbf H\cdot d\mathbf B\]</div>
 <p>We note this is posed in terms of differentials of a relatively easy factor to control and change (temperature, <span class="math notranslate nohighlight">\(T\)</span>) and one we can’t (local magnetic field, <span class="math notranslate nohighlight">\(\mathbf B\)</span>).</p>
