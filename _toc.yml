@@ -6,21 +6,21 @@ root: intro
 parts:
   - caption: Theory
     chapters:
-    - file: free
-    - file: gibbs
-    - file: current
-    - file: flux
-    - file: scaling
-    - file: oned
-  - caption: Practice
+    - file: theory/free
+    - file: theory/gibbs
+    - file: theory/current
+    - file: theory/flux
+    - file: theory/scaling
+    - file: theory/oned
+  - caption: Practice in 1D
     chapters:
-    - file: glcode
-    - file: boundary
+    - file: practice/glcode
+    - file: practice/boundary
     - file: practice/energy
-    - file: meissner
-    - file: film
-    - file: domain
-    - file: vortex
+    - file: practice/ndom
+    - file: practice/film
+    - file: practice/domain
+    - file: practice/vortex
   - caption: End matter
     chapters:
     - file: bib

@@ -5,6 +5,7 @@ title: Ginzburg-Landau boundary value problems
 author: Mike Cooke
 logo: lattice.jpg
 copyright: 23/12/2023
+exclude_patterns: [retired/*]
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html

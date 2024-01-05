@@ -63,11 +63,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'practice/energy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Meissner effect in 1D" href="../meissner.html" />
-    <link rel="prev" title="Boundary conditions for 1D problems" href="../boundary.html" />
+    <link rel="next" title="Domain walls (new, work in progress)" href="ndom.html" />
+    <link rel="prev" title="Boundary conditions" href="boundary.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,22 +173,22 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../free.html">Ginzburg-Landau free energy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gibbs.html">Gibbs free energy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../current.html">Current</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../flux.html">Flux</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../scaling.html">Scaling the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../oned.html">One dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/free.html">Ginzburg-Landau free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/gibbs.html">Gibbs free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/current.html">Current</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/flux.html">Flux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/scaling.html">Scaling the equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/oned.html">One dimensional problems</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../glcode.html">Boundary conditions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../boundary.html">Boundary conditions for 1D problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boundary.html">Boundary conditions</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Energy calculations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../meissner.html">Meissner effect in 1D</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../film.html">Thin films</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../domain.html">Domain walls</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ndom.html">Domain walls (new, work in progress)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
+<li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
 <ul class="nav bd-sidenav">
@@ -510,7 +512,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
     <span class="k">return</span> <span class="kc">True</span>
   <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">glgibbs</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">L</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">G1</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">L</span><span class="p">):</span>
   <span class="n">A</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">*</span><span class="n">nat</span><span class="p">(</span><span class="n">h0</span><span class="p">))</span>
   <span class="n">B</span><span class="o">=</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="o">*</span><span class="n">nat</span><span class="p">(</span><span class="n">h0</span><span class="p">))</span>
   <span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
@@ -523,14 +525,19 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </details>
 </div>
+<p>The Gibbs free energy density in one dimension in scaled variables is:</p>
+<div class="math notranslate nohighlight">
+\[G_1[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-\psi^2+\frac 12\psi^4+\left(\frac{\psi'}{\kappa}\right)^2+(a\psi)^2+(a')^2-2ha'\right]=\frac {H_c^2}{4\pi}\lambda_L\int g_1dx\]</div>
+<p>In the non-superconducting normal state (N) <span class="math notranslate nohighlight">\(\psi=0\)</span> and <span class="math notranslate nohighlight">\(a'=h\)</span>, so <span class="math notranslate nohighlight">\(g_{N1}=-h^2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h0</span><span class="o">=</span><span class="mf">0.73</span>
 <span class="n">kappa</span><span class="o">=</span><span class="mf">.4</span>
-<span class="n">plot</span><span class="o">=</span><span class="p">[(</span><span class="n">glgibbs</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">L</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">h0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">41</span><span class="p">)]</span>
+<span class="n">plot</span><span class="o">=</span><span class="p">[(</span><span class="n">G1</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">L</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">h0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">41</span><span class="p">)]</span>
 <span class="n">L</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">41</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SC&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$L$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$g_1(av)$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -538,10 +545,10 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cdaf4fbb8e5f57e63fc9e15f2a94347048e4778ce6877ab00711b94bd10282aa.png" src="../_images/cdaf4fbb8e5f57e63fc9e15f2a94347048e4778ce6877ab00711b94bd10282aa.png" />
+<img alt="../_images/9efbb8d62efd6ba67b89faf7e45ab616c113055c0a648bd39bd2cfefb0ec0ab2.png" src="../_images/9efbb8d62efd6ba67b89faf7e45ab616c113055c0a648bd39bd2cfefb0ec0ab2.png" />
 </div>
 </div>
-<p>The approach to ‘bulk’ behaviour is sllloow. This seems to enable superconducting behaviour to occur above the critical applied field for thin slabs.</p>
+<p>The approach to ‘bulk’ behaviour is sllloow. This seems to enable superconducting behaviour to occur above the critical applied field for thin slabs. A sort of “surface tension” effect? Above <span class="math notranslate nohighlight">\(\kappa=0.4\)</span> the code starts throwing wobblies?</p>
 </section>
 </section>
 
@@ -576,20 +583,20 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../boundary.html"
+       href="boundary.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Boundary conditions for 1D problems</p>
+        <p class="prev-next-title">Boundary conditions</p>
       </div>
     </a>
     <a class="right-next"
-       href="../meissner.html"
+       href="ndom.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Meissner effect in 1D</p>
+        <p class="prev-next-title">Domain walls (new, work in progress)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
