@@ -186,7 +186,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="boundary.html">Boundary conditions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ndom.html">Domain walls (new, work in progress)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
 </ul>
@@ -529,7 +528,13 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 <section id="basic-usage">
 <h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading">#</a></h2>
-<p>The functions (glsol,glplot) defined above solve the GL BVP with boundary conditions given in the A and B parameters, and with kappa given by … well, kappa. The tex parameter in glplot allows some T<sub>E</sub>X labelling of the plots (<span class="math notranslate nohighlight">\(\psi,b\)</span>).</p>
+<p>The functions (glsol,glplot) defined above solve the GL BVP with boundary conditions given in the A and B parameters, and with kappa given by … well, kappa. The tex parameter in glplot allows some T<sub>E</sub>X labelling of the plots (<span class="math notranslate nohighlight">\(\psi,b\)</span>). The boundary conditions are defined in terms of a <span class="math notranslate nohighlight">\(x\)</span> position and a function imposing conditions on the <span class="math notranslate nohighlight">\(\psi,\psi',a,b\)</span> fields. We have (for now):</p>
+<ol class="arabic simple">
+<li><p>Natural boundary: <span class="math notranslate nohighlight">\(\psi'=0\)</span>, and <span class="math notranslate nohighlight">\(b=a'=h\)</span>.</p></li>
+<li><p>Infinite boudary: <span class="math notranslate nohighlight">\(\psi'=0\)</span>, and <span class="math notranslate nohighlight">\(b=a'=0\)</span>.</p></li>
+<li><p>Normal metal boundary: <span class="math notranslate nohighlight">\(\psi'=r\psi\)</span>, and <span class="math notranslate nohighlight">\(b=a'=h\)</span>, with some parameter <span class="math notranslate nohighlight">\(r\)</span>.</p></li>
+<li><p>Superconducting boundary with b field decaying exponentially.</p></li>
+</ol>
 <p>These functions are used in the code blocks below to model with an applied field <span class="math notranslate nohighlight">\(h_0\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span> of half infinite superconductor in region x&gt;0. We look at a simple situation with an applied field <span class="math notranslate nohighlight">\(h\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span> being damped (hopefully) by the GL equations out to ‘infinity’ (<span class="math notranslate nohighlight">\(x=6\)</span> seems to give an appropriate result). We also set the <span class="math notranslate nohighlight">\(\psi\)</span>/f field to 1 as the initial guess, avoiding the zero solution to the equations. I hope the plots below demonstrate the sort of range of behaviors. A number of calls to gl adds extra <span class="math notranslate nohighlight">\(f,b\)</span> plots.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -661,7 +666,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 0123456789.
+      © Copyright 07/01/2024.
       <br/>
     
   </p>

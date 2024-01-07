@@ -186,7 +186,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Boundary conditions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ndom.html">Domain walls (new, work in progress)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
 </ul>
@@ -421,6 +420,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module">Module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thin-films">Thin films</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-external-field">Varying external field</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-kappa">Varying <span class="math notranslate nohighlight">\(\kappa\)</span></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -438,13 +442,7 @@ document.write(`
 <p class="admonition-title">Using Live Code</p>
 <p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. You need to wait (a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
 </div>
-<p>Here we try to make the basic code more flexible in terms of boundary conditions. We have:</p>
-<ol class="arabic simple">
-<li><p>Natural boundary: <span class="math notranslate nohighlight">\(\psi'=0\)</span>, and <span class="math notranslate nohighlight">\(b=a'=h\)</span>.</p></li>
-<li><p>Infinite boudary: <span class="math notranslate nohighlight">\(\psi'=0\)</span>, and <span class="math notranslate nohighlight">\(b=a'=0\)</span>.</p></li>
-<li><p>Normal metal boundary: <span class="math notranslate nohighlight">\(\psi'=r\psi\)</span>, and <span class="math notranslate nohighlight">\(b=a'=h\)</span>, with some parameter <span class="math notranslate nohighlight">\(r\)</span>.</p></li>
-<li><p>Superconducting boundary with b field decaying exponentially.</p></li>
-</ol>
+<p>Here we explore the basic code with natural boundary conditions in a thin film.</p>
 <div class="cell tag_thebe-init tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -542,14 +540,20 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </details>
 </div>
+</section>
+<section id="thin-films">
+<h2>Thin films<a class="headerlink" href="#thin-films" title="Permalink to this heading">#</a></h2>
+<p>We use the GL code to allow two surfaces with an applied field <span class="math notranslate nohighlight">\(h_0\)</span> as boundaries.</p>
+<section id="varying-external-field">
+<h3>Varying external field<a class="headerlink" href="#varying-external-field" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># slab/film with vacuum boundaries at x=-L/2 and x=L/2.</span>
 
-<span class="n">kappa</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">kappa</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="n">L</span><span class="o">=</span><span class="mi">6</span>
 <span class="n">N</span><span class="o">=</span><span class="mi">5</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
   <span class="n">h0</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">/</span><span class="n">N</span>
   <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
@@ -560,10 +564,37 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/496cf67a0377cff80ac939470d912c18bf7a2791bf2c62d6c029c47bd2471974.png" src="../_images/496cf67a0377cff80ac939470d912c18bf7a2791bf2c62d6c029c47bd2471974.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>kappa=0.5,tex=h_0=1.20: The maximum number of mesh nodes is exceeded.
+</pre></div>
+</div>
+<img alt="../_images/178983c4cde6c20d91f7763a04eb5567cee5e12e2cd37cbab63b094c10455fc6.png" src="../_images/178983c4cde6c20d91f7763a04eb5567cee5e12e2cd37cbab63b094c10455fc6.png" />
 </div>
 </div>
-<p><span class="math notranslate nohighlight">\(h_0=0.8\)</span> still renders a superconducting state. I suspect (and will investigate) that the non-superconducting state has a lower energy (Gibbs?).</p>
+<p><span class="math notranslate nohighlight">\(h_0=0.8\)</span> still renders a superconducting state, although it is above the critical value <span class="math notranslate nohighlight">\(1/\sqrt2\approx0.71\)</span>. I suspect (and will investigate) that the non-superconducting state has a lower energy (Gibbs?).</p>
+</section>
+<section id="varying-kappa">
+<h3>Varying <span class="math notranslate nohighlight">\(\kappa\)</span><a class="headerlink" href="#varying-kappa" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">10</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+    <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/db9695f83baee55ad98e9883e4a0bac72848181dfef734b38b4c3cd3cc625915.png" src="../_images/db9695f83baee55ad98e9883e4a0bac72848181dfef734b38b4c3cd3cc625915.png" />
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -631,6 +662,11 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module">Module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thin-films">Thin films</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-external-field">Varying external field</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-kappa">Varying <span class="math notranslate nohighlight">\(\kappa\)</span></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
@@ -655,7 +691,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 0123456789.
+      © Copyright 07/01/2024.
       <br/>
     
   </p>

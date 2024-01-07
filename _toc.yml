@@ -18,7 +18,6 @@ parts:
     - file: practice/boundary
     - file: practice/energy
     - file: practice/ndom
-    - file: practice/film
     - file: practice/domain
     - file: practice/vortex
   - caption: End matter

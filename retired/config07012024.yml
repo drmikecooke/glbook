@@ -4,7 +4,7 @@
 title: Ginzburg-Landau boundary value problems
 author: Mike Cooke
 logo: lattice.jpg
-copyright: 07/01/2024
+copyright: 0123456789
 exclude_patterns: [retired/*]
 
 # Force re-execution of notebooks on each build.
