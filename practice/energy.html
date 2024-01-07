@@ -186,7 +186,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="boundary.html">Boundary conditions</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Energy calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ndom.html">Domain walls (new, work in progress)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="film.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
 </ul>
@@ -421,6 +420,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module">Module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arovas-partial-integration">Arovas’ partial integration</a></li>
 </ul>
             </nav>
         </div>
@@ -469,52 +469,78 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load glsp.py</span>
+<span class="c1"># glsp.py: code to solve GL BVP and plot psi and b.</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_bvp</span><span class="p">,</span><span class="n">quad</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="k">def</span> <span class="nf">nat</span><span class="p">(</span><span class="n">h</span><span class="p">):</span> <span class="c1"># natural BC with applied magnetizing field h</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">,</span><span class="n">h</span>
+<span class="k">def</span> <span class="nf">nat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="p">):</span> <span class="c1"># natural BC with applied magnetizing field h</span>
+  <span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">inf</span><span class="p">():</span> <span class="c1"># &#39;infinity&#39; BC with b=da=0 f=1 at &#39;infinity&#39;</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">def</span> <span class="nf">inf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1"># &#39;infinity&#39; BC with b=da=0 f=1 or 0 at x=&#39;infinity&#39;</span>
+  <span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">nrm</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">h</span><span class="p">):</span> <span class="c1"># normal metal BC with parameter r.</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">nrm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">h</span><span class="p">):</span> <span class="c1"># normal metal BC with parameter r.</span>
+  <span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">h</span><span class="p">):</span>
-  <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">SCP</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1"># superconducting psi=1,b proportional to exp(-x), for x going to +infinity.</span>
+  <span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">kappa</span><span class="o">*</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">NCM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="p">):</span> <span class="c1"># normal psi=0 with applied field h</span>
+  <span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
+    <span class="n">r2</span><span class="o">=</span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">kappa</span><span class="o">*</span><span class="n">r2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
-  <span class="n">a</span><span class="p">,</span><span class="n">ra</span><span class="p">,</span><span class="n">ha</span><span class="o">=</span><span class="n">A</span>
-  <span class="n">b</span><span class="p">,</span><span class="n">rb</span><span class="p">,</span><span class="n">hb</span><span class="o">=</span><span class="n">B</span>
+  <span class="n">xa</span><span class="p">,</span><span class="n">AB</span><span class="o">=</span><span class="n">A</span>
+  <span class="n">xb</span><span class="p">,</span><span class="n">BB</span><span class="o">=</span><span class="n">B</span>
   <span class="n">nodes</span><span class="o">=</span><span class="mi">5</span>
   <span class="k">def</span> <span class="nf">dY</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Y</span><span class="p">):</span> <span class="c1"># Y=[f,df,a,b=da]</span>
     <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">Y</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">df</span><span class="p">,</span> <span class="n">kappa</span><span class="o">*</span><span class="n">kappa</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">*</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
   <span class="k">def</span> <span class="nf">bc</span><span class="p">(</span><span class="n">Ya</span><span class="p">,</span> <span class="n">Yb</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">BC</span><span class="p">(</span><span class="n">Ya</span><span class="p">,</span><span class="n">ra</span><span class="p">,</span><span class="n">ha</span><span class="p">)</span><span class="o">+</span><span class="n">BC</span><span class="p">(</span><span class="n">Yb</span><span class="p">,</span><span class="n">rb</span><span class="p">,</span><span class="n">hb</span><span class="p">))</span>
-  <span class="n">rng</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
-  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">rng</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
-  <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
-  <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span> <span class="c1"># initialize f to 1</span>
-    <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-  <span class="k">return</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">dY</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">AB</span><span class="p">(</span><span class="n">Ya</span><span class="p">)</span><span class="o">+</span><span class="n">BB</span><span class="p">(</span><span class="n">Yb</span><span class="p">))</span>
+  <span class="n">rng</span><span class="o">=</span><span class="p">[</span><span class="n">xa</span><span class="p">,</span> <span class="n">xb</span><span class="p">]</span>
+  <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">rng</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
+  <span class="n">Y0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
+  <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">Y0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">))])</span>
+  <span class="k">return</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">dY</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">tex</span><span class="p">):</span>
   <span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">sol</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
-    <span class="n">x_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># f</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$\psi: </span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-    <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># b=da</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$b: </span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="kc">True</span>
-  <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">G1</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">L</span><span class="p">):</span>
-  <span class="n">A</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">*</span><span class="n">nat</span><span class="p">(</span><span class="n">h0</span><span class="p">))</span>
-  <span class="n">B</span><span class="o">=</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="o">*</span><span class="n">nat</span><span class="p">(</span><span class="n">h0</span><span class="p">))</span>
+  <span class="n">x_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+  <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># f</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$\psi: </span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+  <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># b=da</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$b: </span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">sol</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">,tex=</span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_thebe-init tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">G1</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">L</span><span class="p">):</span>
+  <span class="n">A</span><span class="o">=</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">)</span>
+  <span class="n">B</span><span class="o">=</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">h0</span><span class="p">)</span>
   <span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
   <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">da</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -548,7 +574,106 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 <img alt="../_images/9efbb8d62efd6ba67b89faf7e45ab616c113055c0a648bd39bd2cfefb0ec0ab2.png" src="../_images/9efbb8d62efd6ba67b89faf7e45ab616c113055c0a648bd39bd2cfefb0ec0ab2.png" />
 </div>
 </div>
-<p>The approach to ‘bulk’ behaviour is sllloow. This seems to enable superconducting behaviour to occur above the critical applied field for thin slabs. A sort of “surface tension” effect? Above <span class="math notranslate nohighlight">\(\kappa=0.4\)</span> the code starts throwing wobblies?</p>
+<p>The approach to ‘bulk’ behaviour is sllooowwww. This seems to enable superconducting behaviour to occur above the critical applied field for thin slabs. A sort of “surface tension” effect? Above <span class="math notranslate nohighlight">\(\kappa=0.4\)</span> the code starts throwing wobblies?</p>
+</section>
+<section id="arovas-partial-integration">
+<h2>Arovas’ partial integration<a class="headerlink" href="#arovas-partial-integration" title="Permalink to this heading">#</a></h2>
+<p>The Gibbs free energy can be partially integrated as:</p>
+<div class="math notranslate nohighlight">
+\[G_1[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-\psi^2+\frac 12\psi^4-\frac{\psi\psi''}{\kappa^2}+(a\psi)^2+(a')^2-2ha'\right]=\frac {H_c^2}{4\pi}\lambda_L\int g_1dx\]</div>
+<p>but for a solution of the GL equations:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\psi''}{\kappa^2}-(a^2+\psi^2-1)\psi=0\]</div>
+<p>and we can reduce:</p>
+<div class="math notranslate nohighlight">
+\[G_1[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-\frac 12\psi^4+(a')^2-2ha'\right]=\frac {H_c^2}{4\pi}\lambda_L\int g_1dx\]</div>
+<p>For now I assume the partially integrated term <span class="math notranslate nohighlight">\([\psi\psi'/\kappa^2]\)</span> is zero. This is true both for the natural boundary condition (<span class="math notranslate nohighlight">\(\psi'=0\)</span>) and if the <span class="math notranslate nohighlight">\(\psi\)</span> value is zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">G1A</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">L</span><span class="p">):</span>
+  <span class="n">A</span><span class="o">=</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">)</span>
+  <span class="n">B</span><span class="o">=</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">h0</span><span class="p">)</span>
+  <span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">da</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">da</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">h0</span><span class="o">*</span><span class="n">da</span>
+  <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h0</span><span class="o">=</span><span class="mf">0.73</span>
+<span class="n">kappa</span><span class="o">=</span><span class="mf">.4</span>
+<span class="n">plot</span><span class="o">=</span><span class="p">[(</span><span class="n">G1A</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">L</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">L</span><span class="p">,</span><span class="o">-</span><span class="n">h0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">41</span><span class="p">)]</span>
+<span class="n">L</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">41</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SC&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$L$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$g_1(av)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a3acfa3926ba06f7a5d56280f3cda266cd86e9419f56d1c27f2cfcd2f346c806.png" src="../_images/a3acfa3926ba06f7a5d56280f3cda266cd86e9419f56d1c27f2cfcd2f346c806.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">G1ABA</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+  <span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">da</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">da</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">h0</span><span class="o">*</span><span class="n">da</span>  
+  <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">h0</span><span class="o">=</span><span class="mf">0.73</span>
+<span class="n">kappa</span><span class="o">=</span><span class="mf">.4</span>
+<span class="n">L</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">))</span>
+<span class="n">plot</span><span class="o">=</span><span class="p">[(</span><span class="n">G1ABA</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SCP</span><span class="p">(</span><span class="n">l</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">l</span><span class="p">,</span><span class="o">-</span><span class="n">h0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">L</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SC&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$L$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$g_1(av)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1f0681e2ef9dcd52a7e80e8e18b3ee83ff0bad966407f276f615de26a6eec299.png" src="../_images/1f0681e2ef9dcd52a7e80e8e18b3ee83ff0bad966407f276f615de26a6eec299.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">G1AB</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+  <span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">da</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">f</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">df</span><span class="o">/</span><span class="n">kappa</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">f</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">da</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">h0</span><span class="o">*</span><span class="n">da</span> 
+  <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">h0</span><span class="o">=</span><span class="mf">0.73</span>
+<span class="n">kappa</span><span class="o">=</span><span class="mf">.4</span>
+<span class="n">L</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">))</span>
+<span class="n">plot</span><span class="o">=</span><span class="p">[(</span><span class="n">G1AB</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SCP</span><span class="p">(</span><span class="n">l</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">l</span><span class="p">,</span><span class="o">-</span><span class="n">h0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">L</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SC&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$L$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$g_1(av)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4f8681288546dbdfd3b60ffe43d437a2fededc3b4388262168b629b79f0f2a54.png" src="../_images/4f8681288546dbdfd3b60ffe43d437a2fededc3b4388262168b629b79f0f2a54.png" />
+</div>
+</div>
+<p>The original form has a kink near the beginning. Is this due to SCP not being ‘natural’ for such short ranges?</p>
 </section>
 </section>
 
@@ -616,6 +741,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module">Module</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arovas-partial-integration">Arovas’ partial integration</a></li>
 </ul>
   </nav></div>
 
@@ -640,7 +766,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 0123456789.
+      © Copyright 07/01/2024.
       <br/>
     
   </p>
