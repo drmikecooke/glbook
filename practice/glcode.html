@@ -535,7 +535,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 <li><p>Normal metal boundary: <span class="math notranslate nohighlight">\(\psi'=r\psi\)</span>, and <span class="math notranslate nohighlight">\(b=a'=h\)</span>, with some parameter <span class="math notranslate nohighlight">\(r\)</span>.</p></li>
 <li><p>Superconducting boundary with b field decaying exponentially.</p></li>
 </ol>
-<p>These functions are used in the code blocks below to model with an applied field <span class="math notranslate nohighlight">\(h_0\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span> of half infinite superconductor in region x&gt;0. We look at a simple situation with an applied field <span class="math notranslate nohighlight">\(h\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span> being damped (hopefully) by the GL equations out to ‘infinity’ (<span class="math notranslate nohighlight">\(x=6\)</span> seems to give an appropriate result). We also set the <span class="math notranslate nohighlight">\(\psi\)</span>/f field to 1 as the initial guess, avoiding the zero solution to the equations. I hope the plots below demonstrate the sort of range of behaviors. A number of calls to gl adds extra <span class="math notranslate nohighlight">\(f,b\)</span> plots.</p>
+<p>These functions are used in the code blocks below to model with a uniform applied field <span class="math notranslate nohighlight">\(h_0\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span> of half infinite superconductor in region x&gt;0. We look at a simple situation with an applied field <span class="math notranslate nohighlight">\(h\)</span> at <span class="math notranslate nohighlight">\(x=0\)</span> being damped (hopefully) by the GL equations out to ‘infinity’ (<span class="math notranslate nohighlight">\(x=6\)</span> seems to give an appropriate result). We also set the <span class="math notranslate nohighlight">\(\psi\)</span>/f field to 1 as the initial guess, avoiding the zero solution to the equations. I hope the plots below demonstrate the sort of range of behaviors. A number of calls to gl adds extra <span class="math notranslate nohighlight">\(f,b\)</span> plots.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic usage vacuum boundary at $x=0$. As published the applied field is critical.</span>
@@ -666,7 +666,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 07/01/2024.
+      © Copyright 08/01/2024.
       <br/>
     
   </p>
