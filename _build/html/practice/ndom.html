@@ -396,7 +396,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -412,6 +414,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kappa-1-sqrt2"><span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span></a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -558,7 +568,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6dd122e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f80736dc0&gt;
 </pre></div>
 </div>
 <img alt="../_images/ab1cc17a207c877872d015189dafbcfa4ac8efdf4e5cc10233d507e21c160ed5.png" src="../_images/ab1cc17a207c877872d015189dafbcfa4ac8efdf4e5cc10233d507e21c160ed5.png" />
@@ -588,7 +598,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6dd734f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f442ec220&gt;
 </pre></div>
 </div>
 <img alt="../_images/657919bc32302324cab0b865db3dc2a32823bf63a1dab204c9be9aaf351e9cdf.png" src="../_images/657919bc32302324cab0b865db3dc2a32823bf63a1dab204c9be9aaf351e9cdf.png" />
@@ -616,7 +626,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5772/2333296611.py:6: IntegrationWarning: The maximum number of subdivisions (50) has been achieved.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5287/2333296611.py:6: IntegrationWarning: The maximum number of subdivisions (50) has been achieved.
   If increasing the limit yields no improvement it is advised to analyze 
   the integrand in order to determine the difficulties.  If the position of a 
   local difficulty can be determined (singularity, discontinuity) one will 
@@ -629,6 +639,23 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </div>
 <p>The <span class="math notranslate nohighlight">\(\delta\)</span> scaled energy quantity going negative for high <span class="math notranslate nohighlight">\(\kappa\)</span> indicates that ‘domain walls’ become energeticallly favourable, allowing regions of flux to penetrate the superconductor. This is known as ‘Type II’ behavior. For low <span class="math notranslate nohighlight">\(\kappa\)</span> one has a ‘Type I’ superconductor, where the no flux penetration is allowed, and the critical field <span class="math notranslate nohighlight">\(h_c\)</span> is sharp at <span class="math notranslate nohighlight">\(1/\sqrt2\)</span> for the scaled theory.</p>
+<section id="kappa-1-sqrt2">
+<h2><span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span><a class="headerlink" href="#kappa-1-sqrt2" title="Permalink to this heading">#</a></h2>
+<p>When <span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span>, if we assume the difference between the superconducting and normal states is zero:</p>
+<div class="math notranslate nohighlight">
+\[-\frac{\psi^4}{2}+(h_c-b)^2=0\]</div>
+<p>we have:</p>
+<div class="math notranslate nohighlight" id="equation-b">
+<span class="eqno">(11)<a class="headerlink" href="#equation-b" title="Permalink to this equation">#</a></span>\[\psi^2=\sqrt2(h_c-b)=1-\sqrt2b\]</div>
+<p>Differentiating:</p>
+<div class="math notranslate nohighlight" id="equation-psip">
+<span class="eqno">(12)<a class="headerlink" href="#equation-psip" title="Permalink to this equation">#</a></span>\[2\psi\psi'=-\sqrt2a''=-\sqrt2\psi^2 a\implies \psi'=-\frac{\psi a}{\sqrt2}\]</div>
+<p>using the GL equation for <span class="math notranslate nohighlight">\(a''\)</span>.</p>
+<p>Again:</p>
+<div class="math notranslate nohighlight">
+\[\psi''=-\frac{\psi'a+a'\psi}{\sqrt2}=\frac12(a^2+\psi^2-1)\psi\]</div>
+<p>This is the GL equation for <span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span>. The final step uses the equations  <a class="reference internal" href="#equation-psip">(12)</a> and <a class="reference internal" href="#equation-b">(11)</a> to replace <span class="math notranslate nohighlight">\(\psi'\)</span> and <span class="math notranslate nohighlight">\(b=a'\)</span>, respectively.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -686,6 +713,20 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
             
             
               
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kappa-1-sqrt2"><span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
             
           </div>
           <footer class="bd-footer-content">
@@ -705,7 +746,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 07/01/2024.
+      © Copyright 08/01/2024.
       <br/>
     
   </p>

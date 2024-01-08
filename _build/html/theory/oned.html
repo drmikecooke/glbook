@@ -411,15 +411,15 @@ document.write(`
 <span class="eqno">(8)<a class="headerlink" href="#equation-gl2" title="Permalink to this equation">#</a></span>\[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a=0\]</div>
 <p>Where <span class="math notranslate nohighlight">\(\psi\)</span> is non-zero, and <span class="math notranslate nohighlight">\(\mathbf a,\mathbf h\)</span> varying only in the <span class="math notranslate nohighlight">\(\hat{\mathbf x}\)</span> direction, we find that <span class="math notranslate nohighlight">\(\mathbf a\)</span> is also perpendicular to <span class="math notranslate nohighlight">\(\hat{\mathbf x}\)</span>.</p>
 <p>We could try maintaining a two-dimensional gauge potential (would this be consistent?), but for now we will assume that <span class="math notranslate nohighlight">\(\mathbf a=a\hat{\mathbf y}\)</span>, and that <span class="math notranslate nohighlight">\(\mathbf h=h\hat{\mathbf z}\)</span>. Using <span class="math notranslate nohighlight">\('\)</span> to represent <span class="math notranslate nohighlight">\(d/dx\)</span>, equation <a class="reference internal" href="#equation-gl2">(8)</a> becomes:</p>
-<div class="math notranslate nohighlight">
-\[-a''+h'+\psi^2a=0\]</div>
+<div class="math notranslate nohighlight" id="equation-oned-gl2">
+<span class="eqno">(9)<a class="headerlink" href="#equation-oned-gl2" title="Permalink to this equation">#</a></span>\[-a''+h'+\psi^2a=0\]</div>
 <p>The <span class="math notranslate nohighlight">\(h'\)</span> term is the 1D form of <span class="math notranslate nohighlight">\(\mathbf\nabla\times\mathbf H=4\pi \mathbf j_f/c\)</span>, where <span class="math notranslate nohighlight">\(\mathbf j_f\)</span> is the ‘free’/applied current, up to scale factors.</p>
 <p>We note that:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf b=b\hat{\mathbf z}=a'\hat{\mathbf z}=\mathbf\nabla\times\mathbf a\implies b=a'\]</div>
 <p>With these assumptions, <a class="reference internal" href="scaling.html#equation-scaling-gl1">(5)</a> becomes:</p>
-<div class="math notranslate nohighlight">
-\[\frac{\psi''}{\kappa^2}-(a^2+\psi^2-1)\psi=0\]</div>
+<div class="math notranslate nohighlight" id="equation-oned-gl1">
+<span class="eqno">(10)<a class="headerlink" href="#equation-oned-gl1" title="Permalink to this equation">#</a></span>\[\frac{\psi''}{\kappa^2}-(a^2+\psi^2-1)\psi=0\]</div>
 <p>Boundaries are such that <span class="math notranslate nohighlight">\(\mathbf n=\pm\hat{\mathbf x}\)</span>. The vacuum boundary condition <a class="reference internal" href="scaling.html#equation-scaling-bc">(7)</a> is just a differential condition:</p>
 <div class="math notranslate nohighlight">
 \[\psi'=0\]</div>
@@ -430,11 +430,18 @@ document.write(`
 <h2>Energy considerations<a class="headerlink" href="#energy-considerations" title="Permalink to this heading">#</a></h2>
 <p>The free energy per unit area from <a class="reference internal" href="scaling.html#equation-scaling-free">(3)</a>:</p>
 <div class="math notranslate nohighlight">
-\[F_1[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-\psi^2+\frac 12\psi^4+\left(\frac{\psi'}{\kappa}\right)^2+(a\psi)^2+(a')^2\right]\]</div>
+\[F_1[\psi,a]=\frac {H_c^2}{4\pi}\lambda_L^d\int dx \left[-\psi^2+\frac 12\psi^4+\left(\frac{\psi'}{\kappa}\right)^2+(a\psi)^2+(a')^2\right]\]</div>
 <p>and the Gibbs version from <a class="reference internal" href="scaling.html#equation-scaling-gibbs">(4)</a>:</p>
 <div class="math notranslate nohighlight">
-\[G_1[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-\psi^2+\frac 12\psi^4+\left(\frac{\psi'}{\kappa}\right)^2+(a\psi)^2+(a')^2-2ha'\right]\]</div>
+\[G_1[\psi,a]=\frac {H_c^2}{4\pi}\lambda_L^d\int dx \left[-\psi^2+\frac 12\psi^4+\left(\frac{\psi'}{\kappa}\right)^2+(a\psi)^2+(a')^2-2ha'\right]\]</div>
 <p>A ‘natural’ boundary condition is <span class="math notranslate nohighlight">\(\psi'=0\)</span>, arising from the partial integration of the <span class="math notranslate nohighlight">\(\psi\)</span> variation of the <span class="math notranslate nohighlight">\(\psi'\)</span> term. The natural boundary condition for the <span class="math notranslate nohighlight">\(a\)</span> variation is <span class="math notranslate nohighlight">\(a'=h\)</span>.</p>
+<p>We can simplify by partially integrating the <span class="math notranslate nohighlight">\(\psi'^2\)</span> term and using the GL equation <a class="reference internal" href="#equation-oned-gl1">(10)</a>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\int dx \left(\frac{\psi'}{\kappa}\right)^2&amp;=\left[\frac{\psi\psi'}{\kappa^2}\right]-\int dx \frac{\psi\psi''}{\kappa^2} \\
+&amp;=\left[\frac{\psi\psi'}{\kappa^2}\right]-\int dx (a^2+\psi^2-1)\psi^2\end{split}\]</div>
+<p>Ignoring the boundary term, we can almost cancel all the <span class="math notranslate nohighlight">\(\psi\)</span>-related terms:</p>
+<div class="math notranslate nohighlight">
+\[G_1[\psi,a]=\frac {H_c^2}{4\pi}\lambda_L^d\int dx \left[-\frac 12\psi^4+(a')^2-2ha'\right]\]</div>
 </section>
 </section>
 
@@ -526,7 +533,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 07/01/2024.
+      © Copyright 08/01/2024.
       <br/>
     
   </p>
