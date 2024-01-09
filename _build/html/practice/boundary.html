@@ -69,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Energy calculations" href="energy.html" />
-    <link rel="prev" title="Basic code for GL boundary value problems" href="glcode.html" />
+    <link rel="prev" title="Basic GL bvp code" href="glcode.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,7 +182,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic code for GL boundary value problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="liven.html">Using Live Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic GL bvp code</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Boundary conditions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ndom.html">Domain walls (new, work in progress)</a></li>
@@ -425,6 +426,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-kappa">Varying <span class="math notranslate nohighlight">\(\kappa\)</span></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-thickness">Varying thickness</a></li>
 </ul>
             </nav>
         </div>
@@ -440,7 +442,7 @@ document.write(`
 <h1>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading">#</a></h1>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Using Live Code</p>
-<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. You need to wait (a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
+<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. First go to the “Using Live Code” and check that things are working there. It will load scipy into the “Thebe” environment for use on other pages. It also writes a module into Thebe, which can be used on other pages. You may need to wait (sometimes a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
 </div>
 <p>Here we explore the basic code with natural boundary conditions in a thin film.</p>
 <div class="cell tag_thebe-init tag_hide-cell docutils container">
@@ -596,6 +598,27 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </section>
 </section>
+<section id="varying-thickness">
+<h2>Varying thickness<a class="headerlink" href="#varying-thickness" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h0</span><span class="p">,</span><span class="n">kappa</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;L=</span><span class="si">{</span><span class="n">L</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">}</span><span class="s2">,\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bdc3c5015ea43517578d17156fca5e6864dd3d36210e8b8323d1971b516d7f78.png" src="../_images/bdc3c5015ea43517578d17156fca5e6864dd3d36210e8b8323d1971b516d7f78.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -634,7 +657,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Basic code for GL boundary value problems</p>
+        <p class="prev-next-title">Basic GL bvp code</p>
       </div>
     </a>
     <a class="right-next"
@@ -667,6 +690,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-kappa">Varying <span class="math notranslate nohighlight">\(\kappa\)</span></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-thickness">Varying thickness</a></li>
 </ul>
   </nav></div>
 
@@ -691,7 +715,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 08/01/2024.
+      © Copyright 09/01/2024.
       <br/>
     
   </p>

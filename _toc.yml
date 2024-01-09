@@ -14,6 +14,7 @@ parts:
     - file: theory/oned
   - caption: Practice in 1D
     chapters:
+    - file: practice/liven
     - file: practice/glcode
     - file: practice/boundary
     - file: practice/energy

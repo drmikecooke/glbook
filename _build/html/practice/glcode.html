@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Basic code for GL boundary value problems &#8212; Ginzburg-Landau boundary value problems</title>
+    <title>Basic GL bvp code &#8212; Ginzburg-Landau boundary value problems</title>
   
   
   
@@ -69,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Boundary conditions" href="boundary.html" />
-    <link rel="prev" title="One dimensional problems" href="../theory/oned.html" />
+    <link rel="prev" title="Using Live Code" href="liven.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,7 +182,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic code for GL boundary value problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="liven.html">Using Live Code</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic GL bvp code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="boundary.html">Boundary conditions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ndom.html">Domain walls (new, work in progress)</a></li>
@@ -326,6 +327,23 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       <li><a href="../_sources/practice/glcode.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Download notebook file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/practice/glcode.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -335,7 +353,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -409,7 +427,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Basic code for GL boundary value problems</h1>
+    <h1>Basic GL bvp code</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -431,100 +449,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="basic-code-for-gl-boundary-value-problems">
-<h1>Basic code for GL boundary value problems<a class="headerlink" href="#basic-code-for-gl-boundary-value-problems" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-gl-bvp-code">
+<h1>Basic GL bvp code<a class="headerlink" href="#basic-gl-bvp-code" title="Permalink to this heading">#</a></h1>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Using Live Code</p>
-<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. You need to wait (a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
-</div>
-<div class="cell tag_thebe-init tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure scipy is available in thebe: numpy and matplotlib available by default</span>
-<span class="o">%</span><span class="k">pip</span> install scipy
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
-Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages (1.11.4)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&lt;1.28.0,&gt;=1.21.6 in /home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages (from scipy) (1.26.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %load glsp.py</span>
-<span class="c1"># glsp.py: code to solve GL BVP and plot psi and b.</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_bvp</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="k">def</span> <span class="nf">nat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="p">):</span> <span class="c1"># natural BC with applied magnetizing field h</span>
-  <span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">inf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1"># &#39;infinity&#39; BC with b=da=0 f=1 or 0 at x=&#39;infinity&#39;</span>
-  <span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">nrm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">h</span><span class="p">):</span> <span class="c1"># normal metal BC with parameter r.</span>
-  <span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">SCP</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1"># superconducting psi=1,b proportional to exp(-x), for x going to +infinity.</span>
-  <span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">kappa</span><span class="o">*</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">NCM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="p">):</span> <span class="c1"># normal psi=0 with applied field h</span>
-  <span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
-    <span class="n">r2</span><span class="o">=</span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">kappa</span><span class="o">*</span><span class="n">r2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
-  <span class="n">xa</span><span class="p">,</span><span class="n">AB</span><span class="o">=</span><span class="n">A</span>
-  <span class="n">xb</span><span class="p">,</span><span class="n">BB</span><span class="o">=</span><span class="n">B</span>
-  <span class="n">nodes</span><span class="o">=</span><span class="mi">5</span>
-  <span class="k">def</span> <span class="nf">dY</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Y</span><span class="p">):</span> <span class="c1"># Y=[f,df,a,b=da]</span>
-    <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">Y</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">df</span><span class="p">,</span> <span class="n">kappa</span><span class="o">*</span><span class="n">kappa</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">*</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-  <span class="k">def</span> <span class="nf">bc</span><span class="p">(</span><span class="n">Ya</span><span class="p">,</span> <span class="n">Yb</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">AB</span><span class="p">(</span><span class="n">Ya</span><span class="p">)</span><span class="o">+</span><span class="n">BB</span><span class="p">(</span><span class="n">Yb</span><span class="p">))</span>
-  <span class="n">rng</span><span class="o">=</span><span class="p">[</span><span class="n">xa</span><span class="p">,</span> <span class="n">xb</span><span class="p">]</span>
-  <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">rng</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
-  <span class="n">Y0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
-  <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">Y0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">))])</span>
-  <span class="k">return</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">dY</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">tex</span><span class="p">):</span>
-  <span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
-  <span class="n">x_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
-  <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># f</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$\psi: </span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-  <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># b=da</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$b: </span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-  <span class="k">if</span> <span class="ow">not</span> <span class="n">sol</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">,tex=</span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. First go to the “Using Live Code” and check that things are working there. It will load scipy into the “Thebe” environment for use on other pages. It also writes a module into Thebe, which can be used on other pages. You may need to wait (sometimes a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
 </div>
 <section id="basic-usage">
 <h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading">#</a></h2>
@@ -540,10 +469,13 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic usage vacuum boundary at $x=0$. As published the applied field is critical.</span>
 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glplot</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span>
+
 <span class="n">hc</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
   <span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="n">k</span>
-  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">hc</span><span class="p">),</span><span class="n">SCP</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># natural boundary x=0,superconducting at x=6 (x &#39;large&#39;)</span>
+  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">hc</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># natural boundary x=0,superconducting at x=6 (x &#39;large&#39;)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">hc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -552,18 +484,21 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b48f68293e6910281a76fdb2858c4d5001a9d58b239602392a94fef8b7e90d46.png" src="../_images/b48f68293e6910281a76fdb2858c4d5001a9d58b239602392a94fef8b7e90d46.png" />
+<img alt="../_images/73433c4800db63de8c1362e3afcf60b55ada741727a0c1895973f1923015dcc4.png" src="../_images/73433c4800db63de8c1362e3afcf60b55ada741727a0c1895973f1923015dcc4.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic usage vacuum boundary at $x=0$. The kappa value is at the critical point between types I and II behaviour.</span>
 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glplot</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span>
+
 <span class="n">kappa</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">N</span><span class="o">=</span><span class="mi">5</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
   <span class="n">h0</span><span class="o">=</span><span class="n">k</span><span class="o">/</span><span class="n">N</span>
-  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SCP</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -572,7 +507,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4611126dbfc5812bd29951d75a89de9fad279e07aca41b0da5080f8fdd80a193.png" src="../_images/4611126dbfc5812bd29951d75a89de9fad279e07aca41b0da5080f8fdd80a193.png" />
+<img alt="../_images/78e913e4066bafef9e26da580d3dccffa0cee1e3038dd67e56bb118daf4e71f2.png" src="../_images/78e913e4066bafef9e26da580d3dccffa0cee1e3038dd67e56bb118daf4e71f2.png" />
 </div>
 </div>
 </section>
@@ -609,12 +544,12 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../theory/oned.html"
+       href="liven.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">One dimensional problems</p>
+        <p class="prev-next-title">Using Live Code</p>
       </div>
     </a>
     <a class="right-next"
@@ -666,7 +601,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 08/01/2024.
+      © Copyright 09/01/2024.
       <br/>
     
   </p>
