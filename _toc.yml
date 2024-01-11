@@ -12,6 +12,7 @@ parts:
     - file: theory/flux
     - file: theory/scaling
     - file: theory/oned
+    - file: theory/polar
   - caption: Practice in 1D
     chapters:
     - file: practice/liven
