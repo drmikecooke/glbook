@@ -179,6 +179,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../theory/flux.html">Flux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/scaling.html">Scaling the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/oned.html">One dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/polar.html">Polar exploration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
 <ul class="current nav bd-sidenav">
@@ -647,15 +648,15 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 \[-\frac{\psi^4}{2}+(h_c-b)^2=0\]</div>
 <p>we have:</p>
 <div class="math notranslate nohighlight" id="equation-b">
-<span class="eqno">(11)<a class="headerlink" href="#equation-b" title="Permalink to this equation">#</a></span>\[\psi^2=\sqrt2(h_c-b)=1-\sqrt2b\]</div>
+<span class="eqno">(12)<a class="headerlink" href="#equation-b" title="Permalink to this equation">#</a></span>\[\psi^2=\sqrt2(h_c-b)=1-\sqrt2b\]</div>
 <p>Differentiating:</p>
 <div class="math notranslate nohighlight" id="equation-psip">
-<span class="eqno">(12)<a class="headerlink" href="#equation-psip" title="Permalink to this equation">#</a></span>\[2\psi\psi'=-\sqrt2a''=-\sqrt2\psi^2 a\implies \psi'=-\frac{\psi a}{\sqrt2}\]</div>
+<span class="eqno">(13)<a class="headerlink" href="#equation-psip" title="Permalink to this equation">#</a></span>\[2\psi\psi'=-\sqrt2a''=-\sqrt2\psi^2 a\implies \psi'=-\frac{\psi a}{\sqrt2}\]</div>
 <p>using the GL equation for <span class="math notranslate nohighlight">\(a''\)</span>.</p>
 <p>Again:</p>
 <div class="math notranslate nohighlight">
 \[\psi''=-\frac{\psi'a+a'\psi}{\sqrt2}=\frac12(a^2+\psi^2-1)\psi\]</div>
-<p>This is the GL equation for <span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span>. The final step uses the equations  <a class="reference internal" href="#equation-psip">(12)</a> and <a class="reference internal" href="#equation-b">(11)</a> to replace <span class="math notranslate nohighlight">\(\psi'\)</span> and <span class="math notranslate nohighlight">\(b=a'\)</span>, respectively.</p>
+<p>This is the GL equation for <span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span>. The final step uses the equations  <a class="reference internal" href="#equation-psip">(13)</a> and <a class="reference internal" href="#equation-b">(12)</a> to replace <span class="math notranslate nohighlight">\(\psi'\)</span> and <span class="math notranslate nohighlight">\(b=a'\)</span>, respectively.</p>
 </section>
 </section>
 
