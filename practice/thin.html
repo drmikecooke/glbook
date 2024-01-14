@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Polar exploration &#8212; Ginzburg-Landau boundary value problems</title>
+    <title>Thin films &#8212; Ginzburg-Landau boundary value problems</title>
   
   
   
@@ -65,11 +65,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'theory/polar';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'practice/thin';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Using Live Code" href="../practice/liven.html" />
-    <link rel="prev" title="One dimensional problems" href="oned.html" />
+    <link rel="next" title="Energy calculations" href="energy.html" />
+    <link rel="prev" title="Basic GL bvp code" href="glcode.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -172,23 +172,23 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
-<li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oned.html">One dimensional problems</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Polar exploration</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../theory/free.html">Ginzburg-Landau free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/gibbs.html">Gibbs free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/current.html">Current</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/flux.html">Flux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/scaling.html">Scaling the equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/oned.html">One dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/polar.html">Polar exploration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../practice/liven.html">Using Live Code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../practice/glcode.html">Basic GL bvp code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../practice/thin.html">Thin films</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../practice/energy.html">Energy calculations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../practice/domain.html">Domain walls</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../practice/vortex.html">Vortex solutions</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="liven.html">Using Live Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic GL bvp code</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Thin films</a></li>
+<li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
 <ul class="nav bd-sidenav">
@@ -240,6 +240,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -265,7 +296,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftheory/polar.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpractice/thin.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -295,7 +326,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/theory/polar.md" target="_blank"
+      <li><a href="../_sources/practice/thin.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -305,7 +336,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -379,7 +410,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Polar exploration</h1>
+    <h1>Thin films</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -389,8 +420,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetic-field-in-a-vortex">Magnetic field in a vortex</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy">Energy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-external-field">Varying external field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-kappa">Varying <span class="math notranslate nohighlight">\(\kappa\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-thickness">Varying thickness</a></li>
 </ul>
             </nav>
         </div>
@@ -402,88 +434,85 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="polar-exploration">
-<h1>Polar exploration<a class="headerlink" href="#polar-exploration" title="Permalink to this heading">#</a></h1>
-<p>The polar coordinates defined by <span class="math notranslate nohighlight">\((x,y)=(\rho\cos\theta,\rho\sin\theta)\)</span> allow us to explore two-dimensional problems. With the magnetic field in the <span class="math notranslate nohighlight">\(z\)</span>-direction, we hope to find useful solutions exhibiting cylindrical symmetry with the <span class="math notranslate nohighlight">\(\psi,\mathbf a\)</span> fields not depending on <span class="math notranslate nohighlight">\(z\)</span>.</p>
-<p>First off we have:</p>
-<div class="math notranslate nohighlight">
-\[b_z=(\mathbf{\nabla}\times\mathbf a)_z=\frac{\partial a_y}{\partial x}-\frac{\partial a_x}{\partial y}\]</div>
-<p>If we define normalized orthgonal unit vectors (ignoring the <span class="math notranslate nohighlight">\(z\)</span> coordinate):</p>
-<div class="math notranslate nohighlight">
-\[\hat{\mathbf e}_\rho=(\cos\theta,\sin\theta)\]</div>
-<div class="math notranslate nohighlight">
-\[\hat{\mathbf e}_\theta=(-\sin\theta,\cos\theta)\]</div>
-<p>We define components of the <span class="math notranslate nohighlight">\(a\)</span> field in this basis: <span class="math notranslate nohighlight">\(a_\rho=\mathbf a\cdot\hat{\mathbf e}_\rho\)</span>, <span class="math notranslate nohighlight">\(a_\theta=\mathbf a\cdot\hat{\mathbf e}_\theta\)</span>, so <span class="math notranslate nohighlight">\(a_x=a_\rho\cos\theta-a_\theta\sin\theta\)</span> and <span class="math notranslate nohighlight">\(a_y=a_\rho\sin\theta+a_\theta\cos\theta\)</span>.</p>
-<p>We also want to partially differentiate with respect to polar coordination:</p>
-<div class="math notranslate nohighlight">
-\[\frac\partial{\partial\rho}=\cos\theta\frac\partial{\partial x}+\sin\theta\frac\partial{\partial y}\]</div>
-<div class="math notranslate nohighlight">
-\[\frac\partial{\partial\theta}=-\rho\sin\theta\frac\partial{\partial x}+\rho\cos\theta\frac\partial{\partial y}\]</div>
-<p>or inverting:</p>
-<div class="math notranslate nohighlight">
-\[\frac\partial{\partial x}=\frac1{\rho}\left[\rho\cos\theta\frac\partial{\partial\rho}-\sin\theta\frac\partial{\partial\theta}\right]\]</div>
-<div class="math notranslate nohighlight">
-\[\frac\partial{\partial y}=\frac1{\rho}\left[\rho\sin\theta\frac\partial{\partial\rho}+\cos\theta\frac\partial{\partial\theta}\right]\]</div>
-<p>Applying these to the defined coordinates:</p>
-<div class="math notranslate nohighlight" id="equation-polarb">
-<span class="eqno">(11)<a class="headerlink" href="#equation-polarb" title="Permalink to this equation">#</a></span>\[\begin{split}b_z&amp;=\frac1{\rho}\left[\rho\frac{\partial a_\theta}{\partial\rho}+a_\theta-\frac{\partial a_\rho}{\partial\theta}\right] \\
-&amp;=\frac1{\rho}\left[\frac{\partial[\rho a_\theta]}{\partial\rho}-\frac{\partial a_\rho}{\partial\theta}\right] \end{split}\]</div>
-<p>This formula can be understood from the point of view of Stokes theorem applied to a quasi-rectangle bounded by lines <span class="math notranslate nohighlight">\(\rho,\rho+d\rho,\theta,\theta+d\theta\)</span>. The flux through the ‘rectangle’, <span class="math notranslate nohighlight">\(b_z\rho d\rho d\theta\)</span>, is equal to the line integral of <span class="math notranslate nohighlight">\(\mathbf a\cdot d\mathbf r\)</span> around the perimeter in a counter-clockwise direction:</p>
-<div class="math notranslate nohighlight">
-\[[a_\rho(\bar\rho,\theta)-a_\rho(\bar\rho,\theta+d\theta)]d\rho+[(\rho+d\rho)a_\theta(\rho+d\rho,\bar\theta)-\rho a_\theta(\rho,\bar\theta)]d\theta\]</div>
-<p>The bars indicate some sort of average is being taken (i.e. not a rigorous determination) as representative. Assuming the quasi-rectangle is small, this is of order:</p>
-<div class="math notranslate nohighlight">
-\[\left[\frac{\partial[\rho a_\theta]}{\partial\rho}-\frac{\partial a_\rho}{\partial\theta}\right]d\rho d\theta\]</div>
-<p>Comparing with the flux, we get <a class="reference internal" href="#equation-polarb">(11)</a>.</p>
-<section id="magnetic-field-in-a-vortex">
-<h2>Magnetic field in a vortex<a class="headerlink" href="#magnetic-field-in-a-vortex" title="Permalink to this heading">#</a></h2>
-<p>If we assume <span class="math notranslate nohighlight">\(a_\rho=0\)</span> and <span class="math notranslate nohighlight">\(a_\theta\)</span> is a function of <span class="math notranslate nohighlight">\(\rho\)</span>, we get a radially dependent magnetic field <span class="math notranslate nohighlight">\(b\)</span>, which can model flux tubes in superconducting material.</p>
-<p>Now, the second GL equation:</p>
-<div class="math notranslate nohighlight">
-\[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0\]</div>
-<p>has a <span class="math notranslate nohighlight">\(\theta\)</span> component, assuming <span class="math notranslate nohighlight">\(\mathbf h\)</span> uniform:</p>
-<div class="math notranslate nohighlight">
-\[-\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]+|\psi|^2 a_\theta-\frac i{2\kappa\rho}\left(\psi^*\frac{\partial\psi}{\partial\theta}-\psi\frac{\partial\psi^*}{\partial\theta}\right)=0\]</div>
-<p>The <span class="math notranslate nohighlight">\(\rho\)</span> component just involves <span class="math notranslate nohighlight">\(\psi\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[-\frac i{2\kappa}\left(\psi^*\frac{\partial\psi}{\partial\rho}-\psi\frac{\partial\psi^*}{\partial\rho}\right)=0\]</div>
-<p>We are here <em>not</em> assuming that <span class="math notranslate nohighlight">\(\psi\)</span> is real. Let it be separated into amplitude and phase, <span class="math notranslate nohighlight">\(\psi=\alpha\exp(i\phi)\)</span>. Then:</p>
-<div class="math notranslate nohighlight">
-\[-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=\frac{\alpha^2}{\kappa}\mathbf\nabla\phi\]</div>
-<p>Hence:</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\frac{\partial\phi}{\partial\rho}=0$$.\\So $\phi(\theta)$. But:\\$$\alpha^2\frac{d\phi}{d\theta}=\kappa\rho\left[\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]-\alpha^2 a_\theta\right]\end{aligned}\end{align} \]</div>
-<p>Since the left hand side is a function only of <span class="math notranslate nohighlight">\(\theta\)</span>, and the right only of <span class="math notranslate nohighlight">\(\rho\)</span>, it must be a constant <span class="math notranslate nohighlight">\(\nu\)</span>. We thus have <span class="math notranslate nohighlight">\(\psi=\alpha\exp(i\nu\theta)\)</span>, dropping a constant term in the exponent, which can be removed by a global gauge transformation. We expect <span class="math notranslate nohighlight">\(\psi\)</span> to be single valued, which restricts <span class="math notranslate nohighlight">\(\nu\)</span> to be an integer <span class="math notranslate nohighlight">\(n\in\mathbb Z\)</span>.</p>
-<p>The equation with this new information can be written:</p>
-<div class="math notranslate nohighlight" id="equation-polar-gl2">
-<span class="eqno">(12)<a class="headerlink" href="#equation-polar-gl2" title="Permalink to this equation">#</a></span>\[\alpha^2\left(\frac n{\kappa\rho}+a_\theta\right)=\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]=a_\theta''+\frac{a_\theta'}{\rho}-\frac{a_\theta}{\rho^2}\]</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="thin-films">
+<h1>Thin films<a class="headerlink" href="#thin-films" title="Permalink to this heading">#</a></h1>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Using Live Code</p>
+<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. First go to the <a class="reference internal" href="liven.html#liven-head"><span class="std std-ref">Using Live Code</span></a> page and check that things are working there. It will load scipy into the “Thebe” environment for use on other pages. It also writes a module into Thebe, which can be used on other pages. You may need to wait (sometimes a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
+</div>
+<p>Here we explore the basic code with natural boundary conditions in a thin film.</p>
+<p>We use the GL code to allow two surfaces with an applied field <span class="math notranslate nohighlight">\(h_0\)</span> as boundaries.</p>
+<section id="varying-external-field">
+<h2>Varying external field<a class="headerlink" href="#varying-external-field" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># slab/film with vacuum boundaries at x=-L/2 and x=L/2.</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glplot</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span>
+
+<span class="n">kappa</span><span class="o">=</span><span class="mf">0.51</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">6</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">5</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+  <span class="n">h0</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">/</span><span class="n">N</span>
+  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3728ca913ef0d36020525fcde7091b6b95d55189d4e8e37e3f3c4d85b8b797ba.png" src="../_images/3728ca913ef0d36020525fcde7091b6b95d55189d4e8e37e3f3c4d85b8b797ba.png" />
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(h_0=0.8\)</span> still renders a superconducting state, although it is above the critical value <span class="math notranslate nohighlight">\(1/\sqrt2\approx0.71\)</span>. I suspect (and will investigate) that the non-superconducting state has a lower energy (Gibbs?).</p>
 </section>
-<section id="energy">
-<h2>Energy<a class="headerlink" href="#energy" title="Permalink to this heading">#</a></h2>
-<p>The Gibbs energy is:</p>
-<div class="math notranslate nohighlight">
-\[G[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2-2\mathbf h\cdot\mathbf\nabla\times\mathbf a\right]\]</div>
-<p>We already have the relevant <span class="math notranslate nohighlight">\(z\)</span> component of <span class="math notranslate nohighlight">\(\nabla\times\mathbf a\)</span> as:</p>
-<div class="math notranslate nohighlight">
-\[b_z=\frac1\rho\frac{d[\rho a_\theta]}{d\rho}=a_\theta'+\frac {a_\theta}\rho\]</div>
-<p>We have <span class="math notranslate nohighlight">\(\psi=\alpha\exp(in\theta)\)</span>. We now need the radial and angular dependence of the gradient:</p>
-<div class="math notranslate nohighlight">
-\[\hat{\mathbf e}_\rho\cdot\mathbf\nabla=\frac\partial{\partial\rho}\]</div>
-<div class="math notranslate nohighlight">
-\[\hat{\mathbf e}_\theta\cdot\mathbf\nabla=\frac1\rho\frac\partial{\partial\theta}\]</div>
-<p>Hence:</p>
-<div class="math notranslate nohighlight">
-\[\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi=\exp(in\theta)\left[\hat{\mathbf e}_\rho\frac{\alpha'}\kappa+i\hat{\mathbf e}_\theta\alpha\left(a_\theta+\frac n{\kappa\rho}\right)\right]\]</div>
-<p>The Gibbs energy per unit length in the <span class="math notranslate nohighlight">\(z\)</span> direction becomes:</p>
-<div class="math notranslate nohighlight">
-\[G[\alpha,a_\theta]=\frac {H_c^2}{4\pi}\lambda_L^d\int 2\pi\rho d\rho \left[-\alpha^2+\frac 12\alpha^4+\left(\frac{\alpha'}\kappa\right)^2+\alpha^2\left(a_\theta+\frac n{\kappa\rho}\right)^2+\left(\frac1\rho\frac{d[\rho a_\theta]}{d\rho}\right)^2-\frac{2h}\rho\frac{d[\rho a_\theta]}{d\rho}\right]\]</div>
-<p>Varying the <span class="math notranslate nohighlight">\(a_\theta\)</span> field, remembering the <span class="math notranslate nohighlight">\(2\pi\rho\)</span> factor, and assuming <span class="math notranslate nohighlight">\(h\)</span> constant, we get the equation <a class="reference internal" href="#equation-polar-gl2">(12)</a>.</p>
-<p>The <span class="math notranslate nohighlight">\(\alpha\)</span> variation gives:</p>
-<div class="math notranslate nohighlight">
-\[\alpha''+\frac{\alpha'}\rho=\left(\alpha^2+\left(a_\theta+\frac n{\kappa\rho}\right)^2-1\right)\alpha\]</div>
-<p>For solutions of the GL equations, the free energy becomes, after a partial integration of the <span class="math notranslate nohighlight">\(\alpha'\)</span>-dependent term and substitution of <span class="math notranslate nohighlight">\(\alpha''\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[G[\alpha,a_\theta]=\frac {H_c^2}{4\pi}\lambda_L^d\int 2\pi\rho d\rho \left[-\frac 12\alpha^4+b_z^2-2hb_z\right]\]</div>
+<section id="varying-kappa">
+<h2>Varying <span class="math notranslate nohighlight">\(\kappa\)</span><a class="headerlink" href="#varying-kappa" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">10</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+    <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/db9695f83baee55ad98e9883e4a0bac72848181dfef734b38b4c3cd3cc625915.png" src="../_images/db9695f83baee55ad98e9883e4a0bac72848181dfef734b38b4c3cd3cc625915.png" />
+</div>
+</div>
+</section>
+<section id="varying-thickness">
+<h2>Varying thickness<a class="headerlink" href="#varying-thickness" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h0</span><span class="p">,</span><span class="n">kappa</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;L=</span><span class="si">{</span><span class="n">L</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">}</span><span class="s2">,\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bdc3c5015ea43517578d17156fca5e6864dd3d36210e8b8323d1971b516d7f78.png" src="../_images/bdc3c5015ea43517578d17156fca5e6864dd3d36210e8b8323d1971b516d7f78.png" />
+</div>
+</div>
 </section>
 </section>
 
@@ -500,7 +529,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./theory"
+            path: "./practice"
         },
         predefinedOutput: true
     }
@@ -518,20 +547,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="oned.html"
+       href="glcode.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">One dimensional problems</p>
+        <p class="prev-next-title">Basic GL bvp code</p>
       </div>
     </a>
     <a class="right-next"
-       href="../practice/liven.html"
+       href="energy.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Using Live Code</p>
+        <p class="prev-next-title">Energy calculations</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -550,8 +579,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetic-field-in-a-vortex">Magnetic field in a vortex</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy">Energy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-external-field">Varying external field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-kappa">Varying <span class="math notranslate nohighlight">\(\kappa\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-thickness">Varying thickness</a></li>
 </ul>
   </nav></div>
 

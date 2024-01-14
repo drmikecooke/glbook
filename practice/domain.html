@@ -69,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Vortex solutions" href="vortex.html" />
-    <link rel="prev" title="Domain walls (new, work in progress)" href="ndom.html" />
+    <link rel="prev" title="Energy calculations" href="energy.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -179,14 +179,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../theory/flux.html">Flux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/scaling.html">Scaling the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/oned.html">One dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/polar.html">Polar exploration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="liven.html">Using Live Code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic GL bvp code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="boundary.html">Boundary conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thin.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ndom.html">Domain walls (new, work in progress)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
 </ul>
@@ -420,12 +420,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-with-varying-kappa">Plots with varying <span class="math notranslate nohighlight">\(\kappa\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-wall-energy">Domain wall energy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delta-version-arovas"><span class="math notranslate nohighlight">\(\delta\)</span> version [Arovas]</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#free-energy-version-dg">Free energy version [dg]</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kappa-1-sqrt2"><span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span></a></li>
 </ul>
             </nav>
         </div>
@@ -439,194 +434,73 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="domain-walls">
 <h1>Domain walls<a class="headerlink" href="#domain-walls" title="Permalink to this heading">#</a></h1>
-<div class="cell tag_thebe-init tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure scipy is available in thebe: numpy and matplotlib available by default</span>
-<span class="o">%</span><span class="k">pip</span> install scipy
-</pre></div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Using Live Code</p>
+<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. First go to the <a class="reference internal" href="liven.html#liven-head"><span class="std std-ref">Using Live Code</span></a> page and check that things are working there. It will load scipy into the “Thebe” environment for use on other pages. It also writes a module into Thebe, which can be used on other pages. You may need to wait (sometimes a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
-Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages (1.11.4)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy&lt;1.28.0,&gt;=1.21.6 in /home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages (from scipy) (1.26.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<div class="cell tag_hide-cell tag_thebe-init docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Module to add Ginzburg-Landau plot</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_bvp</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="k">def</span> <span class="nf">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
-  <span class="n">a</span><span class="p">,</span><span class="n">ba</span><span class="p">,</span><span class="n">fa</span><span class="o">=</span><span class="n">A</span>
-  <span class="n">b</span><span class="p">,</span><span class="n">bb</span><span class="p">,</span><span class="n">fb</span><span class="o">=</span><span class="n">B</span>
-  <span class="n">nodes</span><span class="o">=</span><span class="mi">5</span>
-  <span class="k">def</span> <span class="nf">dY</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Y</span><span class="p">):</span> <span class="c1"># Y=[f,df,a,b=da]</span>
-    <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">Y</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">df</span><span class="p">,</span> <span class="n">kappa</span><span class="o">*</span><span class="n">kappa</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">*</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-  <span class="k">def</span> <span class="nf">bc</span><span class="p">(</span><span class="n">Ya</span><span class="p">,</span> <span class="n">Yb</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Ya</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">fa</span><span class="p">,</span> <span class="n">Yb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">fb</span><span class="p">,</span> <span class="n">Ya</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">ba</span><span class="p">,</span><span class="n">Yb</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">bb</span><span class="p">])</span>
-  <span class="n">rng</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
-  <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">rng</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
-  <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
-  <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span> <span class="c1"># initialize f to 1</span>
-    <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
-  <span class="k">return</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">dY</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">tex</span><span class="p">):</span>
-  <span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">success</span><span class="p">)</span>
-  <span class="n">x_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
-  <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># f</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$f: </span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-  <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># b=da</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$b: </span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-  <span class="k">return</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<section id="plots-with-varying-kappa">
-<h2>Plots with varying <span class="math notranslate nohighlight">\(\kappa\)</span><a class="headerlink" href="#plots-with-varying-kappa" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kappa</span><span class="o">=</span><span class="mi">4</span>
-<span class="n">hc</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># critical field</span>
-<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=-</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span> <span class="c1"># range needs to be adjusted just right for smooth curves (too short) or type-II switching (too long, high-kappa)</span>
-<span class="n">A</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">hc</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">B</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">while</span> <span class="n">kappa</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">:</span>
-  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-  <span class="n">kappa</span><span class="o">/=</span><span class="mi">2</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Domain walls&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glplot</span><span class="p">,</span><span class="n">glsol</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span><span class="p">,</span><span class="n">nrm</span>
+
+<span class="n">h0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+  <span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nrm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="n">kappa</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
-True
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
-True
-</pre></div>
-</div>
-<img alt="../_images/42984c7b44ca23e4841e2638e680b3b6d5ce1215a5ae1230354a28bd296b8b1a.png" src="../_images/42984c7b44ca23e4841e2638e680b3b6d5ce1215a5ae1230354a28bd296b8b1a.png" />
+<img alt="../_images/a247b7bac724f29db7ac2692941b43f7610a3d3d805fde97555aa050660435c8.png" src="../_images/a247b7bac724f29db7ac2692941b43f7610a3d3d805fde97555aa050660435c8.png" />
 </div>
 </div>
-</section>
-<section id="domain-wall-energy">
-<h2>Domain wall energy<a class="headerlink" href="#domain-wall-energy" title="Permalink to this heading">#</a></h2>
-<section id="delta-version-arovas">
-<h3><span class="math notranslate nohighlight">\(\delta\)</span> version [Arovas]<a class="headerlink" href="#delta-version-arovas" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dwenergy</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dG1ABA</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
   <span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
-  <span class="n">L</span><span class="o">=</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-  <span class="n">plots</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">))</span>
-  <span class="n">f</span> <span class="o">=</span> <span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># f</span>
-  <span class="n">b</span> <span class="o">=</span><span class="n">plots</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># b=da</span>
-  <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="o">-</span><span class="n">f</span><span class="o">**</span><span class="mi">4</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="mi">100</span>
-  
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">D</span><span class="o">=</span><span class="p">[</span><span class="n">dwenergy</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">K</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">da</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">da</span><span class="o">-</span><span class="n">h0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>  
+  <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">h0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Kappa</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">.6</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plot</span><span class="o">=</span><span class="p">[</span><span class="n">dG1ABA</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">nrm</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">20</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">kappa</span> <span class="ow">in</span> <span class="n">Kappa</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Kappa</span><span class="p">,</span><span class="n">plot</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\kappa$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$\delta$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Domain wall energy [$\delta$]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8d1537c7e8dab47031d212c4feeca0fb610cb288f2ac2122a5a46e6efe756ad3.png" src="../_images/8d1537c7e8dab47031d212c4feeca0fb610cb288f2ac2122a5a46e6efe756ad3.png" />
+<img alt="../_images/a02163b491fb3f89b86b6b0a87c0e50791c51fe84b5eb238b66c5e53398ff6c0.png" src="../_images/a02163b491fb3f89b86b6b0a87c0e50791c51fe84b5eb238b66c5e53398ff6c0.png" />
 </div>
 </div>
-</section>
-<section id="free-energy-version-dg">
-<h3>Free energy version [dg]<a class="headerlink" href="#free-energy-version-dg" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dg</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">):</span> <span class="c1"># gibbs free energy difference between superconducting and normal metals</span>
-  <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">f</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">df</span><span class="o">/</span><span class="n">kappa</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">h</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-
-<span class="k">def</span> <span class="nf">dwg</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
-  <span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
-  <span class="n">L</span><span class="o">=</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-  <span class="n">plots</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">100</span><span class="p">))</span>
-  <span class="n">f</span> <span class="o">=</span> <span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># f</span>
-  <span class="n">df</span><span class="o">=</span><span class="n">plots</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-  <span class="n">b</span> <span class="o">=</span><span class="n">plots</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># b=da</span>
-  <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">dg</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">b</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">))</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="mi">100</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">D</span><span class="o">=</span><span class="p">[</span><span class="n">dwg</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">K</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\kappa$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$G_s-G_n$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Domain wall (free) energy [$G_s-G_n$]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/884902580a778b69a654ba5bb6d3d9b5067ba12b66ea81519d7d62e8c17a7765.png" src="../_images/884902580a778b69a654ba5bb6d3d9b5067ba12b66ea81519d7d62e8c17a7765.png" />
-</div>
-</div>
-<p>Not sure why this doesn’t give the same answer, although the shape is similar, but with scale and offset shifts. This needs investigation … probably by following through the theory, when I have time.</p>
-</section>
+<p>The <span class="math notranslate nohighlight">\(\delta\)</span> scaled energy quantity going negative for high <span class="math notranslate nohighlight">\(\kappa\)</span> indicates that ‘domain walls’ become energeticallly favourable, allowing regions of flux to penetrate the superconductor. This is known as ‘Type II’ behavior. For low <span class="math notranslate nohighlight">\(\kappa\)</span> one has a ‘Type I’ superconductor, where the no flux penetration is allowed, and the critical field <span class="math notranslate nohighlight">\(h_c\)</span> is sharp at <span class="math notranslate nohighlight">\(1/\sqrt2\)</span> for the scaled theory.</p>
+<section id="kappa-1-sqrt2">
+<h2><span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span><a class="headerlink" href="#kappa-1-sqrt2" title="Permalink to this heading">#</a></h2>
+<p>When <span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span>, if we assume the difference between the superconducting and normal states is zero:</p>
+<div class="math notranslate nohighlight">
+\[-\frac{\psi^4}{2}+(h_c-b)^2=0\]</div>
+<p>we have:</p>
+<div class="math notranslate nohighlight" id="equation-b">
+<span class="eqno">(13)<a class="headerlink" href="#equation-b" title="Permalink to this equation">#</a></span>\[\psi^2=\sqrt2(h_c-b)=1-\sqrt2b\]</div>
+<p>Differentiating:</p>
+<div class="math notranslate nohighlight" id="equation-psip">
+<span class="eqno">(14)<a class="headerlink" href="#equation-psip" title="Permalink to this equation">#</a></span>\[2\psi\psi'=-\sqrt2a''=-\sqrt2\psi^2 a\implies \psi'=-\frac{\psi a}{\sqrt2}\]</div>
+<p>using the GL equation for <span class="math notranslate nohighlight">\(a''\)</span>.</p>
+<p>Again:</p>
+<div class="math notranslate nohighlight">
+\[\psi''=-\frac{\psi'a+a'\psi}{\sqrt2}=\frac12(a^2+\psi^2-1)\psi\]</div>
+<p>This is the GL equation for <span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span>. The final step uses the equations  <a class="reference internal" href="#equation-psip">(14)</a> and <a class="reference internal" href="#equation-b">(13)</a> to replace <span class="math notranslate nohighlight">\(\psi'\)</span> and <span class="math notranslate nohighlight">\(b=a'\)</span>, respectively.</p>
 </section>
 </section>
 
@@ -661,12 +535,12 @@ True
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="ndom.html"
+       href="energy.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Domain walls (new, work in progress)</p>
+        <p class="prev-next-title">Energy calculations</p>
       </div>
     </a>
     <a class="right-next"
@@ -693,12 +567,7 @@ True
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-with-varying-kappa">Plots with varying <span class="math notranslate nohighlight">\(\kappa\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-wall-energy">Domain wall energy</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delta-version-arovas"><span class="math notranslate nohighlight">\(\delta\)</span> version [Arovas]</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#free-energy-version-dg">Free energy version [dg]</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kappa-1-sqrt2"><span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span></a></li>
 </ul>
   </nav></div>
 
