@@ -17,9 +17,8 @@ parts:
     chapters:
     - file: practice/liven
     - file: practice/glcode
-    - file: practice/boundary
+    - file: practice/thin
     - file: practice/energy
-    - file: practice/ndom
     - file: practice/domain
     - file: practice/vortex
   - caption: End matter

@@ -49,6 +49,28 @@ Now, the second GL equation:
 
 $$\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0$$
 
-only has a $\theta$ component, and assuming $\mathbf h$ uniform:
+has a $\theta$ component, assuming $\mathbf h$ uniform:
 
-$$-\frac{d^2 [\rho a_\theta]}{d \rho^2}+|\psi|^2 a_\theta-\frac i{2\kappa\rho}\left(\psi^*\frac{\partial\psi}{\partial\theta}-\psi\frac{\partial\psi^*}{\partial\theta}\right)=0$$
+$$-\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]+|\psi|^2 a_\theta-\frac i{2\kappa\rho}\left(\psi^*\frac{\partial\psi}{\partial\theta}-\psi\frac{\partial\psi^*}{\partial\theta}\right)=0$$
+
+The $\rho$ component just involves $\psi$:
+
+$$-\frac i{2\kappa}\left(\psi^*\frac{\partial\psi}{\partial\rho}-\psi\frac{\partial\psi^*}{\partial\rho}\right)=0$$
+
+We are here _not_ assuming that $\psi$ is real. Let it be separated into amplitude and phase, $\psi=\alpha\exp(i\phi)$. Then:
+
+$$-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=\frac{\alpha^2}{\kappa}\mathbf\nabla\phi$$
+
+Hence:
+
+$$\frac{\partial\phi}{\partial\rho}=0$$.
+
+So $\phi(\theta)$. But:
+
+$$\alpha^2\frac{d\phi}{d\theta}=\kappa\rho\left[\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]-\alpha^2 a_\theta\right]$$
+
+Since the left hand side is a function only of $\theta$, and the right only of $\rho$, it must be a constant $\nu$. We thus have $\psi=\alpha\exp(i\nu\theta)$, dropping a constant term in the exponent, which can be removed by a global gauge transformation. We expect $\psi$ to be single valued, which restricts $\nu$ to be an integer $n\in\mathbb Z$.
+
+The equation with this new information can be written:
+
+$$\alpha^2\left(\frac n{\kappa\rho}+a_\theta\right)=\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]=a_\theta''+\frac{a_\theta'}{\rho}-\frac{a_\theta}{\rho^2}$$

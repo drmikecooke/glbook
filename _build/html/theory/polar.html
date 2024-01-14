@@ -185,9 +185,8 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../practice/liven.html">Using Live Code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../practice/glcode.html">Basic GL bvp code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../practice/boundary.html">Boundary conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/thin.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../practice/energy.html">Energy calculations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../practice/ndom.html">Domain walls (new, work in progress)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../practice/domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../practice/vortex.html">Vortex solutions</a></li>
 </ul>
@@ -390,7 +389,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-magnetic-field">Radial magnetic field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetic-field-in-a-vortex">Magnetic field in a vortex</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy">Energy</a></li>
 </ul>
             </nav>
         </div>
@@ -435,18 +435,55 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\left[\frac{\partial[\rho a_\theta]}{\partial\rho}-\frac{\partial a_\rho}{\partial\theta}\right]d\rho d\theta\]</div>
 <p>Comparing with the flux, we get <a class="reference internal" href="#equation-polarb">(11)</a>.</p>
-<section id="radial-magnetic-field">
-<h2>Radial magnetic field<a class="headerlink" href="#radial-magnetic-field" title="Permalink to this heading">#</a></h2>
+<section id="magnetic-field-in-a-vortex">
+<h2>Magnetic field in a vortex<a class="headerlink" href="#magnetic-field-in-a-vortex" title="Permalink to this heading">#</a></h2>
 <p>If we assume <span class="math notranslate nohighlight">\(a_\rho=0\)</span> and <span class="math notranslate nohighlight">\(a_\theta\)</span> is a function of <span class="math notranslate nohighlight">\(\rho\)</span>, we get a radially dependent magnetic field <span class="math notranslate nohighlight">\(b\)</span>, which can model flux tubes in superconducting material.</p>
 <p>Now, the second GL equation:</p>
 <div class="math notranslate nohighlight">
 \[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0\]</div>
 <p>has a <span class="math notranslate nohighlight">\(\theta\)</span> component, assuming <span class="math notranslate nohighlight">\(\mathbf h\)</span> uniform:</p>
 <div class="math notranslate nohighlight">
-\[-\frac{d^2 [\rho a_\theta]}{d \rho^2}+|\psi|^2 a_\theta-\frac i{2\kappa\rho}\left(\psi^*\frac{\partial\psi}{\partial\theta}-\psi\frac{\partial\psi^*}{\partial\theta}\right)=0\]</div>
+\[-\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]+|\psi|^2 a_\theta-\frac i{2\kappa\rho}\left(\psi^*\frac{\partial\psi}{\partial\theta}-\psi\frac{\partial\psi^*}{\partial\theta}\right)=0\]</div>
 <p>The <span class="math notranslate nohighlight">\(\rho\)</span> component just involves <span class="math notranslate nohighlight">\(\psi\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[-\frac i{2\kappa}\left(\psi^*\frac{\partial\psi}{\partial\rho}-\psi\frac{\partial\psi^*}{\partial\rho}\right)=0\]</div>
+<p>We are here <em>not</em> assuming that <span class="math notranslate nohighlight">\(\psi\)</span> is real. Let it be separated into amplitude and phase, <span class="math notranslate nohighlight">\(\psi=\alpha\exp(i\phi)\)</span>. Then:</p>
+<div class="math notranslate nohighlight">
+\[-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=\frac{\alpha^2}{\kappa}\mathbf\nabla\phi\]</div>
+<p>Hence:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\frac{\partial\phi}{\partial\rho}=0$$.\\So $\phi(\theta)$. But:\\$$\alpha^2\frac{d\phi}{d\theta}=\kappa\rho\left[\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]-\alpha^2 a_\theta\right]\end{aligned}\end{align} \]</div>
+<p>Since the left hand side is a function only of <span class="math notranslate nohighlight">\(\theta\)</span>, and the right only of <span class="math notranslate nohighlight">\(\rho\)</span>, it must be a constant <span class="math notranslate nohighlight">\(\nu\)</span>. We thus have <span class="math notranslate nohighlight">\(\psi=\alpha\exp(i\nu\theta)\)</span>, dropping a constant term in the exponent, which can be removed by a global gauge transformation. We expect <span class="math notranslate nohighlight">\(\psi\)</span> to be single valued, which restricts <span class="math notranslate nohighlight">\(\nu\)</span> to be an integer <span class="math notranslate nohighlight">\(n\in\mathbb Z\)</span>.</p>
+<p>The equation with this new information can be written:</p>
+<div class="math notranslate nohighlight" id="equation-polar-gl2">
+<span class="eqno">(12)<a class="headerlink" href="#equation-polar-gl2" title="Permalink to this equation">#</a></span>\[\alpha^2\left(\frac n{\kappa\rho}+a_\theta\right)=\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]=a_\theta''+\frac{a_\theta'}{\rho}-\frac{a_\theta}{\rho^2}\]</div>
+</section>
+<section id="energy">
+<h2>Energy<a class="headerlink" href="#energy" title="Permalink to this heading">#</a></h2>
+<p>The Gibbs energy is:</p>
+<div class="math notranslate nohighlight">
+\[G[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2-2\mathbf h\cdot\mathbf\nabla\times\mathbf a\right]\]</div>
+<p>We already have the relevant <span class="math notranslate nohighlight">\(z\)</span> component of <span class="math notranslate nohighlight">\(\nabla\times\mathbf a\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[b_z=\frac1\rho\frac{d[\rho a_\theta]}{d\rho}=a_\theta'+\frac {a_\theta}\rho\]</div>
+<p>We have <span class="math notranslate nohighlight">\(\psi=\alpha\exp(in\theta)\)</span>. We now need the radial and angular dependence of the gradient:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\mathbf e}_\rho\cdot\mathbf\nabla=\frac\partial{\partial\rho}\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{\mathbf e}_\theta\cdot\mathbf\nabla=\frac1\rho\frac\partial{\partial\theta}\]</div>
+<p>Hence:</p>
+<div class="math notranslate nohighlight">
+\[\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi=\exp(in\theta)\left[\hat{\mathbf e}_\rho\frac{\alpha'}\kappa+i\hat{\mathbf e}_\theta\alpha\left(a_\theta+\frac n{\kappa\rho}\right)\right]\]</div>
+<p>The Gibbs energy per unit length in the <span class="math notranslate nohighlight">\(z\)</span> direction becomes:</p>
+<div class="math notranslate nohighlight">
+\[G[\alpha,a_\theta]=\frac {H_c^2}{4\pi}\lambda_L^d\int 2\pi\rho d\rho \left[-\alpha^2+\frac 12\alpha^4+\left(\frac{\alpha'}\kappa\right)^2+\alpha^2\left(a_\theta+\frac n{\kappa\rho}\right)^2+\left(\frac1\rho\frac{d[\rho a_\theta]}{d\rho}\right)^2-\frac{2h}\rho\frac{d[\rho a_\theta]}{d\rho}\right]\]</div>
+<p>Varying the <span class="math notranslate nohighlight">\(a_\theta\)</span> field, remembering the <span class="math notranslate nohighlight">\(2\pi\rho\)</span> factor, and assuming <span class="math notranslate nohighlight">\(h\)</span> constant, we get the equation <a class="reference internal" href="#equation-polar-gl2">(12)</a>.</p>
+<p>The <span class="math notranslate nohighlight">\(\alpha\)</span> variation gives:</p>
+<div class="math notranslate nohighlight">
+\[\alpha''+\frac{\alpha'}\rho=\left(\alpha^2+\left(a_\theta+\frac n{\kappa\rho}\right)^2-1\right)\alpha\]</div>
+<p>For solutions of the GL equations, the free energy becomes, after a partial integration of the <span class="math notranslate nohighlight">\(\alpha'\)</span>-dependent term and substitution of <span class="math notranslate nohighlight">\(\alpha''\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[G[\alpha,a_\theta]=\frac {H_c^2}{4\pi}\lambda_L^d\int 2\pi\rho d\rho \left[-\frac 12\alpha^4+b_z^2-2hb_z\right]\]</div>
 </section>
 </section>
 
@@ -513,7 +550,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-magnetic-field">Radial magnetic field</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetic-field-in-a-vortex">Magnetic field in a vortex</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy">Energy</a></li>
 </ul>
   </nav></div>
 

@@ -34,6 +34,7 @@ For a boundary with a normal metal, one might consider:
 
 $$\psi'=r\psi$$
 
+(oned:energy)=
 ## Energy considerations
 
 The free energy per unit area from {eq}`scaling:free`:

@@ -185,7 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="liven.html">Using Live Code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic GL bvp code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="boundary.html">Boundary conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thin.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Domain walls (new, work in progress)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
@@ -437,7 +437,7 @@ document.write(`
 <h1>Domain walls (new, work in progress)<a class="headerlink" href="#domain-walls-new-work-in-progress" title="Permalink to this heading">#</a></h1>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Using Live Code</p>
-<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. First go to the “Using Live Code” and check that things are working there. It will load scipy into the “Thebe” environment for use on other pages. It also writes a module into Thebe, which can be used on other pages. You may need to wait (sometimes a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
+<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. First go to the <a class="reference internal" href="liven.html#liven-head"><span class="std std-ref">Using Live Code</span></a> page and check that things are working there. It will load scipy into the “Thebe” environment for use on other pages. It also writes a module into Thebe, which can be used on other pages. You may need to wait (sometimes a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
 </div>
 <div class="cell tag_thebe-init tag_hide-cell docutils container">
 <details class="hide above-input">
@@ -570,7 +570,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9c2beb50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb07824c0&gt;
 </pre></div>
 </div>
 <img alt="../_images/ab1cc17a207c877872d015189dafbcfa4ac8efdf4e5cc10233d507e21c160ed5.png" src="../_images/ab1cc17a207c877872d015189dafbcfa4ac8efdf4e5cc10233d507e21c160ed5.png" />
@@ -600,7 +600,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6067f070&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f7432efd0&gt;
 </pre></div>
 </div>
 <img alt="../_images/657919bc32302324cab0b865db3dc2a32823bf63a1dab204c9be9aaf351e9cdf.png" src="../_images/657919bc32302324cab0b865db3dc2a32823bf63a1dab204c9be9aaf351e9cdf.png" />
@@ -628,7 +628,7 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3874/2333296611.py:6: IntegrationWarning: The maximum number of subdivisions (50) has been achieved.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5587/2333296611.py:6: IntegrationWarning: The maximum number of subdivisions (50) has been achieved.
   If increasing the limit yields no improvement it is advised to analyze 
   the integrand in order to determine the difficulties.  If the position of a 
   local difficulty can be determined (singularity, discontinuity) one will 
@@ -648,15 +648,15 @@ Requirement already satisfied: scipy in /home/mike/Projects/python/venvs/jbook/l
 \[-\frac{\psi^4}{2}+(h_c-b)^2=0\]</div>
 <p>we have:</p>
 <div class="math notranslate nohighlight" id="equation-b">
-<span class="eqno">(12)<a class="headerlink" href="#equation-b" title="Permalink to this equation">#</a></span>\[\psi^2=\sqrt2(h_c-b)=1-\sqrt2b\]</div>
+<span class="eqno">(13)<a class="headerlink" href="#equation-b" title="Permalink to this equation">#</a></span>\[\psi^2=\sqrt2(h_c-b)=1-\sqrt2b\]</div>
 <p>Differentiating:</p>
 <div class="math notranslate nohighlight" id="equation-psip">
-<span class="eqno">(13)<a class="headerlink" href="#equation-psip" title="Permalink to this equation">#</a></span>\[2\psi\psi'=-\sqrt2a''=-\sqrt2\psi^2 a\implies \psi'=-\frac{\psi a}{\sqrt2}\]</div>
+<span class="eqno">(14)<a class="headerlink" href="#equation-psip" title="Permalink to this equation">#</a></span>\[2\psi\psi'=-\sqrt2a''=-\sqrt2\psi^2 a\implies \psi'=-\frac{\psi a}{\sqrt2}\]</div>
 <p>using the GL equation for <span class="math notranslate nohighlight">\(a''\)</span>.</p>
 <p>Again:</p>
 <div class="math notranslate nohighlight">
 \[\psi''=-\frac{\psi'a+a'\psi}{\sqrt2}=\frac12(a^2+\psi^2-1)\psi\]</div>
-<p>This is the GL equation for <span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span>. The final step uses the equations  <a class="reference internal" href="#equation-psip">(13)</a> and <a class="reference internal" href="#equation-b">(12)</a> to replace <span class="math notranslate nohighlight">\(\psi'\)</span> and <span class="math notranslate nohighlight">\(b=a'\)</span>, respectively.</p>
+<p>This is the GL equation for <span class="math notranslate nohighlight">\(\kappa=1/\sqrt2\)</span>. The final step uses the equations  <a class="reference internal" href="#equation-psip">(14)</a> and <a class="reference internal" href="#equation-b">(13)</a> to replace <span class="math notranslate nohighlight">\(\psi'\)</span> and <span class="math notranslate nohighlight">\(b=a'\)</span>, respectively.</p>
 </section>
 </section>
 

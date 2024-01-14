@@ -41,7 +41,7 @@ $$\left[\frac{\partial[\rho a_\theta]}{\partial\rho}-\frac{\partial a_\rho}{\par
 
 Comparing with the flux, we get {eq}`polarb`.
 
-## Radial magnetic field
+## Magnetic field in a vortex
 
 If we assume $a_\rho=0$ and $a_\theta$ is a function of $\rho$, we get a radially dependent magnetic field $b$, which can model flux tubes in superconducting material.
 
@@ -51,8 +51,60 @@ $$\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kapp
 
 has a $\theta$ component, assuming $\mathbf h$ uniform:
 
-$$-\frac{d^2 [\rho a_\theta]}{d \rho^2}+|\psi|^2 a_\theta-\frac i{2\kappa\rho}\left(\psi^*\frac{\partial\psi}{\partial\theta}-\psi\frac{\partial\psi^*}{\partial\theta}\right)=0$$
+$$-\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]+|\psi|^2 a_\theta-\frac i{2\kappa\rho}\left(\psi^*\frac{\partial\psi}{\partial\theta}-\psi\frac{\partial\psi^*}{\partial\theta}\right)=0$$
 
 The $\rho$ component just involves $\psi$:
 
 $$-\frac i{2\kappa}\left(\psi^*\frac{\partial\psi}{\partial\rho}-\psi\frac{\partial\psi^*}{\partial\rho}\right)=0$$
+
+We are here _not_ assuming that $\psi$ is real. Let it be separated into amplitude and phase, $\psi=\alpha\exp(i\phi)$. Then:
+
+$$-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=\frac{\alpha^2}{\kappa}\mathbf\nabla\phi$$
+
+Hence:
+
+$$\frac{\partial\phi}{\partial\rho}=0$$.
+
+So $\phi(\theta)$. But:
+
+$$\alpha^2\frac{d\phi}{d\theta}=\kappa\rho\left[\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]-\alpha^2 a_\theta\right]$$
+
+Since the left hand side is a function only of $\theta$, and the right only of $\rho$, it must be a constant $\nu$. We thus have $\psi=\alpha\exp(i\nu\theta)$, dropping a constant term in the exponent, which can be removed by a global gauge transformation. We expect $\psi$ to be single valued, which restricts $\nu$ to be an integer $n\in\mathbb Z$.
+
+The equation with this new information can be written:
+
+$$\alpha^2\left(\frac n{\kappa\rho}+a_\theta\right)=\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]=a_\theta''+\frac{a_\theta'}{\rho}-\frac{a_\theta}{\rho^2}$$(polar:GL2)
+
+## Energy
+
+The Gibbs energy is:
+
+$$G[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2-2\mathbf h\cdot\mathbf\nabla\times\mathbf a\right]$$
+
+We already have the relevant $z$ component of $\nabla\times\mathbf a$ as:
+
+$$b_z=\frac1\rho\frac{d[\rho a_\theta]}{d\rho}=a_\theta'+\frac {a_\theta}\rho$$
+
+We have $\psi=\alpha\exp(in\theta)$. We now need the radial and angular dependence of the gradient:
+
+$$\hat{\mathbf e}_\rho\cdot\mathbf\nabla=\frac\partial{\partial\rho}$$
+
+$$\hat{\mathbf e}_\theta\cdot\mathbf\nabla=\frac1\rho\frac\partial{\partial\theta}$$
+
+Hence:
+
+$$\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi=\exp(in\theta)\left[\hat{\mathbf e}_\rho\frac{\alpha'}\kappa+i\hat{\mathbf e}_\theta\alpha\left(a_\theta+\frac n{\kappa\rho}\right)\right]$$
+
+The Gibbs energy per unit length in the $z$ direction becomes:
+
+$$G[\alpha,a_\theta]=\frac {H_c^2}{4\pi}\lambda_L^d\int 2\pi\rho d\rho \left[-\alpha^2+\frac 12\alpha^4+\left(\frac{\alpha'}\kappa\right)^2+\alpha^2\left(a_\theta+\frac n{\kappa\rho}\right)^2+\left(\frac1\rho\frac{d[\rho a_\theta]}{d\rho}\right)^2-\frac{2h}\rho\frac{d[\rho a_\theta]}{d\rho}\right]$$
+
+Varying the $a_\theta$ field, remembering the $2\pi\rho$ factor, and assuming $h$ constant, we get the equation {eq}`polar:GL2`.
+
+The $\alpha$ variation gives:
+
+$$\alpha''+\frac{\alpha'}\rho=\left(\alpha^2+\left(a_\theta+\frac n{\kappa\rho}\right)^2-1\right)\alpha$$
+
+For solutions of the GL equations, the free energy becomes, after a partial integration of the $\alpha'$-dependent term and substitution of $\alpha''$:
+
+$$G[\alpha,a_\theta]=\frac {H_c^2}{4\pi}\lambda_L^d\int 2\pi\rho d\rho \left[-\frac 12\alpha^4+b_z^2-2hb_z\right]$$

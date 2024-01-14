@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'practice/glcode';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Boundary conditions" href="boundary.html" />
+    <link rel="next" title="Thin films" href="thin.html" />
     <link rel="prev" title="Using Live Code" href="liven.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -179,14 +179,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../theory/flux.html">Flux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/scaling.html">Scaling the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/oned.html">One dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/polar.html">Polar exploration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="liven.html">Using Live Code</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic GL bvp code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="boundary.html">Boundary conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thin.html">Thin films</a></li>
 <li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ndom.html">Domain walls (new, work in progress)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
 </ul>
@@ -453,7 +453,7 @@ document.write(`
 <h1>Basic GL bvp code<a class="headerlink" href="#basic-gl-bvp-code" title="Permalink to this heading">#</a></h1>
 <div class="tip dropdown admonition">
 <p class="admonition-title">Using Live Code</p>
-<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. First go to the “Using Live Code” and check that things are working there. It will load scipy into the “Thebe” environment for use on other pages. It also writes a module into Thebe, which can be used on other pages. You may need to wait (sometimes a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
+<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. First go to the <a class="reference internal" href="liven.html#liven-head"><span class="std std-ref">Using Live Code</span></a> page and check that things are working there. It will load scipy into the “Thebe” environment for use on other pages. It also writes a module into Thebe, which can be used on other pages. You may need to wait (sometimes a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
 </div>
 <section id="basic-usage">
 <h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading">#</a></h2>
@@ -553,11 +553,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="boundary.html"
+       href="thin.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Boundary conditions</p>
+        <p class="prev-next-title">Thin films</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
