@@ -103,8 +103,32 @@ Varying the $a_\theta$ field, remembering the $2\pi\rho$ factor, and assuming $h
 
 The $\alpha$ variation gives:
 
-$$\alpha''+\frac{\alpha'}\rho=\left(\alpha^2+\left(a_\theta+\frac n{\kappa\rho}\right)^2-1\right)\alpha$$
+$$\alpha''+\frac{\alpha'}\rho=\left(\alpha^2+\left(a_\theta+\frac n{\kappa\rho}\right)^2-1\right)\alpha$$(polar:GL1)
 
 For solutions of the GL equations, the free energy becomes, after a partial integration of the $\alpha'$-dependent term and substitution of $\alpha''$:
 
 $$G[\alpha,a_\theta]=\frac {H_c^2}{4\pi}\lambda_L^d\int 2\pi\rho d\rho \left[-\frac 12\alpha^4+b_z^2-2hb_z\right]$$
+
+## Flux quantization
+
+The magnetic flux throuugh the vortex is:
+
+$$\phi_n&=\int_0^\infty 2\pi\rho d\rho b_z\\
+&=\int_0^\infty 2\pi\ d\rho \frac{d[\rho a_\theta]}{d\rho}\\
+&=[2\pi\rho a_\theta]^\infty_0$$
+
+This result is essentially Stokes' theorem. Unless $a_\theta$ is singlular as $\rho\rightarrow0$, the contribution of the lower limit is zero. For now, we will assume this is not the case. In the far region we expect $\alpha\rightarrow1$, and considering {eq}`polar:GL1`, we derive:
+
+$$\left(a_\theta+\frac n{\kappa\rho}\right)^2\alpha\rightarrow\left(a_\theta+\frac n{\kappa\rho}\right)^2\rightarrow0$$
+
+since the derivatives should also tend to zero. Hence $\phi_n=-2\pi n/\kappa$ is quantized in units of $2pi/\kappa$. Hopefully a bit of descaling will get us proper flux quantization? 
+
+$$\mathbf x=\lambda_L \mathbf r$$
+
+$$\mathbf A=\sqrt2\lambda_LH_c\mathbf a$$
+
+so, descaled: $\Phi_n=-\sqrt8\lambda_L^2H_c\pi n/\kappa$. But:
+
+$$H_c=\frac{\phi_L}{\sqrt8\pi\xi\lambda_L}$$
+
+We also need to remember: $\kappa=\lambda_L/\xi$ and  the flux quantum $\phi_L=hc/e^*$. Hence $\Phi_n=-n\phi_L$. Phew! We could have made the dependence positive on $n$ if we had chosen the opposite phase of the order parameter.

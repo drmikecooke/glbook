@@ -391,6 +391,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetic-field-in-a-vortex">Magnetic field in a vortex</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy">Energy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-quantization">Flux quantization</a></li>
 </ul>
             </nav>
         </div>
@@ -479,11 +480,31 @@ document.write(`
 \[G[\alpha,a_\theta]=\frac {H_c^2}{4\pi}\lambda_L^d\int 2\pi\rho d\rho \left[-\alpha^2+\frac 12\alpha^4+\left(\frac{\alpha'}\kappa\right)^2+\alpha^2\left(a_\theta+\frac n{\kappa\rho}\right)^2+\left(\frac1\rho\frac{d[\rho a_\theta]}{d\rho}\right)^2-\frac{2h}\rho\frac{d[\rho a_\theta]}{d\rho}\right]\]</div>
 <p>Varying the <span class="math notranslate nohighlight">\(a_\theta\)</span> field, remembering the <span class="math notranslate nohighlight">\(2\pi\rho\)</span> factor, and assuming <span class="math notranslate nohighlight">\(h\)</span> constant, we get the equation <a class="reference internal" href="#equation-polar-gl2">(12)</a>.</p>
 <p>The <span class="math notranslate nohighlight">\(\alpha\)</span> variation gives:</p>
-<div class="math notranslate nohighlight">
-\[\alpha''+\frac{\alpha'}\rho=\left(\alpha^2+\left(a_\theta+\frac n{\kappa\rho}\right)^2-1\right)\alpha\]</div>
+<div class="math notranslate nohighlight" id="equation-polar-gl1">
+<span class="eqno">(13)<a class="headerlink" href="#equation-polar-gl1" title="Permalink to this equation">#</a></span>\[\alpha''+\frac{\alpha'}\rho=\left(\alpha^2+\left(a_\theta+\frac n{\kappa\rho}\right)^2-1\right)\alpha\]</div>
 <p>For solutions of the GL equations, the free energy becomes, after a partial integration of the <span class="math notranslate nohighlight">\(\alpha'\)</span>-dependent term and substitution of <span class="math notranslate nohighlight">\(\alpha''\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[G[\alpha,a_\theta]=\frac {H_c^2}{4\pi}\lambda_L^d\int 2\pi\rho d\rho \left[-\frac 12\alpha^4+b_z^2-2hb_z\right]\]</div>
+</section>
+<section id="flux-quantization">
+<h2>Flux quantization<a class="headerlink" href="#flux-quantization" title="Permalink to this heading">#</a></h2>
+<p>The magnetic flux throuugh the vortex is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\phi_n&amp;=\int_0^\infty 2\pi\rho d\rho b_z\\
+&amp;=\int_0^\infty 2\pi\ d\rho \frac{d[\rho a_\theta]}{d\rho}\\
+&amp;=[2\pi\rho a_\theta]^\infty_0\end{split}\]</div>
+<p>This result is essentially Stokes’ theorem. Unless <span class="math notranslate nohighlight">\(a_\theta\)</span> is singlular as <span class="math notranslate nohighlight">\(\rho\rightarrow0\)</span>, the contribution of the lower limit is zero. For now, we will assume this is not the case. In the far region we expect <span class="math notranslate nohighlight">\(\alpha\rightarrow1\)</span>, and considering <a class="reference internal" href="#equation-polar-gl1">(13)</a>, we derive:</p>
+<div class="math notranslate nohighlight">
+\[\left(a_\theta+\frac n{\kappa\rho}\right)^2\alpha\rightarrow\left(a_\theta+\frac n{\kappa\rho}\right)^2\rightarrow0\]</div>
+<p>since the derivatives should also tend to zero. Hence <span class="math notranslate nohighlight">\(\phi_n=-2\pi n/\kappa\)</span> is quantized in units of <span class="math notranslate nohighlight">\(2pi/\kappa\)</span>. Hopefully a bit of descaling will get us proper flux quantization?</p>
+<div class="math notranslate nohighlight">
+\[\mathbf x=\lambda_L \mathbf r\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbf A=\sqrt2\lambda_LH_c\mathbf a\]</div>
+<p>so, descaled: <span class="math notranslate nohighlight">\(\Phi_n=-\sqrt8\lambda_L^2H_c\pi n/\kappa\)</span>. But:</p>
+<div class="math notranslate nohighlight">
+\[H_c=\frac{\phi_L}{\sqrt8\pi\xi\lambda_L}\]</div>
+<p>We also need to remember: <span class="math notranslate nohighlight">\(\kappa=\lambda_L/\xi\)</span> and  the flux quantum <span class="math notranslate nohighlight">\(\phi_L=hc/e^*\)</span>. Hence <span class="math notranslate nohighlight">\(\Phi_n=-n\phi_L\)</span>. Phew! We could have made the dependence positive on <span class="math notranslate nohighlight">\(n\)</span> if we had chosen the opposite phase of the order parameter.</p>
 </section>
 </section>
 
@@ -552,6 +573,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetic-field-in-a-vortex">Magnetic field in a vortex</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy">Energy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-quantization">Flux quantization</a></li>
 </ul>
   </nav></div>
 
@@ -576,7 +598,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 09/01/2024.
+      © Copyright 16/01/2024.
       <br/>
     
   </p>

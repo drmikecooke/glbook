@@ -19,6 +19,7 @@ parts:
     - file: practice/glcode
     - file: practice/thin
     - file: practice/energy
+    
     - file: practice/domain
     - file: practice/vortex
   - caption: End matter
