@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'practice/vortex';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Bibliography" href="../bib.html" />
+    <link rel="next" title="Far out applications" href="far.html" />
     <link rel="prev" title="Domain walls" href="domain.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -180,6 +180,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../theory/scaling.html">Scaling the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/oned.html">One dimensional problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/polar.html">Polar exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/far.html">Far out</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
 <ul class="current nav bd-sidenav">
@@ -189,6 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="far.html">Far out applications</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
 <ul class="nav bd-sidenav">
@@ -428,6 +430,10 @@ document.write(`
 <p class="admonition-title">Using Live Code</p>
 <p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. First go to the <a class="reference internal" href="liven.html#liven-head"><span class="std std-ref">Using Live Code</span></a> page and check that things are working there. It will load scipy into the “Thebe” environment for use on other pages. It also writes a module into Thebe, which can be used on other pages. You may need to wait (sometimes a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>I am not happy with this page. A sanity check on the enclosed flux fails, and needs sorting.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glrplot</span> 
@@ -459,6 +465,147 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\Phi=2\pi\int b r dr\]</div>
 <p>Hopefully the different heights as <span class="math notranslate nohighlight">\(r \rightarrow 0\)</span> are damped by the <span class="math notranslate nohighlight">\(r\)</span> factor in the integral.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glradial</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+
+<span class="n">kappa</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">n</span><span class="o">=-</span><span class="mi">1</span> <span class="c1"># -1 give positive b field</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="mi">20</span>
+
+
+<span class="n">sol</span><span class="o">=</span><span class="n">glradial</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+  <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">da</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+  <span class="n">b</span><span class="o">=</span><span class="n">da</span><span class="o">+</span><span class="n">a</span><span class="o">/</span><span class="n">r</span>
+  <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">b</span>
+
+<span class="n">quad</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/mike/Documents/github/glbook/practice/glcd.py:71: RuntimeWarning: overflow encountered in multiply
+  return np.vstack((df, kappa*kappa*f*(f**2+ank**2-1)-df/x,da,a/x/x+ank*f**2-da/x))
+/home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages/scipy/integrate/_bvp.py:312: RuntimeWarning: overflow encountered in multiply
+  4 * f_middle)
+/home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages/scipy/integrate/_bvp.py:40: RuntimeWarning: invalid value encountered in subtract
+  df_dy[:, i, :] = (f_new - f0) / hi
+/home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages/scipy/integrate/_bvp.py:566: RuntimeWarning: invalid value encountered in divide
+  r_middle /= 1 + np.abs(f_middle)
+/home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages/scipy/integrate/_bvp.py:567: RuntimeWarning: invalid value encountered in divide
+  r1 /= 1 + np.abs(f1)
+/home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages/scipy/integrate/_bvp.py:568: RuntimeWarning: invalid value encountered in divide
+  r2 /= 1 + np.abs(f2)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.4211738141938543e+138, 1.0244661887978052e+130)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">da</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.4730537448094845
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">kappa</span><span class="o">/</span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3141592653589793
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glrplot</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_bvp</span>
+<span class="n">kappa</span><span class="o">=</span><span class="mi">6</span>
+<span class="n">n</span><span class="o">=-</span><span class="mi">1</span> <span class="c1"># -1 give positive b field</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">5</span>
+<span class="n">nodes</span><span class="o">=</span><span class="mi">5</span>
+<span class="k">def</span> <span class="nf">dY</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Y</span><span class="p">):</span> <span class="c1"># Y=[f,df,a,b=da]</span>
+  <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">rhoa</span><span class="p">,</span><span class="n">rhob</span> <span class="o">=</span> <span class="n">Y</span>
+  <span class="n">rhoank</span><span class="o">=</span><span class="n">rhoa</span><span class="o">+</span><span class="n">n</span><span class="o">/</span><span class="n">k</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">df</span><span class="p">,</span> <span class="n">kappa</span><span class="o">*</span><span class="n">kappa</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">rhoank</span><span class="o">/</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">df</span><span class="o">/</span><span class="n">x</span><span class="p">,</span><span class="n">rhob</span><span class="p">,</span><span class="n">rhoank</span><span class="o">*</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">x</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">bc</span><span class="p">(</span><span class="n">Ya</span><span class="p">,</span> <span class="n">Yb</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Ya</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Yb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Yb</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">Ya</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">rng</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">rng</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">):</span> <span class="c1"># initialize f to 1</span>
+  <span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">sol</span><span class="o">=</span><span class="n">solve_bvp</span><span class="p">(</span><span class="n">dY</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="n">r_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">r_plot</span><span class="p">)</span>
+<span class="n">f</span><span class="o">=</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># f</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r_plot</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$\phi$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">plots</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="n">r_plot</span> <span class="c1"># b=da+a/x</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r_plot</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$b$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vortex: $\phi$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vortex: b&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3d1cea17da168b225b7d268141c3015a2d10db69e2482d072a56d0ec3030217c.png" src="../_images/3d1cea17da168b225b7d268141c3015a2d10db69e2482d072a56d0ec3030217c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r_plot</span><span class="p">,</span><span class="n">plots</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="o">-</span><span class="n">n</span><span class="o">/</span><span class="n">kappa</span><span class="p">,</span><span class="o">-</span><span class="n">n</span><span class="o">/</span><span class="n">kappa</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f55d109a0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/0326d451ca0fdeb25cbfad8008b57fca81966f5f3602b1ca0bf0650fdbea28be.png" src="../_images/0326d451ca0fdeb25cbfad8008b57fca81966f5f3602b1ca0bf0650fdbea28be.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r_plot</span><span class="p">,</span><span class="n">plots</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f55bf0460&gt;]
+</pre></div>
+</div>
+<img alt="../_images/bd3cbe5bcc53d9b32b2a664824376de5a84ab6456884bb0e80d47192b00d130f.png" src="../_images/bd3cbe5bcc53d9b32b2a664824376de5a84ab6456884bb0e80d47192b00d130f.png" />
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -501,11 +648,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../bib.html"
+       href="far.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Bibliography</p>
+        <p class="prev-next-title">Far out applications</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -535,7 +682,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 16/01/2024.
+      © Copyright 23/01/2024.
       <br/>
     
   </p>

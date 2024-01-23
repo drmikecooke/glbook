@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Flux &#8212; Ginzburg-Landau boundary value problems</title>
+    <title>Far out &#8212; Ginzburg-Landau boundary value problems</title>
   
   
   
@@ -65,11 +65,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'theory/flux';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'theory/far';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Scaling the equations" href="scaling.html" />
-    <link rel="prev" title="Current" href="current.html" />
+    <link rel="next" title="Using Live Code" href="../practice/liven.html" />
+    <link rel="prev" title="Polar exploration" href="polar.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,11 +176,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Flux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oned.html">One dimensional problems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="polar.html">Polar exploration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="far.html">Far out</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Far out</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
 <ul class="nav bd-sidenav">
@@ -266,7 +266,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftheory/flux.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftheory/far.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -296,7 +296,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/theory/flux.md" target="_blank"
+      <li><a href="../_sources/theory/far.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -367,7 +367,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -378,11 +380,23 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Flux</h1>
+    <h1>Far out</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d">1D</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#psi"><span class="math notranslate nohighlight">\(\psi\)</span></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -392,9 +406,36 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="flux">
-<h1>Flux<a class="headerlink" href="#flux" title="Permalink to this heading">#</a></h1>
-<p>In the London theory, the magnetic flux is quantized in units of <span class="math notranslate nohighlight">\(\phi_L=hc/e^*\)</span>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="far-out">
+<h1>Far out<a class="headerlink" href="#far-out" title="Permalink to this heading">#</a></h1>
+<p>We want to consider here the asymptotic regions where either the scaled order parameter <span class="math notranslate nohighlight">\(\psi\)</span> is either fully superconducting, <span class="math notranslate nohighlight">\(|\psi|^2=1\)</span>, or normal, <span class="math notranslate nohighlight">\(\psi=0\)</span>.</p>
+<section id="d">
+<h2>1D<a class="headerlink" href="#d" title="Permalink to this heading">#</a></h2>
+<p>In the 1D problem, covering the semi-infinite (<span class="math notranslate nohighlight">\(x\in(0,\infty)\)</span>) and infinite problems (<span class="math notranslate nohighlight">\(x\in(-\infty,\infty)\)</span>), we assume a uniform applied field (<span class="math notranslate nohighlight">\(h'=0\)</span>). This is a sort of warm up for sorting out the errors in the vortex solution.</p>
+<section id="a">
+<h3>a<a class="headerlink" href="#a" title="Permalink to this heading">#</a></h3>
+<p>The gauge potential GL equation is:</p>
+<div class="math notranslate nohighlight" id="equation-a">
+<span class="eqno">(14)<a class="headerlink" href="#equation-a" title="Permalink to this equation">#</a></span>\[-a''+\psi^2a=0\]</div>
+<p>In a fully superconducting region <span class="math notranslate nohighlight">\(a\)</span> becomes exponential, and in the asymptotic region we expect the magnetic field <span class="math notranslate nohighlight">\(b=da/dx\)</span> to tend to zero, and we have to choose the gauge potential that also tends to zero. If the superconducting region is at <span class="math notranslate nohighlight">\(+\infty\)</span>, we therefore have <span class="math notranslate nohighlight">\(a\propto\exp(-x)\)</span>.</p>
+<p>In a normal region with <span class="math notranslate nohighlight">\(\psi=0\)</span> the equation <a class="reference internal" href="#equation-a">(14)</a> becomes <span class="math notranslate nohighlight">\(a''=0\)</span>, and the gauge potential linear in <span class="math notranslate nohighlight">\(x\)</span>, with slope the applied field <span class="math notranslate nohighlight">\(h=da\)</span>.</p>
+</section>
+<section id="psi">
+<h3><span class="math notranslate nohighlight">\(\psi\)</span><a class="headerlink" href="#psi" title="Permalink to this heading">#</a></h3>
+<p>We need to consider how the order parameter, <span class="math notranslate nohighlight">\(\psi\)</span>, deviates from superconductivity or normality.</p>
+<div class="math notranslate nohighlight">
+\[\frac{\psi''}{\kappa^2}-(a^2+\psi^2-1)\psi=0\]</div>
+<p>For <span class="math notranslate nohighlight">\(a=0\)</span> this becomes:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\psi''}{\kappa^2}-(\psi^2-1)\psi=0\]</div>
+<p>Multiplying by <span class="math notranslate nohighlight">\(\psi'\)</span>, one can reduce to a separable first-order differential equation, like in going from Newton’s equations to energy conservation. In my head, I think I see an elliptic integral, which presumably could be inverted to give an elliptic function solution (with imaginary argument?)?</p>
+<p>For our purposes, it is better to linearize around 1, with <span class="math notranslate nohighlight">\(\delta\psi=\psi-1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\delta\psi''}{\kappa^2}-2\psi\approx0\]</div>
+<p>This gives again exponential behaviour, but dependent on the <span class="math notranslate nohighlight">\(\kappa\)</span> scale, <span class="math notranslate nohighlight">\(\delta\psi\propto\exp(-\sqrt2\kappa x)\)</span>. We also expect <span class="math notranslate nohighlight">\(\delta\psi\)</span> to be negative so that <span class="math notranslate nohighlight">\(\psi\rightarrow1\)</span> from below. There is an equivalent solution with <span class="math notranslate nohighlight">\(\psi\rightarrow-1\)</span> from above, related by a global gauge transformation, so <span class="math notranslate nohighlight">\(a\)</span> would be unaffected.</p>
+<p>The normal region is more ticklish, since the <span class="math notranslate nohighlight">\(a^2\)</span> term would eventually dominate the behaviour. A WKB type approach might be useful, but I will leave off for now.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -428,20 +469,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="current.html"
+       href="polar.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Current</p>
+        <p class="prev-next-title">Polar exploration</p>
       </div>
     </a>
     <a class="right-next"
-       href="scaling.html"
+       href="../practice/liven.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Scaling the equations</p>
+        <p class="prev-next-title">Using Live Code</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -451,6 +492,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d">1D</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a">a</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#psi"><span class="math notranslate nohighlight">\(\psi\)</span></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

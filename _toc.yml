@@ -13,15 +13,16 @@ parts:
     - file: theory/scaling
     - file: theory/oned
     - file: theory/polar
+    - file: theory/far
   - caption: Practice in 1D
     chapters:
     - file: practice/liven
     - file: practice/glcode
     - file: practice/thin
     - file: practice/energy
-    
     - file: practice/domain
     - file: practice/vortex
+    - file: practice/far
   - caption: End matter
     chapters:
     - file: bib
