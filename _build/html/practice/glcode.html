@@ -190,6 +190,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="far.html">Far out applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farho.html">Simplifying the radial equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
 <ul class="nav bd-sidenav">
@@ -328,23 +330,6 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       <li><a href="../_sources/practice/glcode.ipynb" target="_blank"
-   class="btn btn-sm btn-download-notebook-button dropdown-item"
-   title="Download notebook file"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="btn__text-container">.ipynb</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="../_sources/practice/glcode.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -354,7 +339,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -458,7 +443,7 @@ document.write(`
 </div>
 <section id="basic-usage">
 <h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this heading">#</a></h2>
-<p>The functions (glsol,glplot) defined above solve the GL BVP with boundary conditions given in the A and B parameters, and with kappa given by … well, kappa. The tex parameter in glplot allows some T<sub>E</sub>X labelling of the plots (<span class="math notranslate nohighlight">\(\psi,b\)</span>). The boundary conditions are defined in terms of a <span class="math notranslate nohighlight">\(x\)</span> position and a function imposing conditions on the <span class="math notranslate nohighlight">\(\psi,\psi',a,b\)</span> fields. We have (for now):</p>
+<p>The functions (glsol,plt1D) defined above solve the GL BVP with boundary conditions given in the A and B parameters, and with kappa given by … well, kappa. The tex parameter in plt1D allows some T<sub>E</sub>X labelling of the plots (<span class="math notranslate nohighlight">\(\psi,b\)</span>). The boundary conditions are defined in terms of a <span class="math notranslate nohighlight">\(x\)</span> position and a function imposing conditions on the <span class="math notranslate nohighlight">\(\psi,\psi',a,b\)</span> fields. We have (for now):</p>
 <ol class="arabic simple">
 <li><p>Natural boundary: <span class="math notranslate nohighlight">\(\psi'=0\)</span>, and <span class="math notranslate nohighlight">\(b=a'=h\)</span>.</p></li>
 <li><p>Infinite boudary: <span class="math notranslate nohighlight">\(\psi'=0\)</span>, and <span class="math notranslate nohighlight">\(b=a'=0\)</span>.</p></li>
@@ -471,12 +456,12 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic usage vacuum boundary at $x=0$. As published the applied field is critical.</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glplot</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span>
+<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">plt1D</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span>
 
 <span class="n">hc</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
   <span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="n">k</span>
-  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">hc</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># natural boundary x=0,superconducting at x=6 (x &#39;large&#39;)</span>
+  <span class="n">plt1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">hc</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># natural boundary x=0,superconducting at x=6 (x &#39;large&#39;)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">hc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -485,7 +470,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/73433c4800db63de8c1362e3afcf60b55ada741727a0c1895973f1923015dcc4.png" src="../_images/73433c4800db63de8c1362e3afcf60b55ada741727a0c1895973f1923015dcc4.png" />
+<img alt="../_images/c888a4ed3adb9d6b5534d390a497d2d4c21ab898fdbe76d87e8f9a03e501cc63.png" src="../_images/c888a4ed3adb9d6b5534d390a497d2d4c21ab898fdbe76d87e8f9a03e501cc63.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -493,13 +478,13 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic usage vacuum boundary at $x=0$. The kappa value is at the critical point between types I and II behaviour.</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glplot</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span>
+<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">plt1D</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span>
 
 <span class="n">kappa</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">N</span><span class="o">=</span><span class="mi">5</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
   <span class="n">h0</span><span class="o">=</span><span class="n">k</span><span class="o">/</span><span class="n">N</span>
-  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="n">plt1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -508,7 +493,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/78e913e4066bafef9e26da580d3dccffa0cee1e3038dd67e56bb118daf4e71f2.png" src="../_images/78e913e4066bafef9e26da580d3dccffa0cee1e3038dd67e56bb118daf4e71f2.png" />
+<img alt="../_images/427c0dc06ec7276b7fb454cf1c9ff3cd6b7e11a6e82e084bf94c37303d8c4fa8.png" src="../_images/427c0dc06ec7276b7fb454cf1c9ff3cd6b7e11a6e82e084bf94c37303d8c4fa8.png" />
 </div>
 </div>
 </section>
@@ -602,7 +587,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 23/01/2024.
+      © Copyright 24/01/2024.
       <br/>
     
   </p>

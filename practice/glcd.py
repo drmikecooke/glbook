@@ -37,7 +37,7 @@ def NCM(x,h): # normal psi=0 with applied field h
     return [Y[1]-kappa*r2**(1/2)*Y[0],Y[3]-h]
   return (x,BC)
 
-def glsol(kappa,A,B):
+def gl1D(kappa,A,B):
   xa,AB=A
   xb,BB=B
   nodes=5
@@ -52,13 +52,15 @@ def glsol(kappa,A,B):
   Y = np.vstack([Y0,np.zeros((3, X.size))])
   return solve_bvp(dY, bc, X, Y)
 
-def glplot(kappa,A,B,tex):
-  sol=glsol(kappa,A,B)
-  x_plot = np.linspace(A[0],B[0], 100)
-  y_plot = sol.sol(x_plot)[0] # f
-  plt.plot(x_plot, y_plot,label=f"$\psi: {tex}$")
-  y_plot = sol.sol(x_plot)[3] # b=da
-  plt.plot(x_plot, y_plot,label=f"$b: {tex}$")
+def plotn(sol,n,tex=""):
+  x_plot = np.linspace(sol.x[0],sol.x[-1], 40)
+  y_plot = sol.sol(x_plot)[n] # plot index n of solution
+  plt.plot(x_plot, y_plot,label=f"${tex}$")
+
+def plt1D(kappa,A,B,tex):
+  sol=gl1D(kappa,A,B)
+  plotn(sol,0,f"\psi: {tex}") # psi=f
+  plotn(sol,3,f"b: {tex}") # b=da
   if not sol.success:
     print(f"kappa={kappa},tex={tex}:",sol.message)
 
@@ -67,7 +69,7 @@ def glradial(kappa,n,a,b):
   def dY(x,Y): # Y=[f,df,a,b=da]
     f,df,a,da = Y
     b=da+a/x
-    ank=a+n/k/x
+    ank=a+n/kappa/x
     return np.vstack((df, kappa*kappa*f*(f**2+ank**2-1)-df/x,da,a/x/x+ank*f**2-da/x))
   def bc(Ya, Yb):
     return np.array([a*Ya[1]-Ya[0], Yb[0]-1, a*Ya[3]-Ya[2],Yb[3]+Yb[2]/b])

@@ -190,6 +190,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="far.html">Far out applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farho.html">Simplifying the radial equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
 <ul class="nav bd-sidenav">
@@ -444,13 +446,13 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
-<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glplot</span><span class="p">,</span><span class="n">glsol</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span><span class="p">,</span><span class="n">nrm</span>
+<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">plt1D</span><span class="p">,</span><span class="n">gl1D</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span><span class="p">,</span><span class="n">nrm</span>
 
 <span class="n">h0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
   <span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="n">k</span>
-  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nrm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="n">kappa</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="n">plt1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nrm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="n">kappa</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -458,13 +460,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a247b7bac724f29db7ac2692941b43f7610a3d3d805fde97555aa050660435c8.png" src="../_images/a247b7bac724f29db7ac2692941b43f7610a3d3d805fde97555aa050660435c8.png" />
+<img alt="../_images/dd93c66c4005225f8957d9128b0e768a6688851764ad31d9313afefa056d919a.png" src="../_images/dd93c66c4005225f8957d9128b0e768a6688851764ad31d9313afefa056d919a.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dG1ABA</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">h0</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
-  <span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+  <span class="n">sol</span><span class="o">=</span><span class="n">gl1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
   <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">da</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">da</span><span class="o">-</span><span class="n">h0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>  
@@ -593,7 +595,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 23/01/2024.
+      © Copyright 24/01/2024.
       <br/>
     
   </p>

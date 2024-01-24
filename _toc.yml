@@ -23,6 +23,7 @@ parts:
     - file: practice/domain
     - file: practice/vortex
     - file: practice/far
+    - file: practice/farho
   - caption: End matter
     chapters:
     - file: bib

@@ -190,6 +190,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="far.html">Far out applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farho.html">Simplifying the radial equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
 <ul class="nav bd-sidenav">
@@ -450,14 +452,14 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># slab/film with vacuum boundaries at x=-L/2 and x=L/2.</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glplot</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span>
+<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">plt1D</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span>
 
 <span class="n">kappa</span><span class="o">=</span><span class="mf">0.51</span>
 <span class="n">L</span><span class="o">=</span><span class="mi">6</span>
 <span class="n">N</span><span class="o">=</span><span class="mi">5</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
   <span class="n">h0</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">/</span><span class="n">N</span>
-  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="n">plt1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -466,7 +468,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3728ca913ef0d36020525fcde7091b6b95d55189d4e8e37e3f3c4d85b8b797ba.png" src="../_images/3728ca913ef0d36020525fcde7091b6b95d55189d4e8e37e3f3c4d85b8b797ba.png" />
+<img alt="../_images/7768c82beb544cc6353588ebb6a96d7a11eb618a484e2990d99d0accac7d235e.png" src="../_images/7768c82beb544cc6353588ebb6a96d7a11eb618a484e2990d99d0accac7d235e.png" />
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(h_0=0.8\)</span> still renders a superconducting state, although it is above the critical value <span class="math notranslate nohighlight">\(1/\sqrt2\approx0.71\)</span>. I suspect (and will investigate) that the non-superconducting state has a lower energy (Gibbs?).</p>
@@ -480,7 +482,7 @@ document.write(`
 
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
     <span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="n">k</span>
-    <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
@@ -490,7 +492,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/db9695f83baee55ad98e9883e4a0bac72848181dfef734b38b4c3cd3cc625915.png" src="../_images/db9695f83baee55ad98e9883e4a0bac72848181dfef734b38b4c3cd3cc625915.png" />
+<img alt="../_images/5e860ffa56a62a0eb1dcc09db90f0923c72c35e83213428655041cec7152f589.png" src="../_images/5e860ffa56a62a0eb1dcc09db90f0923c72c35e83213428655041cec7152f589.png" />
 </div>
 </div>
 </section>
@@ -501,7 +503,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h0</span><span class="p">,</span><span class="n">kappa</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
 
 <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
-    <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;L=</span><span class="si">{</span><span class="n">L</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;L=</span><span class="si">{</span><span class="n">L</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">}</span><span class="s2">,\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
@@ -511,7 +513,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bdc3c5015ea43517578d17156fca5e6864dd3d36210e8b8323d1971b516d7f78.png" src="../_images/bdc3c5015ea43517578d17156fca5e6864dd3d36210e8b8323d1971b516d7f78.png" />
+<img alt="../_images/1409476ba158138a0246215062b529fcaac751598baf03d46fa3cbf79c06594a.png" src="../_images/1409476ba158138a0246215062b529fcaac751598baf03d46fa3cbf79c06594a.png" />
 </div>
 </div>
 </section>
@@ -607,7 +609,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 23/01/2024.
+      © Copyright 24/01/2024.
       <br/>
     
   </p>

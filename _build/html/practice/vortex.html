@@ -191,6 +191,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Vortex solutions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="far.html">Far out applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farho.html">Simplifying the radial equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
 <ul class="nav bd-sidenav">
@@ -432,17 +433,16 @@ document.write(`
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>I am not happy with this page. A sanity check on the enclosed flux fails, and needs sorting.</p>
+<p>Sorted out vortex error - need to move on to energy considerations for flux penetration.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glrplot</span> 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">kappa</span><span class="o">=</span><span class="mi">6</span>
 <span class="n">n</span><span class="o">=-</span><span class="mi">1</span> <span class="c1"># -1 give positive b field</span>
-<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="mi">3</span>
-<span class="k">for</span> <span class="n">kappa</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">6</span>
+<span class="k">for</span> <span class="n">kappa</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
   <span class="n">glrplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -458,7 +458,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6965fdb2dcbd1159d37060a89fd9e17da428ab3aaf542738e5e9f0ffad715f4f.png" src="../_images/6965fdb2dcbd1159d37060a89fd9e17da428ab3aaf542738e5e9f0ffad715f4f.png" />
+<img alt="../_images/897f2721f7709666200a4c6cafead385f3322350e6f67da3ec76f8af0f074fda.png" src="../_images/897f2721f7709666200a4c6cafead385f3322350e6f67da3ec76f8af0f074fda.png" />
 </div>
 </div>
 <p>We have set the boundary conditions so that the differential system does not blow up as the r limits tend to zero and infinity. The magnetic flux should be constant. One needs to remember the area is cylindrically symmetric, and given by:</p>
@@ -489,21 +489,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/mike/Documents/github/glbook/practice/glcd.py:71: RuntimeWarning: overflow encountered in multiply
-  return np.vstack((df, kappa*kappa*f*(f**2+ank**2-1)-df/x,da,a/x/x+ank*f**2-da/x))
-/home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages/scipy/integrate/_bvp.py:312: RuntimeWarning: overflow encountered in multiply
-  4 * f_middle)
-/home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages/scipy/integrate/_bvp.py:40: RuntimeWarning: invalid value encountered in subtract
-  df_dy[:, i, :] = (f_new - f0) / hi
-/home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages/scipy/integrate/_bvp.py:566: RuntimeWarning: invalid value encountered in divide
-  r_middle /= 1 + np.abs(f_middle)
-/home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages/scipy/integrate/_bvp.py:567: RuntimeWarning: invalid value encountered in divide
-  r1 /= 1 + np.abs(f1)
-/home/mike/Projects/python/venvs/jbook/lib/python3.9/site-packages/scipy/integrate/_bvp.py:568: RuntimeWarning: invalid value encountered in divide
-  r2 /= 1 + np.abs(f2)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5016/303143283.py:18: IntegrationWarning: The maximum number of subdivisions (50) has been achieved.
+  If increasing the limit yields no improvement it is advised to analyze 
+  the integrand in order to determine the difficulties.  If the position of a 
+  local difficulty can be determined (singularity, discontinuity) one will 
+  probably gain from splitting up the interval and calling the integrator 
+  on the subranges.  Perhaps a special-purpose integrator should be used.
+  quad(phi,a,b)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.4211738141938543e+138, 1.0244661887978052e+130)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-9.71118887962702e+268, 1.1317816720990663e+266)
 </pre></div>
 </div>
 </div>
@@ -516,7 +511,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.4730537448094845
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-8.921120138461384e+87
 </pre></div>
 </div>
 </div>
@@ -544,7 +539,7 @@ document.write(`
 <span class="n">nodes</span><span class="o">=</span><span class="mi">5</span>
 <span class="k">def</span> <span class="nf">dY</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Y</span><span class="p">):</span> <span class="c1"># Y=[f,df,a,b=da]</span>
   <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">rhoa</span><span class="p">,</span><span class="n">rhob</span> <span class="o">=</span> <span class="n">Y</span>
-  <span class="n">rhoank</span><span class="o">=</span><span class="n">rhoa</span><span class="o">+</span><span class="n">n</span><span class="o">/</span><span class="n">k</span>
+  <span class="n">rhoank</span><span class="o">=</span><span class="n">rhoa</span><span class="o">+</span><span class="n">n</span><span class="o">/</span><span class="n">kappa</span>
   <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">df</span><span class="p">,</span> <span class="n">kappa</span><span class="o">*</span><span class="n">kappa</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">rhoank</span><span class="o">/</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">df</span><span class="o">/</span><span class="n">x</span><span class="p">,</span><span class="n">rhob</span><span class="p">,</span><span class="n">rhoank</span><span class="o">*</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">x</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">bc</span><span class="p">(</span><span class="n">Ya</span><span class="p">,</span> <span class="n">Yb</span><span class="p">):</span>
   <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Ya</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Yb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Yb</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">Ya</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
@@ -576,7 +571,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3d1cea17da168b225b7d268141c3015a2d10db69e2482d072a56d0ec3030217c.png" src="../_images/3d1cea17da168b225b7d268141c3015a2d10db69e2482d072a56d0ec3030217c.png" />
+<img alt="../_images/ef70816c6f03b57a758fb5c3475e41517c24d21e8a69b448571cbcc4f565730f.png" src="../_images/ef70816c6f03b57a758fb5c3475e41517c24d21e8a69b448571cbcc4f565730f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -587,10 +582,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f55d109a0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f68e064f0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/0326d451ca0fdeb25cbfad8008b57fca81966f5f3602b1ca0bf0650fdbea28be.png" src="../_images/0326d451ca0fdeb25cbfad8008b57fca81966f5f3602b1ca0bf0650fdbea28be.png" />
+<img alt="../_images/9de945a383c9ced21e0bb435ac8f3702859ea6ee055f3af0cfa8d6b6ed7c2677.png" src="../_images/9de945a383c9ced21e0bb435ac8f3702859ea6ee055f3af0cfa8d6b6ed7c2677.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -600,10 +595,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f55bf0460&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f68d80430&gt;]
 </pre></div>
 </div>
-<img alt="../_images/bd3cbe5bcc53d9b32b2a664824376de5a84ab6456884bb0e80d47192b00d130f.png" src="../_images/bd3cbe5bcc53d9b32b2a664824376de5a84ab6456884bb0e80d47192b00d130f.png" />
+<img alt="../_images/cc1cfcfbed0675bccfa6fed2c3b0b98b775e0f084940e569674307ad6932cf91.png" src="../_images/cc1cfcfbed0675bccfa6fed2c3b0b98b775e0f084940e569674307ad6932cf91.png" />
 </div>
 </div>
 </section>
@@ -682,7 +677,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 23/01/2024.
+      © Copyright 24/01/2024.
       <br/>
     
   </p>
