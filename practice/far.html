@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'practice/far';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Bibliography" href="../bib.html" />
+    <link rel="next" title="Simplifying the radial equation" href="farho.html" />
     <link rel="prev" title="Vortex solutions" href="vortex.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -189,6 +189,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
 <li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Far out applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farho.html">Simplifying the radial equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
 <ul class="nav bd-sidenav">
@@ -430,12 +431,12 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic usage vacuum boundary at $x=0$. As published the applied field is critical.</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glplot</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span>
+<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">plt1D</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span>
 
 <span class="n">hc</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
   <span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="n">k</span>
-  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">hc</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># natural boundary x=0,superconducting at x=6 (x &#39;large&#39;)</span>
+  <span class="n">plt1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">hc</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># natural boundary x=0,superconducting at x=6 (x &#39;large&#39;)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">hc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -444,7 +445,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/73433c4800db63de8c1362e3afcf60b55ada741727a0c1895973f1923015dcc4.png" src="../_images/73433c4800db63de8c1362e3afcf60b55ada741727a0c1895973f1923015dcc4.png" />
+<img alt="../_images/c888a4ed3adb9d6b5534d390a497d2d4c21ab898fdbe76d87e8f9a03e501cc63.png" src="../_images/c888a4ed3adb9d6b5534d390a497d2d4c21ab898fdbe76d87e8f9a03e501cc63.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -456,10 +457,10 @@ document.write(`
     <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
   <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
 
-<span class="n">h0</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="n">h0</span><span class="o">=</span><span class="mf">0.7</span>
 <span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">4</span>
-<span class="n">L</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="n">L</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># natural boundary x=0,superconducting beyond x=6 (x &#39;large&#39;)</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">plt1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="n">L</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># natural boundary x=0,superconducting beyond x=6 (x &#39;large&#39;)</span>
 <span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
 <span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">X</span><span class="p">)</span><span class="o">*</span><span class="n">h0</span>
 <span class="n">P</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">B</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
@@ -473,7 +474,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b5ab4a005b5826573fe88461c8baa07d893f08aec9c3be592eeb137a0c7b7e10.png" src="../_images/b5ab4a005b5826573fe88461c8baa07d893f08aec9c3be592eeb137a0c7b7e10.png" />
+<img alt="../_images/87b707670eea43f62d8869021be8d3b532069dfdff4a260a95e7e65044203ff5.png" src="../_images/87b707670eea43f62d8869021be8d3b532069dfdff4a260a95e7e65044203ff5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -485,10 +486,10 @@ document.write(`
     <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">Y</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
   <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
 
-<span class="n">h0</span><span class="o">=</span><span class="mf">0.5</span>
-<span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**-</span><span class="mi">4</span>
+<span class="n">h0</span><span class="o">=</span><span class="mf">0.7</span>
+<span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**-</span><span class="mi">1</span>
 <span class="n">L</span><span class="o">=</span><span class="mi">6</span>
-<span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="n">L</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># natural boundary x=0,superconducting beyond x=6 (x &#39;large&#39;)</span>
+<span class="n">plt1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="n">L</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># natural boundary x=0,superconducting beyond x=6 (x &#39;large&#39;)</span>
 <span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
 <span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">X</span><span class="p">)</span><span class="o">*</span><span class="n">h0</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;$h_0\exp(-x)$&quot;</span><span class="p">)</span> <span class="c1"># almost exact since psi approximately 1 since psi&#39;&#39; approximately 0 throughout and psi&#39;=0 at x=0</span>
@@ -500,20 +501,20 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8e89646e024439cb8b1898b9e87754efd680f25b1e1c86d62093858f3002b3d6.png" src="../_images/8e89646e024439cb8b1898b9e87754efd680f25b1e1c86d62093858f3002b3d6.png" />
+<img alt="../_images/31578f31e757973c74e34b3d29496b3647e264d06c089271a524ed7635c5c3d6.png" src="../_images/31578f31e757973c74e34b3d29496b3647e264d06c089271a524ed7635c5c3d6.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># Domain wall exploration</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">glplot</span><span class="p">,</span><span class="n">glsol</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span><span class="p">,</span><span class="n">nrm</span>
+<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">plt1D</span><span class="p">,</span><span class="n">gl1D</span><span class="p">,</span><span class="n">nat</span><span class="p">,</span><span class="n">SC</span><span class="p">,</span><span class="n">nrm</span>
 
 <span class="n">h0</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
   <span class="n">kappa</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="n">k</span>
-  <span class="n">glplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nrm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="n">kappa</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="n">plt1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nrm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="n">kappa</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -521,449 +522,29 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a247b7bac724f29db7ac2692941b43f7610a3d3d805fde97555aa050660435c8.png" src="../_images/a247b7bac724f29db7ac2692941b43f7610a3d3d805fde97555aa050660435c8.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotn</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">tex</span><span class="p">):</span>
-  <span class="n">x_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">40</span><span class="p">)</span>
-  <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">x_plot</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span> <span class="c1"># plot index n of solution</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">tex</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+<img alt="../_images/dd93c66c4005225f8957d9128b0e768a6688851764ad31d9313afefa056d919a.png" src="../_images/dd93c66c4005225f8957d9128b0e768a6688851764ad31d9313afefa056d919a.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_bvp</span>
+<span class="kn">from</span> <span class="nn">glcd</span> <span class="kn">import</span> <span class="n">plotn</span> 
+<span class="k">def</span> <span class="nf">nrm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">h</span><span class="p">):</span> <span class="c1"># normal metal BC with parameter r.</span>
+  <span class="k">def</span> <span class="nf">BC</span><span class="p">(</span><span class="n">Y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">Y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="o">*</span><span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">Y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">BC</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
-  <span class="n">xa</span><span class="p">,</span><span class="n">AB</span><span class="o">=</span><span class="n">A</span>
-  <span class="n">xb</span><span class="p">,</span><span class="n">BB</span><span class="o">=</span><span class="n">B</span>
-  <span class="n">nodes</span><span class="o">=</span><span class="mi">5</span>
-  <span class="k">def</span> <span class="nf">dY</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Y</span><span class="p">):</span> <span class="c1"># Y=[f,df,a,b=da]</span>
-    <span class="n">f</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">Y</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">df</span><span class="p">,</span> <span class="n">kappa</span><span class="o">*</span><span class="n">kappa</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">*</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-  <span class="k">def</span> <span class="nf">bc</span><span class="p">(</span><span class="n">Ya</span><span class="p">,</span> <span class="n">Yb</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">AB</span><span class="p">(</span><span class="n">Ya</span><span class="p">)</span><span class="o">+</span><span class="n">BB</span><span class="p">(</span><span class="n">Yb</span><span class="p">))</span>
-  <span class="n">rng</span><span class="o">=</span><span class="p">[</span><span class="n">xa</span><span class="p">,</span> <span class="n">xb</span><span class="p">]</span>
-  <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">rng</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
-  <span class="n">Y0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
-  <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">Y0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">))])</span>
-  <span class="k">return</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">dY</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
-
-<span class="n">sol</span><span class="o">=</span><span class="n">glsol</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nrm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="n">kappa</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
+<span class="n">sol</span><span class="o">=</span><span class="n">gl1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nrm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">SC</span><span class="p">(</span><span class="mi">10</span><span class="o">/</span><span class="n">kappa</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
 <span class="n">plotn</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/01efca30a17ef82060b4fd10c5e93a9997ccd97e28516289019e815656e6ac50.png" src="../_images/01efca30a17ef82060b4fd10c5e93a9997ccd97e28516289019e815656e6ac50.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>357
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.071067811865475
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="o">/</span><span class="n">kappa</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">357</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01980691263827864
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.29462782549439476
-0.14731391274719735
-0.1473139127471974
-0.07365695637359859
-0.0736569563735987
-0.03682847818679935
-0.03682847818679935
-0.03682847818679935
-0.03682847818679935
-0.03682847818679935
-0.03682847818679935
-0.03682847818679935
-0.03682847818679935
-0.03682847818679935
-0.03682847818679935
-0.03682847818679935
-0.03682847818679935
-0.03682847818679935
-0.018414239093399676
-0.018414239093399676
-0.018414239093399676
-0.018414239093399676
-0.00460355977335003
-0.004603559773349808
-0.004603559773349808
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.002301779886675126
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886674904
-0.002301779886675126
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.003452669830012356
-0.003452669830012356
-0.003452669830012578
-0.013810679320049868
-0.013810679320049424
-0.013810679320049868
-0.013810679320049868
-0.013810679320049868
-0.013810679320049868
-0.013810679320049424
-0.013810679320049868
-0.02762135864009929
-0.027621358640099736
-0.027621358640099736
-0.02762135864009929
-0.02762135864009929
-0.027621358640099736
-0.027621358640099736
-0.02762135864009929
-0.013810679320049868
-0.013810679320049424
-0.013810679320049868
-0.013810679320049868
-0.027621358640099736
-0.02762135864009929
-0.02762135864009929
-0.027621358640099736
-0.05524271728019903
-0.05524271728019903
-0.05524271728019903
-0.05524271728019903
-0.027621358640099736
-0.02762135864009929
-0.02762135864009929
-0.027621358640099736
-0.013810679320049868
-0.013810679320049868
-0.013810679320049424
-0.013810679320049868
-0.013810679320049868
-0.013810679320049424
-0.013810679320049868
-0.013810679320049868
-0.013810679320049868
-0.013810679320049868
-0.013810679320049424
-0.013810679320049868
-0.013810679320049868
-0.013810679320049424
-0.013810679320049868
-0.013810679320049868
-0.013810679320049868
-0.013810679320049868
-0.013810679320049424
-0.013810679320049868
-0.05524271728019903
-0.05524271728019903
-0.05524271728019903
-0.05524271728019903
-0.11048543456039805
-0.11048543456039805
-0.22097086912079567
-0.2209708691207961
-0.4419417382415922
-0.4419417382415922
-0.4419417382415922
-0.8838834764831844
-0.8838834764831844
-</pre></div>
-</div>
+<img alt="../_images/e58b3aa3aed78044296ff2a895e7a761b158ede27af21b4eb64a8e15a47ae043.png" src="../_images/e58b3aa3aed78044296ff2a895e7a761b158ede27af21b4eb64a8e15a47ae043.png" />
 </div>
 </div>
 </section>
@@ -1008,11 +589,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../bib.html"
+       href="farho.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Bibliography</p>
+        <p class="prev-next-title">Simplifying the radial equation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1042,7 +623,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 23/01/2024.
+      © Copyright 24/01/2024.
       <br/>
     
   </p>
