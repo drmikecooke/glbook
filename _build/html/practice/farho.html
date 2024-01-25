@@ -63,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'practice/farho';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -444,7 +446,7 @@ document.write(`
     <span class="n">ank</span><span class="o">=</span><span class="n">rhoank</span><span class="o">/</span><span class="n">x</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">df</span><span class="p">,</span> <span class="n">kappa</span><span class="o">*</span><span class="n">kappa</span><span class="o">*</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">ank</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">df</span><span class="o">/</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">b</span><span class="p">,</span><span class="n">ank</span><span class="o">*</span><span class="n">f</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
   <span class="k">def</span> <span class="nf">bc</span><span class="p">(</span><span class="n">Ya</span><span class="p">,</span> <span class="n">Yb</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="o">*</span><span class="n">Ya</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">Ya</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Yb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Ya</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">Yb</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Ya</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Yb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Ya</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">Yb</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
   <span class="n">rng</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
   <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">rng</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
   <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
@@ -454,7 +456,7 @@ document.write(`
 
 <span class="k">def</span> <span class="nf">glrplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">tex</span><span class="p">):</span>
   <span class="n">sol</span><span class="o">=</span><span class="n">glrho</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
-  <span class="n">r_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+  <span class="n">r_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
   <span class="n">plots</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">r_plot</span><span class="p">)</span>
   <span class="n">f</span><span class="o">=</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># f</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -469,31 +471,39 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=-</span><span class="mi">1</span> <span class="c1"># -1 give positive b field</span>
-<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">6</span>
-<span class="k">for</span> <span class="n">kappa</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">):</span>
-  <span class="n">glrplot</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vortex: f&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vortex: b&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1">#fig.suptitle(f&#39;$\\kappa={kappa}$&#39;)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">rho$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">alpha$&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">rho$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+
+<span class="n">n</span><span class="o">=-</span><span class="mi">2</span> <span class="c1"># -1 give positive b field</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">10</span>
+<span class="k">for</span> <span class="n">kappa</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+  <span class="n">sol</span><span class="o">=</span><span class="n">glrho</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+  <span class="n">R</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mi">40</span><span class="p">)</span>
+  <span class="n">S</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+  <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>  
+  <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">S</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+  <span class="c1">#plt.subplots_adjust(left=-0.1,right=0.9)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9bec4b3456762bc78a57caffa02c5b7fa720cfcbc5b644e7d4f6efb0de762970.png" src="../_images/9bec4b3456762bc78a57caffa02c5b7fa720cfcbc5b644e7d4f6efb0de762970.png" />
+<img alt="../_images/c5ede3538cc47e2ee421709813163e1e8fee8802f128f54728ceff9faa8197f0.png" src="../_images/c5ede3538cc47e2ee421709813163e1e8fee8802f128f54728ceff9faa8197f0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kappa</span><span class="o">=</span><span class="mi">10</span>
-<span class="n">n</span><span class="o">=-</span><span class="mi">2</span> <span class="c1"># -1 give positive b field</span>
+<span class="n">n</span><span class="o">=-</span><span class="mi">2</span> <span class="c1"># negative value gives positive b field</span>
 <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">6</span>
 <span class="n">sol</span><span class="o">=</span><span class="n">glrho</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 <span class="n">R</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mi">40</span><span class="p">)</span>
@@ -510,10 +520,59 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.9837774813038955
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.983140188887507
 </pre></div>
 </div>
-<img alt="../_images/cfc0cbe82c9bcca1c69f3f3dd0e00ee289f5f01edfe72cf51cd59116e6d6df95.png" src="../_images/cfc0cbe82c9bcca1c69f3f3dd0e00ee289f5f01edfe72cf51cd59116e6d6df95.png" />
+<img alt="../_images/cefc6c690fae9f0dae862706e0babb05aaf5007da03b2ddc4e962e255384c068.png" src="../_images/cefc6c690fae9f0dae862706e0babb05aaf5007da03b2ddc4e962e255384c068.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#dG/drho</span>
+<span class="n">n</span><span class="o">=-</span><span class="mi">2</span> <span class="c1"># -1 give positive b field</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">8</span>
+<span class="n">kappa</span><span class="o">=</span><span class="mf">.75</span>
+<span class="n">sol</span><span class="o">=</span><span class="n">glrho</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dGdrho</span><span class="p">(</span><span class="n">sol</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">dg</span><span class="p">(</span><span class="n">rho</span><span class="p">):</span>
+    <span class="n">alpha</span><span class="p">,</span><span class="n">dalpha</span><span class="p">,</span><span class="n">rhoa</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rho</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">alpha</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">dg</span>
+<span class="n">R</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">S</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+<span class="n">E1</span><span class="o">=</span><span class="n">R</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">S</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">G1</span><span class="o">=</span><span class="n">quad</span><span class="p">(</span><span class="n">dGdrho</span><span class="p">(</span><span class="n">sol</span><span class="p">),</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n=1:&quot;</span><span class="p">,</span><span class="n">G1</span><span class="p">)</span>
+<span class="n">sol</span><span class="o">=</span><span class="n">glrho</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">R</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">S</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+<span class="n">E2</span><span class="o">=</span><span class="n">R</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">S</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">G2</span><span class="o">=</span><span class="n">quad</span><span class="p">(</span><span class="n">dGdrho</span><span class="p">(</span><span class="n">sol</span><span class="p">),</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n=2:&quot;</span><span class="p">,</span><span class="n">G2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">G2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">G1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n=1: (1.8303552466699093, 2.540659131914744e-08)
+n=2: (3.655923236492618, 4.32868301468543e-08)
+1.9973845203788114
+</pre></div>
+</div>
+</div>
+</div>
+<p>At <span class="math notranslate nohighlight">\(\kappa\)</span> around 0.7 the extra energy required to create 2 flux quanta as two single-quantum vortices is about the same as a single vortex containing 2 quanta. Above this value single-quantum vortices are favoured over the flux clumping together. This enables type-II superconductivity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">E1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">E2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/df7f96f4206a59d8d02e0ecf5d8a8ba07c06589d3ddbfbc8186074ba10ad329b.png" src="../_images/df7f96f4206a59d8d02e0ecf5d8a8ba07c06589d3ddbfbc8186074ba10ad329b.png" />
 </div>
 </div>
 </section>
@@ -592,7 +651,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 24/01/2024.
+      © Copyright 25/01/2024.
       <br/>
     
   </p>

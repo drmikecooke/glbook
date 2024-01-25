@@ -11,30 +11,14 @@ def nat(x,h): # natural BC with applied magnetizing field h
     return [Y[1],Y[3]-h]
   return (x,BC)
 
-def inf(x): # 'infinity' BC with b=da=0 f=1 or 0 at x='infinity'
-  def BC(Y):
-    return [Y[1],Y[3]]
-  return (x,BC)
-
 def nrm(x,r,h): # normal metal BC with parameter r.
   def BC(Y):
     return [Y[1]-r*Y[0],Y[3]-h]
   return (x,BC)
 
-def SCP(x,kappa): # superconducting psi=1,b proportional to exp(-x), for x going to +infinity.
-  def BC(Y):
-    return [Y[1]+2**(1/2)*kappa*(Y[0]-1),Y[3]+Y[2]]
-  return (x,BC)
-
 def SC(x): # superconducting psi=1,b proportional to exp(-x), for x going to +infinity.
   def BC(Y):
     return [Y[1],Y[3]+Y[2]]
-  return (x,BC)
-
-def NCM(x,h): # normal psi=0 with applied field h
-  def BC(Y):
-    r2=Y[2]**2+Y[0]**2-1
-    return [Y[1]-kappa*r2**(1/2)*Y[0],Y[3]-h]
   return (x,BC)
 
 def gl1D(kappa,A,B):
