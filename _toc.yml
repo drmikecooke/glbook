@@ -24,7 +24,7 @@ parts:
     - file: practice/vortex
     - file: practice/far
     - file: practice/farho
-  - caption: Type I superconductors and perturbation theory
+  - caption: Type I perturbation theory
     chapters:
     - file: theory/type1
     - file: type1/perturbations

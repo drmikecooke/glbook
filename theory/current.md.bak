@@ -12,7 +12,7 @@ This leads to the suggestion of a condition:
 
 $$\mathbf n\cdot\left(\frac{\hbar}i\nabla+\frac{e^*}c\mathbf A\right)\Psi=ir\Psi$$
 
-as useful for a boundary where one would like $\mathbf n\cdot\mathbf j=0$. The value $r=0$ would be appropriate for a superconductor boundary condition with a vacuum. Non-zero values could be relevant for boundaries with normal metals. Presumably edges are more complicated in reality, some of which might be modelled using modifications of the GL equations, such as position variable $a,b,K,$ etc.
+as useful for a boundary where one would like $\mathbf n\cdot\mathbf j=0$. The value $r=0$ would be appropriate for a superconductor boundary condition with a vacuum. Non-zero values could be relevant for boundaries with normal metals. Presumably edges are more complicated in reality, some of which might be modeled using modifications of the GL equations, such as position variable $a,b,K,$ etc.
 
 :::{admonition} Some disagreements with {cite:p}`arovas`!
 :class: tip, dropdown
