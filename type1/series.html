@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; Ginzburg-Landau boundary value problems</title>
+    <title>Series expansions &#8212; Ginzburg-Landau boundary value problems</title>
   
   
   
@@ -63,9 +63,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'practice/live';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'type1/series';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Order parameter and applied field" href="h.html" />
+    <link rel="prev" title="Type I perturbations" href="perturbations.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -180,21 +184,21 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="liven.html">Using Live Code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glcode.html">Basic GL bvp code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="thin.html">Thin films</a></li>
-<li class="toctree-l1"><a class="reference internal" href="energy.html">Energy calculations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="domain.html">Domain walls</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vortex.html">Vortex solutions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="far.html">Far out applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="farho.html">Simplifying the radial equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/liven.html">Using Live Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/glcode.html">Basic GL bvp code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/thin.html">Thin films</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/energy.html">Energy calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/domain.html">Domain walls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/far.html">Far out applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/farho.html">Simplifying the radial equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Type I superconductors and perturbation theory</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../theory/type1.html">Type I perturbation theory</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../type1/perturbations.html">Type I perturbations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../type1/series.html">Series expansions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../type1/h.html">Order parameter and applied field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perturbations.html">Type I perturbations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Series expansions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="h.html">Order parameter and applied field</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
 <ul class="nav bd-sidenav">
@@ -246,6 +250,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -271,7 +306,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fpractice/live.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftype1/series.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -301,7 +336,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/practice/live.md" target="_blank"
+      <li><a href="../_sources/type1/series.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -311,7 +346,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -372,9 +407,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -385,19 +418,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Series expansions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -407,10 +432,62 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tip dropdown admonition">
+  <section class="tex2jax_ignore mathjax_ignore" id="series-expansions">
+<h1>Series expansions<a class="headerlink" href="#series-expansions" title="Permalink to this heading">#</a></h1>
+<p>We here present some useful series expansions, from using sympy. To run these cells, you will have to “%pip install sympy”. See:</p>
+<div class="tip dropdown admonition">
 <p class="admonition-title">Using Live Code</p>
-<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. First go to the <a class="reference internal" href="liven.html#liven-head"><span class="std std-ref">Using Live Code</span></a> page and check that things are working there. It will load scipy into the “Thebe” environment for use on other pages. It also writes a module into Thebe, which can be used on other pages. You may need to wait (sometimes a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
+<p>You can play with some of the code if you click on the rocket icon at the top and select “Live Code”. First go to the <a class="reference internal" href="../practice/liven.html#liven-head"><span class="std std-ref">Using Live Code</span></a> page and check that things are working there. It will load scipy into the “Thebe” environment for use on other pages. It also writes a module into Thebe, which can be used on other pages. You may need to wait (sometimes a long time ∼10minutes on first use in browser session) for the gray box that will appear above to report that the kernel is ready. The hidden code should run to initialize the page automatically, but may add some extra delay. The status of this process can be seen by clicking on the triangle next to “Show code cell content”.</p>
 </div>
+<p>First <a class="reference internal" href="../theory/type1.html#equation-h0psi">(18)</a>:</p>
+<div class="math notranslate nohighlight">
+\[h_0^2=2\frac{\psi_0^2(1-\psi_0^2)\cosh^2(\psi_0d/2)}{\sinh(\psi_0d)/\psi_0d-1}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span><span class="n">sinh</span><span class="p">,</span><span class="n">cosh</span><span class="p">,</span><span class="n">tanh</span><span class="p">,</span><span class="n">latex</span>
+
+<span class="n">psi</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="n">symbols</span><span class="p">([</span><span class="s2">&quot;\psi&quot;</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">,</span><span class="s2">&quot;h&quot;</span><span class="p">])</span>
+<span class="n">h2</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">psi</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">psi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">cosh</span><span class="p">(</span><span class="n">psi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">sinh</span><span class="p">(</span><span class="n">psi</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">psi</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">h2</span><span class="o">*</span><span class="n">d</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 1 + \psi^{2} \left(\frac{d^{2}}{5} - 1\right) + \psi^{4} \cdot \left(\frac{27 d^{4}}{2800} - \frac{d^{2}}{5}\right) + O\left(\psi^{6}\right)\]</div>
+</div>
+</div>
+<p>For the assumption made in <a class="reference internal" href="../theory/type1.html#mag"><span class="std std-ref">Type I perturbation theory/Magnetization</span></a>, we see that <span class="math notranslate nohighlight">\(d^2\ll5\)</span> is a requirement. As <span class="math notranslate nohighlight">\(d^2\rightarrow5\)</span> we need suitable corrections.</p>
+<p>Since <span class="math notranslate nohighlight">\(h_0=0\)</span> when <span class="math notranslate nohighlight">\(\psi_0=1\)</span>, it is perhaps useful to look at the series of <span class="math notranslate nohighlight">\(h_0^2/(1-\psi_0^2)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">psi</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">cosh</span><span class="p">(</span><span class="n">psi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">sinh</span><span class="p">(</span><span class="n">psi</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">psi</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 12 + \frac{12 \psi^{2} d^{2}}{5} + \frac{81 \psi^{4} d^{4}}{700} + O\left(\psi^{6}\right)\]</div>
+</div>
+</div>
+<p>Hence:</p>
+<div class="math notranslate nohighlight">
+\[h_0^2\approx\frac{12}{d^2}(1-\psi_0^2)(1+(\psi_0d)^2/5)\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span><span class="o">=-</span><span class="n">psi</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">psi</span><span class="o">**</span><span class="mi">4</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">h2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">tanh</span><span class="p">(</span><span class="n">psi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">psi</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \psi^{4} \left(\frac{d^{2}}{10} - \frac{1}{2}\right) + O\left(\psi^{6}\right)\]</div>
+</div>
+</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -425,7 +502,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./practice"
+            path: "./type1"
         },
         predefinedOutput: true
     }
@@ -442,26 +519,30 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="perturbations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Type I perturbations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="h.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Order parameter and applied field</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>

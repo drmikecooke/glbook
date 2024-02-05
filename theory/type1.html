@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Polar exploration &#8212; Ginzburg-Landau boundary value problems</title>
+    <title>Type I perturbation theory &#8212; Ginzburg-Landau boundary value problems</title>
   
   
   
@@ -65,11 +65,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'theory/polar';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'theory/type1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Far out" href="far.html" />
-    <link rel="prev" title="One dimensional problems" href="oned.html" />
+    <link rel="next" title="Type I perturbations" href="../type1/perturbations.html" />
+    <link rel="prev" title="Simplifying the radial equation" href="../practice/farho.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -172,14 +172,14 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
 <li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oned.html">One dimensional problems</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Polar exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polar.html">Polar exploration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="far.html">Far out</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
@@ -194,8 +194,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../practice/farho.html">Simplifying the radial equation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Type I superconductors and perturbation theory</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="type1.html">Type I perturbation theory</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Type I perturbation theory</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../type1/perturbations.html">Type I perturbations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../type1/series.html">Series expansions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../type1/h.html">Order parameter and applied field</a></li>
@@ -275,7 +275,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftheory/polar.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftheory/type1.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -305,7 +305,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/theory/polar.md" target="_blank"
+      <li><a href="../_sources/theory/type1.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -389,7 +389,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Polar exploration</h1>
+    <h1>Type I perturbation theory</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -399,9 +399,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetic-field-in-a-vortex">Magnetic field in a vortex</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy">Energy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-quantization">Flux quantization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetization">Magnetization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-energies">Gibbs energies</a></li>
 </ul>
             </nav>
         </div>
@@ -413,108 +412,80 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="polar-exploration">
-<h1>Polar exploration<a class="headerlink" href="#polar-exploration" title="Permalink to this heading">#</a></h1>
-<p>The polar coordinates defined by <span class="math notranslate nohighlight">\((x,y)=(\rho\cos\theta,\rho\sin\theta)\)</span> allow us to explore two-dimensional problems. With the magnetic field in the <span class="math notranslate nohighlight">\(z\)</span>-direction, we hope to find useful solutions exhibiting cylindrical symmetry with the <span class="math notranslate nohighlight">\(\psi,\mathbf a\)</span> fields not depending on <span class="math notranslate nohighlight">\(z\)</span>.</p>
-<p>First off we have:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="type-i-perturbation-theory">
+<h1>Type I perturbation theory<a class="headerlink" href="#type-i-perturbation-theory" title="Permalink to this heading">#</a></h1>
+<p>We assume <span class="math notranslate nohighlight">\(\kappa^2\ll1\)</span> in <a class="reference internal" href="oned.html#equation-oned-gl1">(10)</a>.</p>
 <div class="math notranslate nohighlight">
-\[b_z=(\mathbf{\nabla}\times\mathbf a)_z=\frac{\partial a_y}{\partial x}-\frac{\partial a_x}{\partial y}\]</div>
-<p>If we define normalized orthgonal unit vectors (ignoring the <span class="math notranslate nohighlight">\(z\)</span> coordinate):</p>
+\[\frac{\psi''}{\kappa^2}-(a^2+\psi^2-1)\psi=0\]</div>
+<p>Hence, we perturb <span class="math notranslate nohighlight">\(\psi=\sum_k\kappa^{2k}\psi_k\)</span> and similarly for <span class="math notranslate nohighlight">\(a\)</span>. Since the equations have non-linear couplings, high orders become increasingly difficult to extract by hand. However, the lowest order is just <span class="math notranslate nohighlight">\(\psi_0''=0\)</span>, so there is a linear dependence on <span class="math notranslate nohighlight">\(x\)</span>. Combined with a natural boundary condition, <span class="math notranslate nohighlight">\(\psi_0'=0\)</span> anywhere, we determine that <span class="math notranslate nohighlight">\(\psi_0\)</span> is constant.</p>
+<p>For a constant external field (<span class="math notranslate nohighlight">\(h'=0\)</span>) the magnetic field zero-order equation is (from <a class="reference internal" href="oned.html#equation-oned-gl2">(9)</a>):</p>
 <div class="math notranslate nohighlight">
-\[\hat{\mathbf e}_\rho=(\cos\theta,\sin\theta)\]</div>
+\[-a_0''+\psi_0^2a_0=0\]</div>
+<p>The solutions to this linear equation can be expressed in terms of exponentials or hyperbolic functions. We have boundary conditions that <span class="math notranslate nohighlight">\(b=a_0'=h_0\)</span> with <span class="math notranslate nohighlight">\(h_0\)</span> the applied field. For boundaries at <span class="math notranslate nohighlight">\(x=\pm d/2\)</span> we have <span class="math notranslate nohighlight">\(a_0=h_0\sinh(\psi_0x)/\psi_0\cosh(\psi_0d/2)\)</span> and <span class="math notranslate nohighlight">\(b_0=h_0\cosh(\psi_0x)/\cosh(\psi_0d/2)\)</span>.</p>
+<p>These equations don’t determine, as yet, the value of <span class="math notranslate nohighlight">\(\psi_0\)</span> in terms of <span class="math notranslate nohighlight">\(h_0\)</span>. We need to consider the first order equation:</p>
 <div class="math notranslate nohighlight">
-\[\hat{\mathbf e}_\theta=(-\sin\theta,\cos\theta)\]</div>
-<p>We define components of the <span class="math notranslate nohighlight">\(a\)</span> field in this basis: <span class="math notranslate nohighlight">\(a_\rho=\mathbf a\cdot\hat{\mathbf e}_\rho\)</span>, <span class="math notranslate nohighlight">\(a_\theta=\mathbf a\cdot\hat{\mathbf e}_\theta\)</span>, so <span class="math notranslate nohighlight">\(a_x=a_\rho\cos\theta-a_\theta\sin\theta\)</span> and <span class="math notranslate nohighlight">\(a_y=a_\rho\sin\theta+a_\theta\cos\theta\)</span>.</p>
-<p>We also want to partially differentiate with respect to polar coordination:</p>
+\[\psi_1''=(a_0^2+\psi_0^2-1)\psi_0\]</div>
+<p>To get the constraint, we can either appeal to the apparatus of linear operator theory and the Fredholm alternative (as does <span id="id1">[<a class="reference internal" href="../bib.html#id2" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span>), or we observe that the first integral, giving <span class="math notranslate nohighlight">\(\psi_1'\)</span> is zero at <span class="math notranslate nohighlight">\(\pm d/2\)</span>, and so:</p>
+<div class="math notranslate nohighlight" id="equation-const">
+<span class="eqno">(17)<a class="headerlink" href="#equation-const" title="Permalink to this equation">#</a></span>\[\int_{-d/2}^{+d/2}(a_0^2+\psi_0^2-1)\psi_0dx=0\]</div>
+<p>We need <span class="math notranslate nohighlight">\(\int_0^x\sinh^2(\xi)d\xi=(\sinh(2x)-2x)/4\)</span>. We get a relation between <span class="math notranslate nohighlight">\(h_0\)</span> and <span class="math notranslate nohighlight">\(\psi_0\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-h0psi">
+<span class="eqno">(18)<a class="headerlink" href="#equation-h0psi" title="Permalink to this equation">#</a></span>\[h_0^2=2\frac{\psi_0^2(1-\psi_0^2)\cosh^2(\psi_0d/2)}{\sinh(\psi_0d)/\psi_0d-1}\]</div>
+<section id="magnetization">
+<span id="mag"></span><h2>Magnetization<a class="headerlink" href="#magnetization" title="Permalink to this heading">#</a></h2>
+<p>The magnetization is related as <span class="math notranslate nohighlight">\(b=h+4\pi m\)</span>.The average of <span class="math notranslate nohighlight">\(b\)</span> over <span class="math notranslate nohighlight">\(d\)</span> thickness, <span class="math notranslate nohighlight">\(\bar b\)</span>, is <span class="math notranslate nohighlight">\(h_0\tanh(\psi_0d/2)/(\psi_0d/2)\)</span>, so the average magnetization is:</p>
 <div class="math notranslate nohighlight">
-\[\frac\partial{\partial\rho}=\cos\theta\frac\partial{\partial x}+\sin\theta\frac\partial{\partial y}\]</div>
-<div class="math notranslate nohighlight">
-\[\frac\partial{\partial\theta}=-\rho\sin\theta\frac\partial{\partial x}+\rho\cos\theta\frac\partial{\partial y}\]</div>
-<p>or inverting:</p>
-<div class="math notranslate nohighlight">
-\[\frac\partial{\partial x}=\frac1{\rho}\left[\rho\cos\theta\frac\partial{\partial\rho}-\sin\theta\frac\partial{\partial\theta}\right]\]</div>
-<div class="math notranslate nohighlight">
-\[\frac\partial{\partial y}=\frac1{\rho}\left[\rho\sin\theta\frac\partial{\partial\rho}+\cos\theta\frac\partial{\partial\theta}\right]\]</div>
-<p>Applying these to the defined coordinates:</p>
-<div class="math notranslate nohighlight" id="equation-polarb">
-<span class="eqno">(11)<a class="headerlink" href="#equation-polarb" title="Permalink to this equation">#</a></span>\[\begin{split}b_z&amp;=\frac1{\rho}\left[\rho\frac{\partial a_\theta}{\partial\rho}+a_\theta-\frac{\partial a_\rho}{\partial\theta}\right] \\
-&amp;=\frac1{\rho}\left[\frac{\partial[\rho a_\theta]}{\partial\rho}-\frac{\partial a_\rho}{\partial\theta}\right] \end{split}\]</div>
-<p>This formula can be understood from the point of view of Stokes theorem applied to a quasi-rectangle bounded by lines <span class="math notranslate nohighlight">\(\rho,\rho+d\rho,\theta,\theta+d\theta\)</span>. The flux through the ‘rectangle’, <span class="math notranslate nohighlight">\(b_z\rho d\rho d\theta\)</span>, is equal to the line integral of <span class="math notranslate nohighlight">\(\mathbf a\cdot d\mathbf r\)</span> around the perimeter in a counter-clockwise direction:</p>
-<div class="math notranslate nohighlight">
-\[[a_\rho(\bar\rho,\theta)-a_\rho(\bar\rho,\theta+d\theta)]d\rho+[(\rho+d\rho)a_\theta(\rho+d\rho,\bar\theta)-\rho a_\theta(\rho,\bar\theta)]d\theta\]</div>
-<p>The bars indicate some sort of average is being taken (i.e. not a rigorous determination) as representative. Assuming the quasi-rectangle is small, this is of order:</p>
-<div class="math notranslate nohighlight">
-\[\left[\frac{\partial[\rho a_\theta]}{\partial\rho}-\frac{\partial a_\rho}{\partial\theta}\right]d\rho d\theta\]</div>
-<p>Comparing with the flux, we get <a class="reference internal" href="#equation-polarb">(11)</a>.</p>
-<section id="magnetic-field-in-a-vortex">
-<h2>Magnetic field in a vortex<a class="headerlink" href="#magnetic-field-in-a-vortex" title="Permalink to this heading">#</a></h2>
-<p>If we assume <span class="math notranslate nohighlight">\(a_\rho=0\)</span> and <span class="math notranslate nohighlight">\(a_\theta\)</span> is a function of <span class="math notranslate nohighlight">\(\rho\)</span>, we get a radially dependent magnetic field <span class="math notranslate nohighlight">\(b\)</span>, which can model flux tubes in superconducting material.</p>
-<p>Now, the second GL equation:</p>
-<div class="math notranslate nohighlight">
-\[\nabla\times(\nabla\times\mathbf a-\mathbf h)+|\psi|^2\mathbf a-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=0\]</div>
-<p>has a <span class="math notranslate nohighlight">\(\theta\)</span> component, assuming <span class="math notranslate nohighlight">\(\mathbf h\)</span> uniform:</p>
-<div class="math notranslate nohighlight">
-\[-\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]+|\psi|^2 a_\theta-\frac i{2\kappa\rho}\left(\psi^*\frac{\partial\psi}{\partial\theta}-\psi\frac{\partial\psi^*}{\partial\theta}\right)=0\]</div>
-<p>The <span class="math notranslate nohighlight">\(\rho\)</span> component just involves <span class="math notranslate nohighlight">\(\psi\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[-\frac i{2\kappa}\left(\psi^*\frac{\partial\psi}{\partial\rho}-\psi\frac{\partial\psi^*}{\partial\rho}\right)=0\]</div>
-<p>We are here <em>not</em> assuming that <span class="math notranslate nohighlight">\(\psi\)</span> is real. Let it be separated into amplitude and phase, <span class="math notranslate nohighlight">\(\psi=\alpha\exp(i\phi)\)</span>. Then:</p>
-<div class="math notranslate nohighlight">
-\[-\frac i{2\kappa}(\psi^*\mathbf\nabla\psi-\psi\mathbf\nabla\psi^*)=\frac{\alpha^2}{\kappa}\mathbf\nabla\phi\]</div>
-<p>Hence:</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}\frac{\partial\phi}{\partial\rho}=0$$.\\So $\phi(\theta)$. But:\\$$\alpha^2\frac{d\phi}{d\theta}=\kappa\rho\left[\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]-\alpha^2 a_\theta\right]\end{aligned}\end{align} \]</div>
-<p>Since the left hand side is a function only of <span class="math notranslate nohighlight">\(\theta\)</span>, and the right only of <span class="math notranslate nohighlight">\(\rho\)</span>, it must be a constant <span class="math notranslate nohighlight">\(\nu\)</span>. We thus have <span class="math notranslate nohighlight">\(\psi=\alpha\exp(i\nu\theta)\)</span>, dropping a constant term in the exponent, which can be removed by a global gauge transformation. We expect <span class="math notranslate nohighlight">\(\psi\)</span> to be single valued, which restricts <span class="math notranslate nohighlight">\(\nu\)</span> to be an integer <span class="math notranslate nohighlight">\(n\in\mathbb Z\)</span>.</p>
-<p>The equation with this new information can be written:</p>
-<div class="math notranslate nohighlight" id="equation-polar-gl2">
-<span class="eqno">(12)<a class="headerlink" href="#equation-polar-gl2" title="Permalink to this equation">#</a></span>\[\alpha^2\left(\frac n{\kappa\rho}+a_\theta\right)=\frac{d}{d\rho}\left[\frac1\rho \frac{d [\rho a_\theta]}{d \rho}\right]=a_\theta''+\frac{a_\theta'}{\rho}-\frac{a_\theta}{\rho^2}\]</div>
+\[\bar m=\frac {h_0}{4\pi}\left[\frac{\tanh(\psi_0d/2)}{\psi_0d/2}-1\right]\]</div>
+<p>For large <span class="math notranslate nohighlight">\(\psi_0d/2\)</span>, <span class="math notranslate nohighlight">\(\bar m\rightarrow -h_0/4\pi\)</span>.</p>
+<p>For small <span class="math notranslate nohighlight">\(\psi_0d/2\)</span>, the first term of the Taylor expansion of <span class="math notranslate nohighlight">\(\tanh\)</span> cancels against the constant, but at next order, avoiding getting into Bernoulli numbers, <span class="math notranslate nohighlight">\(\bar m\approx -h_0(\psi_0d)^2/48\pi\)</span>.</p>
+<p>Also we can apply similar reasoning to <a class="reference internal" href="#equation-h0psi">(18)</a> with <span class="math notranslate nohighlight">\(\cosh\approx1\)</span>, and <span class="math notranslate nohighlight">\(\sinh(x)\approx x+x^3/6\)</span>, to give <span class="math notranslate nohighlight">\(h_0^2\approx12(1-\psi_0^2)/d^2\)</span>, or</p>
+<div class="math notranslate nohighlight" id="equation-smalld">
+<span class="eqno">(19)<a class="headerlink" href="#equation-smalld" title="Permalink to this equation">#</a></span>\[\psi_0^2=1-\frac{(h_0d)^2}{12}\]</div>
+<p>allowing us to infer <span class="math notranslate nohighlight">\(\bar m\approx -(h_0d)^2(1-(h_0d)^2/12)/48\pi\)</span>.</p>
 </section>
-<section id="energy">
-<h2>Energy<a class="headerlink" href="#energy" title="Permalink to this heading">#</a></h2>
-<p>The Gibbs energy is:</p>
+<section id="gibbs-energies">
+<h2>Gibbs energies<a class="headerlink" href="#gibbs-energies" title="Permalink to this heading">#</a></h2>
+<p><span id="id2">[<a class="reference internal" href="../bib.html#id2" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span> gives the full energy difference from the normal state in the form:</p>
 <div class="math notranslate nohighlight">
-\[G[\psi,\psi^*,\mathbf a]=\frac {H_c^2}{4\pi}\lambda_L^d\int d^d\mathbf r \left[-|\psi|^2+\frac 12|\psi|^4+\left|\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi\right|^2+(\mathbf\nabla\times\mathbf a)^2-2\mathbf h\cdot\mathbf\nabla\times\mathbf a\right]\]</div>
-<p>We already have the relevant <span class="math notranslate nohighlight">\(z\)</span> component of <span class="math notranslate nohighlight">\(\nabla\times\mathbf a\)</span> as:</p>
+\[G_s-G_n=\frac{H_c^2\lambda_L^3}{4\pi}\int_{-d/2}^{+d/2}dx\left[-\psi^2+\frac12\psi^4+(b-h_0)^2+\left|\left(\frac{\mathbf\nabla}\kappa+i\mathbf a\right)\psi\right|^2\right]\]</div>
+<p>Using the constraint, <a class="reference internal" href="#equation-const">(17)</a>, enables the reduced form with constant <span class="math notranslate nohighlight">\(\psi_0\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[b_z=\frac1\rho\frac{d[\rho a_\theta]}{d\rho}=a_\theta'+\frac {a_\theta}\rho\]</div>
-<p>We have <span class="math notranslate nohighlight">\(\psi=\alpha\exp(in\theta)\)</span>. We now need the radial and angular dependence of the gradient:</p>
+\[G_s-G_n=\frac{H_c^2\lambda_L^3}{4\pi}\int_{-d/2}^{+d/2}dx\left[-\frac12\psi_0^4+(b_0-h_0)^2\right]\]</div>
+<p>So all that’s left is to integrate <span class="math notranslate nohighlight">\(b_0=a_0'\)</span> (already done for <span class="math notranslate nohighlight">\(\bar m\)</span> calculation) and <span class="math notranslate nohighlight">\(b_0^2\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\hat{\mathbf e}_\rho\cdot\mathbf\nabla=\frac\partial{\partial\rho}\]</div>
+\[\int_{-d/2}^{+d/2}b_0(x)dx=[a_0]_{-d/2}^{+d/2}=\frac{2h_0}{\psi_0}\tanh(\psi_0d/2)\]</div>
 <div class="math notranslate nohighlight">
-\[\hat{\mathbf e}_\theta\cdot\mathbf\nabla=\frac1\rho\frac\partial{\partial\theta}\]</div>
-<p>Hence:</p>
+\[\begin{split}\int_{-d/2}^{+d/2}(b_0(x))^2dx&amp;=[a_0a_0']_{-d/2}^{+d/2}-\int_{-d/2}^{+d/2}a_0a_0''dx \\
+&amp;=h_0[a_0]_{-d/2}^{+d/2}-\int_{-d/2}^{+d/2}(\psi_0a_0)^2dx\end{split}\]</div>
+<p>But from the <a class="reference internal" href="#equation-const">(17)</a> constraint, we have:</p>
 <div class="math notranslate nohighlight">
-\[\left(\frac{\mathbf\nabla}{\kappa}+i\mathbf a\right)\psi=\exp(in\theta)\left[\hat{\mathbf e}_\rho\frac{\alpha'}\kappa+i\hat{\mathbf e}_\theta\alpha\left(a_\theta+\frac n{\kappa\rho}\right)\right]\]</div>
-<p>The Gibbs energy per unit length in the <span class="math notranslate nohighlight">\(z\)</span> direction becomes:</p>
+\[\int_{-d/2}^{+d/2}a_0^2dx=(1-\psi_0^2)d\]</div>
+<p>Assembling the bits:</p>
+<div class="math notranslate nohighlight" id="equation-dgpert">
+<span class="eqno">(20)<a class="headerlink" href="#equation-dgpert" title="Permalink to this equation">#</a></span>\[\begin{split}G_s-G_n&amp;=\frac{H_c^2\lambda_L^3}{4\pi}\int_{-d/2}^{+d/2}dx\left[-\frac12\psi_0^4+(b_0-h_0)^2\right] \\
+&amp;=\frac{H_c^2\lambda_L^3d}{4\pi}\left[-\psi_0^2+\frac12\psi_0^4+h_0^2\left(1-\frac{\tanh(\psi_0d/2)}{\psi_0d/2}\right)\right]\end{split}\]</div>
+<p>We must remember that <span class="math notranslate nohighlight">\(h_0\)</span> and <span class="math notranslate nohighlight">\(\psi_0\)</span> are connected by the constraint <a class="reference internal" href="#equation-h0psi">(18)</a>.</p>
+<p>In the limit of large <span class="math notranslate nohighlight">\(d\)</span>, where <span class="math notranslate nohighlight">\(\psi_0=1-\epsilon\)</span> with <span class="math notranslate nohighlight">\(\epsilon\)</span> small, we can use <span class="math notranslate nohighlight">\(\cosh(x)\approx\sinh(x)\approx\exp(x)/2\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[G[\alpha,a_\theta]=\frac {H_c^2}{4\pi}\lambda_L^d\int 2\pi\rho d\rho \left[-\alpha^2+\frac 12\alpha^4+\left(\frac{\alpha'}\kappa\right)^2+\alpha^2\left(a_\theta+\frac n{\kappa\rho}\right)^2+\left(\frac1\rho\frac{d[\rho a_\theta]}{d\rho}\right)^2-\frac{2h}\rho\frac{d[\rho a_\theta]}{d\rho}\right]\]</div>
-<p>Varying the <span class="math notranslate nohighlight">\(a_\theta\)</span> field, remembering the <span class="math notranslate nohighlight">\(2\pi\rho\)</span> factor, and assuming <span class="math notranslate nohighlight">\(h\)</span> constant, we get the equation <a class="reference internal" href="#equation-polar-gl2">(12)</a>.</p>
-<p>The <span class="math notranslate nohighlight">\(\alpha\)</span> variation gives:</p>
-<div class="math notranslate nohighlight" id="equation-polar-gl1">
-<span class="eqno">(13)<a class="headerlink" href="#equation-polar-gl1" title="Permalink to this equation">#</a></span>\[\alpha''+\frac{\alpha'}\rho=\left(\alpha^2+\left(a_\theta+\frac n{\kappa\rho}\right)^2-1\right)\alpha\]</div>
-<p>For solutions of the GL equations, the free energy becomes, after a partial integration of the <span class="math notranslate nohighlight">\(\alpha'\)</span>-dependent term and substitution of <span class="math notranslate nohighlight">\(\alpha''\)</span>:</p>
+\[h_0^2\approx2\epsilon d\implies \epsilon\approx\frac{h_0^2}{2d}\]</div>
+<p>The <span class="math notranslate nohighlight">\(\epsilon\)</span> small assumption requires small <span class="math notranslate nohighlight">\(h_0\)</span>, and large <span class="math notranslate nohighlight">\(d\)</span>. Also, it only provides a suitable approximation while <span class="math notranslate nohighlight">\(G_s&lt;G_n\)</span>, and so up to <span class="math notranslate nohighlight">\(h_c\)</span> where <span class="math notranslate nohighlight">\(G_s=G_n\)</span>. This gives a leading appoximation (<span class="math notranslate nohighlight">\(\tanh(x)\approx1\)</span>):</p>
 <div class="math notranslate nohighlight">
-\[G[\alpha,a_\theta]=\frac {H_c^2}{4\pi}\lambda_L^d\int 2\pi\rho d\rho \left[-\frac 12\alpha^4+b_z^2-2hb_z\right]\]</div>
-</section>
-<section id="flux-quantization">
-<h2>Flux quantization<a class="headerlink" href="#flux-quantization" title="Permalink to this heading">#</a></h2>
-<p>The magnetic flux throuugh the vortex is:</p>
+\[G_s-G_n\approx\frac{H_c^2\lambda_L^3d}{4\pi}\left[-\frac12+h_0^2\left(1-\frac{2}{d}\right)\right]\]</div>
+<p>hence <span class="math notranslate nohighlight">\(h_c^2\approx1/2(1-2/d)\approx 1/2(1+2/d)\)</span></p>
+<p>The small <span class="math notranslate nohighlight">\(d\)</span> limit from <a class="reference internal" href="#equation-smalld">(19)</a> and <span class="math notranslate nohighlight">\(\tanh(x)\approx x-x^3/3\)</span> gives:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\phi_n&amp;=\int_0^\infty 2\pi\rho d\rho b_z\\
-&amp;=\int_0^\infty 2\pi\ d\rho \frac{d[\rho a_\theta]}{d\rho}\\
-&amp;=[2\pi\rho a_\theta]^\infty_0\end{split}\]</div>
-<p>This result is essentially Stokes’ theorem. Unless <span class="math notranslate nohighlight">\(a_\theta\)</span> is singlular as <span class="math notranslate nohighlight">\(\rho\rightarrow0\)</span>, the contribution of the lower limit is zero. For now, we will assume this is not the case. In the far region we expect <span class="math notranslate nohighlight">\(\alpha\rightarrow1\)</span>, and considering <a class="reference internal" href="#equation-polar-gl1">(13)</a>, we derive:</p>
+\[\begin{split}G_s-G_n&amp;\approx\frac{H_c^2\lambda_L^3d}{4\pi}\left[-\frac12\psi_0^4\right]\\
+&amp;=\frac{H_c^2\lambda_L^3d}{4\pi}\left[-\frac12\left(1-\frac{(h_0d)^2}{12}\right)^2\right]\end{split}\]</div>
+<p>The critical field in this limit is given by <span class="math notranslate nohighlight">\(h_c^2\approx 12/d^2\)</span>, and the superconducting phase has <span class="math notranslate nohighlight">\(\psi_0\approx 0\)</span>, so the transition is second order.</p>
+<p>If we just assume <span class="math notranslate nohighlight">\(\psi_0\)</span> small, we have:</p>
 <div class="math notranslate nohighlight">
-\[\left(a_\theta+\frac n{\kappa\rho}\right)^2\alpha\rightarrow\left(a_\theta+\frac n{\kappa\rho}\right)^2\rightarrow0\]</div>
-<p>since the derivatives should also tend to zero. Hence <span class="math notranslate nohighlight">\(\phi_n=-2\pi n/\kappa\)</span> is quantized in units of <span class="math notranslate nohighlight">\(2pi/\kappa\)</span>. Hopefully a bit of descaling will get us proper flux quantization?</p>
+\[(h_0d)^2\approx (1-\psi_0^2)\left(12 + \frac{12 \psi_0^{2} d^{2}}{5} + \frac{81 \psi_0^{4} d^{4}}{700} + O\left(\psi_0^{6}\right)\right)\]</div>
 <div class="math notranslate nohighlight">
-\[\mathbf x=\lambda_L \mathbf r\]</div>
+\[\frac{(h_0d)^2}{12}\approx 1 + \psi_0^{2} \left(\frac{d^{2}}{5} - 1\right) + \psi_0^{4} \cdot \left(\frac{27 d^{4}}{2800} - \frac{d^{2}}{5}\right) + O\left(\psi_0^{6}\right)\]</div>
+<p>Inserting in</p>
 <div class="math notranslate nohighlight">
-\[\mathbf A=\sqrt2\lambda_LH_c\mathbf a\]</div>
-<p>so, descaled: <span class="math notranslate nohighlight">\(\Phi_n=-\sqrt8\lambda_L^2H_c\pi n/\kappa\)</span>. But:</p>
-<div class="math notranslate nohighlight">
-\[H_c=\frac{\phi_L}{\sqrt8\pi\xi\lambda_L}\]</div>
-<p>We also need to remember: <span class="math notranslate nohighlight">\(\kappa=\lambda_L/\xi\)</span> and  the flux quantum <span class="math notranslate nohighlight">\(\phi_L=hc/e^*\)</span>. Hence <span class="math notranslate nohighlight">\(\Phi_n=-n\phi_L\)</span>. Phew! We could have made the dependence positive on <span class="math notranslate nohighlight">\(n\)</span> if we had chosen the opposite phase of the order parameter.</p>
+\[G_s-G_n\approx \frac{H_c^2\lambda_L^3d}{4\pi}\left[\psi_0^{4} \left(\frac{d^{2}}{10} - \frac{1}{2}\right) + O\left(\psi_0^{6}\right)\right]\]</div>
+<p>We note that once <span class="math notranslate nohighlight">\(d^2&gt;5\)</span>, the difference becomes positive for <span class="math notranslate nohighlight">\(\psi_0\rightarrow0\)</span>, and hence the transition to the normal state must occur sooner, a first order transition.</p>
 </section>
 </section>
 
@@ -549,20 +520,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="oned.html"
+       href="../practice/farho.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">One dimensional problems</p>
+        <p class="prev-next-title">Simplifying the radial equation</p>
       </div>
     </a>
     <a class="right-next"
-       href="far.html"
+       href="../type1/perturbations.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Far out</p>
+        <p class="prev-next-title">Type I perturbations</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -581,9 +552,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetic-field-in-a-vortex">Magnetic field in a vortex</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy">Energy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flux-quantization">Flux quantization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetization">Magnetization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-energies">Gibbs energies</a></li>
 </ul>
   </nav></div>
 
