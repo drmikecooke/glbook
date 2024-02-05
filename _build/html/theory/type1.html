@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Type I perturbation theory &#8212; Ginzburg-Landau boundary value problems</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/text.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'theory/type1';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Type I perturbations" href="../type1/perturbations.html" />
+    <link rel="prev" title="Simplifying the radial equation" href="../practice/farho.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/lattice.jpg" class="logo__image only-light" alt="Ginzburg-Landau boundary value problems - Home"/>
+    <script>document.write(`<img src="../_static/lattice.jpg" class="logo__image only-dark" alt="Ginzburg-Landau boundary value problems - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Ginzburg-Landau and scipy
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Theory</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="free.html">Ginzburg-Landau free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gibbs.html">Gibbs free energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="current.html">Current</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flux.html">Flux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaling.html">Scaling the equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oned.html">One dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polar.html">Polar exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="far.html">Far out</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice in 1D</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../practice/liven.html">Using Live Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/glcode.html">Basic GL bvp code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/thin.html">Thin films</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/energy.html">Energy calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/domain.html">Domain walls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/vortex.html">Vortex solutions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/far.html">Far out applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../practice/farho.html">Simplifying the radial equation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Type I superconductors and perturbation theory</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Type I perturbation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../type1/perturbations.html">Type I perturbations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../type1/series.html">Series expansions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../type1/h.html">Order parameter and applied field</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../bib.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../abbreviations.html">Abbreviations</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftheory/type1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/theory/type1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Type I perturbation theory</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetization">Magnetization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-energies">Gibbs energies</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="type-i-perturbation-theory">
+<h1>Type I perturbation theory<a class="headerlink" href="#type-i-perturbation-theory" title="Permalink to this heading">#</a></h1>
+<p>We assume <span class="math notranslate nohighlight">\(\kappa^2\ll1\)</span> in <a class="reference internal" href="oned.html#equation-oned-gl1">(10)</a>.</p>
+<div class="math notranslate nohighlight">
+\[\frac{\psi''}{\kappa^2}-(a^2+\psi^2-1)\psi=0\]</div>
+<p>Hence, we perturb <span class="math notranslate nohighlight">\(\psi=\sum_k\kappa^{2k}\psi_k\)</span> and similarly for <span class="math notranslate nohighlight">\(a\)</span>. Since the equations have non-linear couplings, high orders become increasingly difficult to extract by hand. However, the lowest order is just <span class="math notranslate nohighlight">\(\psi_0''=0\)</span>, so there is a linear dependence on <span class="math notranslate nohighlight">\(x\)</span>. Combined with a natural boundary condition, <span class="math notranslate nohighlight">\(\psi_0'=0\)</span> anywhere, we determine that <span class="math notranslate nohighlight">\(\psi_0\)</span> is constant.</p>
+<p>For a constant external field (<span class="math notranslate nohighlight">\(h'=0\)</span>) the magnetic field zero-order equation is (from <a class="reference internal" href="oned.html#equation-oned-gl2">(9)</a>):</p>
+<div class="math notranslate nohighlight">
+\[-a_0''+\psi_0^2a_0=0\]</div>
+<p>The solutions to this linear equation can be expressed in terms of exponentials or hyperbolic functions. We have boundary conditions that <span class="math notranslate nohighlight">\(b=a_0'=h_0\)</span> with <span class="math notranslate nohighlight">\(h_0\)</span> the applied field. For boundaries at <span class="math notranslate nohighlight">\(x=\pm d/2\)</span> we have <span class="math notranslate nohighlight">\(a_0=h_0\sinh(\psi_0x)/\psi_0\cosh(\psi_0d/2)\)</span> and <span class="math notranslate nohighlight">\(b_0=h_0\cosh(\psi_0x)/\cosh(\psi_0d/2)\)</span>.</p>
+<p>These equations don’t determine, as yet, the value of <span class="math notranslate nohighlight">\(\psi_0\)</span> in terms of <span class="math notranslate nohighlight">\(h_0\)</span>. We need to consider the first order equation:</p>
+<div class="math notranslate nohighlight">
+\[\psi_1''=(a_0^2+\psi_0^2-1)\psi_0\]</div>
+<p>To get the constraint, we can either appeal to the apparatus of linear operator theory and the Fredholm alternative (as does <span id="id1">[<a class="reference internal" href="../bib.html#id2" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span>), or we observe that the first integral, giving <span class="math notranslate nohighlight">\(\psi_1'\)</span> is zero at <span class="math notranslate nohighlight">\(\pm d/2\)</span>, and so:</p>
+<div class="math notranslate nohighlight" id="equation-const">
+<span class="eqno">(17)<a class="headerlink" href="#equation-const" title="Permalink to this equation">#</a></span>\[\int_{-d/2}^{+d/2}(a_0^2+\psi_0^2-1)\psi_0dx=0\]</div>
+<p>We need <span class="math notranslate nohighlight">\(\int_0^x\sinh^2(\xi)d\xi=(\sinh(2x)-2x)/4\)</span>. We get a relation between <span class="math notranslate nohighlight">\(h_0\)</span> and <span class="math notranslate nohighlight">\(\psi_0\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-h0psi">
+<span class="eqno">(18)<a class="headerlink" href="#equation-h0psi" title="Permalink to this equation">#</a></span>\[h_0^2=2\frac{\psi_0^2(1-\psi_0^2)\cosh^2(\psi_0d/2)}{\sinh(\psi_0d)/\psi_0d-1}\]</div>
+<section id="magnetization">
+<span id="mag"></span><h2>Magnetization<a class="headerlink" href="#magnetization" title="Permalink to this heading">#</a></h2>
+<p>The magnetization is related as <span class="math notranslate nohighlight">\(b=h+4\pi m\)</span>.The average of <span class="math notranslate nohighlight">\(b\)</span> over <span class="math notranslate nohighlight">\(d\)</span> thickness, <span class="math notranslate nohighlight">\(\bar b\)</span>, is <span class="math notranslate nohighlight">\(h_0\tanh(\psi_0d/2)/(\psi_0d/2)\)</span>, so the average magnetization is:</p>
+<div class="math notranslate nohighlight">
+\[\bar m=\frac {h_0}{4\pi}\left[\frac{\tanh(\psi_0d/2)}{\psi_0d/2}-1\right]\]</div>
+<p>For large <span class="math notranslate nohighlight">\(\psi_0d/2\)</span>, <span class="math notranslate nohighlight">\(\bar m\rightarrow -h_0/4\pi\)</span>.</p>
+<p>For small <span class="math notranslate nohighlight">\(\psi_0d/2\)</span>, the first term of the Taylor expansion of <span class="math notranslate nohighlight">\(\tanh\)</span> cancels against the constant, but at next order, avoiding getting into Bernoulli numbers, <span class="math notranslate nohighlight">\(\bar m\approx -h_0(\psi_0d)^2/48\pi\)</span>.</p>
+<p>Also we can apply similar reasoning to <a class="reference internal" href="#equation-h0psi">(18)</a> with <span class="math notranslate nohighlight">\(\cosh\approx1\)</span>, and <span class="math notranslate nohighlight">\(\sinh(x)\approx x+x^3/6\)</span>, to give <span class="math notranslate nohighlight">\(h_0^2\approx12(1-\psi_0^2)/d^2\)</span>, or</p>
+<div class="math notranslate nohighlight" id="equation-smalld">
+<span class="eqno">(19)<a class="headerlink" href="#equation-smalld" title="Permalink to this equation">#</a></span>\[\psi_0^2=1-\frac{(h_0d)^2}{12}\]</div>
+<p>allowing us to infer <span class="math notranslate nohighlight">\(\bar m\approx -(h_0d)^2(1-(h_0d)^2/12)/48\pi\)</span>.</p>
+</section>
+<section id="gibbs-energies">
+<h2>Gibbs energies<a class="headerlink" href="#gibbs-energies" title="Permalink to this heading">#</a></h2>
+<p><span id="id2">[<a class="reference internal" href="../bib.html#id2" title="Daniel Arovas and Congjun Wu. Lecture notes on superconductivity (a work in progress). 2019. URL: https://courses.physics.ucsd.edu/2014/Spring/physics239/LECTURES/SUPERCONDUCTIVITY.pdf.">ArovasWu19</a>]</span> gives the full energy difference from the normal state in the form:</p>
+<div class="math notranslate nohighlight">
+\[G_s-G_n=\frac{H_c^2\lambda_L^3}{4\pi}\int_{-d/2}^{+d/2}dx\left[-\psi^2+\frac12\psi^4+(b-h_0)^2+\left|\left(\frac{\mathbf\nabla}\kappa+i\mathbf a\right)\psi\right|^2\right]\]</div>
+<p>Using the constraint, <a class="reference internal" href="#equation-const">(17)</a>, enables the reduced form with constant <span class="math notranslate nohighlight">\(\psi_0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[G_s-G_n=\frac{H_c^2\lambda_L^3}{4\pi}\int_{-d/2}^{+d/2}dx\left[-\frac12\psi_0^4+(b_0-h_0)^2\right]\]</div>
+<p>So all that’s left is to integrate <span class="math notranslate nohighlight">\(b_0=a_0'\)</span> (already done for <span class="math notranslate nohighlight">\(\bar m\)</span> calculation) and <span class="math notranslate nohighlight">\(b_0^2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\int_{-d/2}^{+d/2}b_0(x)dx=[a_0]_{-d/2}^{+d/2}=\frac{2h_0}{\psi_0}\tanh(\psi_0d/2)\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\int_{-d/2}^{+d/2}(b_0(x))^2dx&amp;=[a_0a_0']_{-d/2}^{+d/2}-\int_{-d/2}^{+d/2}a_0a_0''dx \\
+&amp;=h_0[a_0]_{-d/2}^{+d/2}-\int_{-d/2}^{+d/2}(\psi_0a_0)^2dx\end{split}\]</div>
+<p>But from the <a class="reference internal" href="#equation-const">(17)</a> constraint, we have:</p>
+<div class="math notranslate nohighlight">
+\[\int_{-d/2}^{+d/2}a_0^2dx=(1-\psi_0^2)d\]</div>
+<p>Assembling the bits:</p>
+<div class="math notranslate nohighlight" id="equation-dgpert">
+<span class="eqno">(20)<a class="headerlink" href="#equation-dgpert" title="Permalink to this equation">#</a></span>\[\begin{split}G_s-G_n&amp;=\frac{H_c^2\lambda_L^3}{4\pi}\int_{-d/2}^{+d/2}dx\left[-\frac12\psi_0^4+(b_0-h_0)^2\right] \\
+&amp;=\frac{H_c^2\lambda_L^3d}{4\pi}\left[-\psi_0^2+\frac12\psi_0^4+h_0^2\left(1-\frac{\tanh(\psi_0d/2)}{\psi_0d/2}\right)\right]\end{split}\]</div>
+<p>We must remember that <span class="math notranslate nohighlight">\(h_0\)</span> and <span class="math notranslate nohighlight">\(\psi_0\)</span> are connected by the constraint <a class="reference internal" href="#equation-h0psi">(18)</a>.</p>
+<p>In the limit of large <span class="math notranslate nohighlight">\(d\)</span>, where <span class="math notranslate nohighlight">\(\psi_0=1-\epsilon\)</span> with <span class="math notranslate nohighlight">\(\epsilon\)</span> small, we can use <span class="math notranslate nohighlight">\(\cosh(x)\approx\sinh(x)\approx\exp(x)/2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[h_0^2\approx2\epsilon d\implies \epsilon\approx\frac{h_0^2}{2d}\]</div>
+<p>The <span class="math notranslate nohighlight">\(\epsilon\)</span> small assumption requires small <span class="math notranslate nohighlight">\(h_0\)</span>, and large <span class="math notranslate nohighlight">\(d\)</span>. Also, it only provides a suitable approximation while <span class="math notranslate nohighlight">\(G_s&lt;G_n\)</span>, and so up to <span class="math notranslate nohighlight">\(h_c\)</span> where <span class="math notranslate nohighlight">\(G_s=G_n\)</span>. This gives a leading appoximation (<span class="math notranslate nohighlight">\(\tanh(x)\approx1\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[G_s-G_n\approx\frac{H_c^2\lambda_L^3d}{4\pi}\left[-\frac12+h_0^2\left(1-\frac{2}{d}\right)\right]\]</div>
+<p>hence <span class="math notranslate nohighlight">\(h_c^2\approx1/2(1-2/d)\approx 1/2(1+2/d)\)</span></p>
+<p>The small <span class="math notranslate nohighlight">\(d\)</span> limit from <a class="reference internal" href="#equation-smalld">(19)</a> and <span class="math notranslate nohighlight">\(\tanh(x)\approx x-x^3/3\)</span> gives:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}G_s-G_n&amp;\approx\frac{H_c^2\lambda_L^3d}{4\pi}\left[-\frac12\psi_0^4\right]\\
+&amp;=\frac{H_c^2\lambda_L^3d}{4\pi}\left[-\frac12\left(1-\frac{(h_0d)^2}{12}\right)^2\right]\end{split}\]</div>
+<p>The critical field in this limit is given by <span class="math notranslate nohighlight">\(h_c^2\approx 12/d^2\)</span>, and the superconducting phase has <span class="math notranslate nohighlight">\(\psi_0\approx 0\)</span>, so the transition is second order.</p>
+<p>If we just assume <span class="math notranslate nohighlight">\(\psi_0\)</span> small, we have:</p>
+<div class="math notranslate nohighlight">
+\[(h_0d)^2\approx (1-\psi_0^2)\left(12 + \frac{12 \psi_0^{2} d^{2}}{5} + \frac{81 \psi_0^{4} d^{4}}{700} + O\left(\psi_0^{6}\right)\right)\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{(h_0d)^2}{12}\approx 1 + \psi_0^{2} \left(\frac{d^{2}}{5} - 1\right) + \psi_0^{4} \cdot \left(\frac{27 d^{4}}{2800} - \frac{d^{2}}{5}\right) + O\left(\psi_0^{6}\right)\]</div>
+<p>Inserting in</p>
+<div class="math notranslate nohighlight">
+\[G_s-G_n\approx \frac{H_c^2\lambda_L^3d}{4\pi}\left[\psi_0^{4} \left(\frac{d^{2}}{10} - \frac{1}{2}\right) + O\left(\psi_0^{6}\right)\right]\]</div>
+<p>We note that once <span class="math notranslate nohighlight">\(d^2&gt;5\)</span>, the difference becomes positive for <span class="math notranslate nohighlight">\(\psi_0\rightarrow0\)</span>, and hence the transition to the normal state must occur sooner, a first order transition.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./theory"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../practice/farho.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Simplifying the radial equation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../type1/perturbations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Type I perturbations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#magnetization">Magnetization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gibbs-energies">Gibbs energies</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mike Cooke
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 05/02/2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

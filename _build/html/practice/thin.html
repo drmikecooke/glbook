@@ -193,6 +193,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="far.html">Far out applications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="farho.html">Simplifying the radial equation</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Type I superconductors and perturbation theory</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../theory/type1.html">Type I perturbation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../type1/perturbations.html">Type I perturbations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../type1/series.html">Series expansions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../type1/h.html">Order parameter and applied field</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">End matter</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../bib.html">Bibliography</a></li>
@@ -516,6 +523,24 @@ document.write(`
 <img alt="../_images/1409476ba158138a0246215062b529fcaac751598baf03d46fa3cbf79c06594a.png" src="../_images/1409476ba158138a0246215062b529fcaac751598baf03d46fa3cbf79c06594a.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h0</span><span class="p">,</span><span class="n">kappa</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">20</span>
+
+<span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">plt1D</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span><span class="n">nat</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="n">nat</span><span class="p">(</span><span class="n">L</span><span class="o">/</span><span class="mi">20</span><span class="p">,</span><span class="n">h0</span><span class="p">),</span><span class="sa">f</span><span class="s2">&quot;L=</span><span class="si">{</span><span class="n">L</span><span class="o">/</span><span class="mi">10</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$h_0=</span><span class="si">{</span><span class="n">h0</span><span class="si">}</span><span class="s2">,\kappa=</span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/17f41f8a54a81fc7136d41e04e15a4f5e2cfea840e0f8dabee05fb80ae7f6a3c.png" src="../_images/17f41f8a54a81fc7136d41e04e15a4f5e2cfea840e0f8dabee05fb80ae7f6a3c.png" />
+</div>
+</div>
 </section>
 </section>
 
@@ -609,7 +634,7 @@ By Mike Cooke
 
   <p class="copyright">
     
-      © Copyright 25/01/2024.
+      © Copyright 05/02/2024.
       <br/>
     
   </p>
